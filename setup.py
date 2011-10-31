@@ -13,9 +13,10 @@ install_requires = [
     'Django',
     'django-extensions',
     'django-nose',
+    'djangorestframework',
+    'lizard-area',
     'lizard-ui >= 3.0',
     'pkginfo',
-    'lizard-area',
     ],
 
 tests_require = [
