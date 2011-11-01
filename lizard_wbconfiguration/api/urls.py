@@ -6,9 +6,9 @@ from django.contrib import admin
 
 from djangorestframework.views import InstanceModelView
 
-from lizard_area.api.resources import AreaConfigurationResource
+from lizard_wbconfiguration.api.resources import AreaConfigurationResource
 
-from lizard_area.api.views import RootView
+from lizard_wbconfiguration.api.views import RootView
 
 
 admin.autodiscover()

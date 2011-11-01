@@ -12,6 +12,6 @@ class RootView(View):
     """
     def get(self, request):
          return {
-            "categories": reverse(
-                'lizard_wbconfiguration_api_area_configuration_root'),
+            "root": reverse(
+                'lizard_wbconfiguration_api_root'),
             }

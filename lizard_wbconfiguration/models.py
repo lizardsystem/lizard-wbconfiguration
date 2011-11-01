@@ -2,20 +2,36 @@
 from django.db import models
 
 from lizard_area.models import Area
-from lizard_fewsnorm import TimeSeriesKeys
+from lizard_fewsnorm.models import TimeseriesKeys
+from lizard_esf.models import Configuration
 
 
-class AreaConfiguration(models.Model)
+class AreaConfiguration(models.Model):
     """
-    Areaconfiguration. Currently copied from lizard-esf.models
+    Areaconfiguration.
     """
-    area = models.ForeignKey(Area)
-    configuration = models.ForeignKey(Configuration)
+    area = models.ForeignKey(
+        Area,
+        related_name='wbconfiguration_areaconfiguration_set',
+    )
+    configuration = models.ForeignKey(
+        Configuration,
+        related_name='wbconfiguration_areaconfiguration_set',
+    )
     manual = models.BooleanField()
-    manual_value = models.DecimalField()
-    timeseries_manual = models.ForeignKey(TimeSeriesKeys)
-    timeseries_automatic = models.ForeignKey(TimeSeriesKeys)
-    timeseries_final_value = models.ForeignKey(TimeSeriesKeys)
+    manual_value = models.DecimalField(max_digits=15, decimal_places=6)
+    timeseries_manual = models.ForeignKey(
+        TimeseriesKeys,
+        related_name='wbconfiguration_areaconfiguration_set1',
+    )
+    timeseries_automatic = models.ForeignKey(
+        TimeseriesKeys,
+        related_name='wbconfiguration_areaconfiguration_set2',
+    )
+    timeseries_final_value = models.ForeignKey(
+        TimeseriesKeys,
+        related_name='wbconfiguration_areaconfiguration_set3',
+    )
 
 
 class Structure(models.Model):
