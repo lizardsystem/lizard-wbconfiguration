@@ -14,8 +14,10 @@ install_requires = [
     'django-extensions',
     'django-nose',
     'djangorestframework',
-    'lizard-area',
     'lizard-ui >= 3.0',
+    'lizard-fewsnorm',
+    'lizard-area',
+    'lizard-esf',
     'pkginfo',
     ],
 
