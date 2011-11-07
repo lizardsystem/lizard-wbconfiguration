@@ -11,7 +11,7 @@ class RootView(View):
     Startpoint.
     """
     def get(self, request):
-         return {
+        return {
             "root": reverse(
                 'lizard_wbconfiguration_api_root'),
             }
