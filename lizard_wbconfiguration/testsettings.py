@@ -40,6 +40,8 @@ DATABASES = {
 SITE_ID = 1
 INSTALLED_APPS = [
     'lizard_wbconfiguration',
+    'lizard_fewsnorm',
+    'lizard_esf',
     'lizard_ui',
     'staticfiles',
     'compressor',
