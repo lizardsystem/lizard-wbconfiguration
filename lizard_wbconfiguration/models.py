@@ -2,7 +2,7 @@
 from django.db import models
 
 from lizard_area.models import Area
-from lizard_fewsnorm.models import TimeseriesKeys
+from lizard_fewsnorm.models import Series
 from lizard_esf.models import Configuration
 
 
@@ -21,15 +21,15 @@ class AreaConfiguration(models.Model):
     manual = models.BooleanField()
     manual_value = models.DecimalField(max_digits=15, decimal_places=6)
     timeseries_manual = models.ForeignKey(
-        TimeseriesKeys,
+        Series,
         related_name='wbconfiguration_areaconfiguration_set1',
     )
     timeseries_automatic = models.ForeignKey(
-        TimeseriesKeys,
+        Series,
         related_name='wbconfiguration_areaconfiguration_set2',
     )
     timeseries_final_value = models.ForeignKey(
-        TimeseriesKeys,
+        Series,
         related_name='wbconfiguration_areaconfiguration_set3',
     )
 
