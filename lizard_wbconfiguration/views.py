@@ -7,7 +7,7 @@ from lizard_wbconfiguration.models import Bucket
 
 
 def area_structures(area_code):
-    area = None
+    pass
 
 def area_buckets(area_code):
     pass

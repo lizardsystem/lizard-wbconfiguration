@@ -33,22 +33,31 @@ def parameter(ident):
     return parameter
 
 
+class GridFieldsConfiguration(models.Model):
+    """
+    Configuration fields in grid.
+    """
+    field_name = models.CharField(max_length=128)
+    display_name = models.CharField(max_length=128)
+    editable = models.BooleanField()
+    visable = models.BooleanField()
+    field_type = models.CharField(max_length=128)
+    grid_id = models.CharField(max_length=128)
+
+
 class AreaConfiguration(Area):
     """
-    Areaconfiguration for water balace.
+    Areaconfiguration for water balance.
     """
 
-    start_dt = models.DateTimeField(null=True, blank=True)
+    start_dt = models.DateTimeField(null=True, blank=True,
+                                    verbose_name="Start date")
     ts_precipitation = models.ForeignKey(TimeSeriesCache,
                                          null=True, blank=True,
-                                         related_name='ts_precipitation',
-                                         limit_choices_to={
-            'parametercache': parameter('precipitation')},)
+                                         related_name='ts_precipitation')
     ts_evaporation = models.ForeignKey(TimeSeriesCache,
                                        null=True, blank=True,
-                                       related_name='ts_evaporation',
-                                       limit_choices_to={
-            'parametercache': parameter('evaporation')})
+                                       related_name='ts_evaporation',)
     max_intake = models.DecimalField(max_digits=5, decimal_places=3,
                                      null=True, blank=True)
     max_outtake = models.DecimalField(max_digits=5, decimal_places=3,
@@ -56,46 +65,35 @@ class AreaConfiguration(Area):
     ts_concentr_chloride_1 = models.ForeignKey(
         TimeSeriesCache,
         null=True, blank=True,
-        related_name='ts_concentr_chloride_1',
-        limit_choices_to={'parametercache': parameter('concentr_chloride_1')})
+        related_name='ts_concentr_chloride_1')
     ts_concentr_chloride_2 = models.ForeignKey(
         TimeSeriesCache,
         null=True, blank=True,
-        related_name='ts_concentr_chloride_2',
-        limit_choices_to={
-            'parametercache': parameter('concentr_chloride_2')})
+        related_name='ts_concentr_chloride_2')
     surface = models.DecimalField(max_digits=10, decimal_places=1,
                                   null=True, blank=True)
     bottom_height = models.DecimalField(max_digits=5, decimal_places=3,
                                         null=True, blank=True)
     ts_water_level = models.ForeignKey(TimeSeriesCache,
                                        null=True, blank=True,
-                                       related_name='ts_water_level',
-                                       limit_choices_to={
-            'parametercache': parameter('water_level')})
+                                       related_name='ts_water_level')
     kwel_is_ts = models.BooleanField()
     kwel = models.DecimalField(max_digits=5, decimal_places=3,
                                null=True, blank=True)
     ts_kwel = models.ForeignKey(TimeSeriesCache,
                                 null=True, blank=True,
-                                related_name='ts_kwel',
-                                limit_choices_to={
-            'parametercache': parameter('kwel')})
+                                related_name='ts_kwel')
     wegz_is_ts = models.BooleanField()
     wegz = models.DecimalField(max_digits=5, decimal_places=3,
                                null=True, blank=True)
     ts_wegz = models.ForeignKey(TimeSeriesCache,
                                 null=True, blank=True,
-                                related_name='ts_wegz',
-                                limit_choices_to={
-            'parametercache': parameter('wegz')})
+                                related_name='ts_wegz')
     peilh_issp = models.BooleanField()
     sp_is_ts = models.BooleanField()
     ts_sp = models.ForeignKey(TimeSeriesCache,
                               null=True, blank=True,
-                              related_name='sp',
-                              limit_choices_to={
-            'parametercache': parameter('sp')})
+                              related_name='sp')
     winterp = models.DecimalField(max_digits=5, decimal_places=3,
                                   null=True, blank=True)
     lentep = models.DecimalField(max_digits=5, decimal_places=3,
@@ -163,6 +161,9 @@ class AreaConfiguration(Area):
         max_digits=5, decimal_places=3,
         null=True, blank=True)
 
+    def __unicode__(self):
+        return "%s" % self.ident
+
 
 class Structure(models.Model):
     """
@@ -183,9 +184,7 @@ class Structure(models.Model):
     ts_debiet = models.ForeignKey(
         TimeSeriesCache,
         related_name='ts_debiet',
-        null=True, blank=True,
-        limit_choices_to={
-            'parametercache': parameter('debiet')})
+        null=True, blank=True)
     deb_zomer = models.DecimalField(max_digits=5, decimal_places=3,
                                     null=True, blank=True)
     deb_wint = models.DecimalField(max_digits=5, decimal_places=3,
@@ -230,19 +229,13 @@ class Bucket(models.Model):
     is_computed = models.BooleanField()
     ts_flowoff = models.ForeignKey(TimeSeriesCache,
                               null=True, blank=True,
-                              related_name='ts_flowoff_bucket',
-                              limit_choices_to={
-            'parametercache': parameter('flowoff')})
+                              related_name='ts_flowoff_bucket')
     ts_drainageindraft = models.ForeignKey(TimeSeriesCache,
                               null=True, blank=True,
-                              related_name='ts_drainageindraf_bucket',
-                              limit_choices_to={
-            'parametercache': parameter('drainage_indraf')})
+                              related_name='ts_drainageindraf_bucket')
     ts_referenceoverflow = models.ForeignKey(TimeSeriesCache,
                               null=True, blank=True,
-                              related_name='ts_referenceoverflow_bucket',
-                              limit_choices_to={
-            'parametercache': parameter('referenceoverflow')})
+                              related_name='ts_referenceoverflow_bucket')
     surface = models.DecimalField(max_digits=10, decimal_places=1,
                                   null=True, blank=True)
     kwelwegz_is_ts = models.BooleanField()
@@ -250,9 +243,7 @@ class Bucket(models.Model):
                                    null=True, blank=True)
     ts_kwelwegz = models.ForeignKey(TimeSeriesCache,
                                     null=True, blank=True,
-                                    related_name='ts_kwelwegz_bucket',
-                                    limit_choices_to={
-            'parametercache': parameter('kwelwegz')})
+                                    related_name='ts_kwelwegz_bucket')
     porosity = models.DecimalField(max_digits=5, decimal_places=3,
                                    null=True, blank=True)
     crop_evaporation_factor = models.DecimalField(max_digits=5,

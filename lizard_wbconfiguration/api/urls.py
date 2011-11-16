@@ -9,6 +9,7 @@ from djangorestframework.views import InstanceModelView
 from lizard_wbconfiguration.api.resources import AreaConfigurationResource
 
 from lizard_wbconfiguration.api.views import RootView
+from lizard_wbconfiguration.api.views import WBAreaConfiguration
 
 
 admin.autodiscover()
@@ -20,7 +21,10 @@ urlpatterns = patterns(
     url(r'^$',
         RootView.as_view(),
         name=NAME_PREFIX + 'root'),
-    url(r'^area_configuration/(?P<slug>[^/]+)/$',
-        InstanceModelView.as_view(resource=AreaConfigurationResource),
+    url(r'^area_configuration/(?P<object_id>[0-9a-zA-Z]+)/$',
+        WBAreaConfiguration.as_view(),
         name=NAME_PREFIX + 'area_configuration'),
+    # url(r'^area_configuration/(?P<slug>[^/]+)/$',
+    #     InstanceModelView.as_view(resource=AreaConfigurationResource),
+    #     name=NAME_PREFIX + 'area_configuration'),
     )
