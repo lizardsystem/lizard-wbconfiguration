@@ -28,7 +28,7 @@ class RootView(View):
             }
 
 
-class WaterBalanceBukketConfiguration(View):
+class WaterBalanceBucketConfiguration(View):
     """
     """
     def get(self, request, object_id):
