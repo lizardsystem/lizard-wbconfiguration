@@ -33,16 +33,40 @@ def parameter(ident):
     return parameter
 
 
-class GridFieldsConfiguration(models.Model):
+class AreaGridConfiguration(models.Model):
     """
-    Configuration fields in grid.
+    Water balance front end configuration.
+    """
+    name = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return "%s" % self.name
+
+
+class AreaField(models.Model):
+    """
+    Field names of Area, Communique and AreaConfiguration model.
     """
     field_name = models.CharField(max_length=128)
+
+    def __unicode__(self):
+        return "%s" % self.field_name
+
+
+class AreaGridFieldsConfiguration(models.Model):
+    """
+    Configuration grid fields.
+    """
+    field_name = models.ForeignKey(AreaField, unique=True, max_length=128)
     display_name = models.CharField(max_length=128)
     editable = models.BooleanField()
-    visable = models.BooleanField()
+    visible = models.BooleanField()
     field_type = models.CharField(max_length=128)
-    grid_id = models.CharField(max_length=128)
+    grid = models.ForeignKey(AreaGridConfiguration)
+    sequence = models.IntegerField()
+
+    def __unicode__(self):
+        return "%s %s" % (self.grid, self.field_name)
 
 
 class AreaConfiguration(Area):
@@ -172,14 +196,7 @@ class Structure(models.Model):
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
     is_computed = models.BooleanField()
-    from_area = models.ForeignKey(
-        AreaConfiguration,
-        related_name='wbconfiguration_structure_set1',
-        null=True, blank=True)
-    to_area = models.ForeignKey(
-        AreaConfiguration,
-        related_name='wbconfiguration_structure_set2',
-        null=True, blank=True)
+    in_out = models.BooleanField()
     deb_is_ts = models.BooleanField()
     ts_debiet = models.ForeignKey(
         TimeSeriesCache,

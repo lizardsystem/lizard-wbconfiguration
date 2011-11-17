@@ -5,9 +5,16 @@ from django.core.urlresolvers import reverse
 
 from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
-
+from lizard_wbconfiguration.models import Structure
+from lizard_wbconfiguration.models import AreaGridFieldsConfiguration
+from lizard_wbconfiguration.models import Bucket
 from lizard_area.models import Area
-#from lizard_fewsnorm.models import
+
+from lizard_fewsnorm.models import GeoLocationCache
+from lizard_fewsnorm.models import TimeSeriesCache
+from lizard_fewsnorm.models import TimeStepCache
+from lizard_fewsnorm.models import ModuleCache
+from lizard_fewsnorm.models import ParameterCache
 
 
 class RootView(View):
@@ -21,33 +28,76 @@ class RootView(View):
             }
 
 
-class WBAreaConfiguration(View):
+class WaterBalanceBukketConfiguration(View):
     """
-    Treeview, basically a dump_bulk() from treebeard
     """
     def get(self, request, object_id):
-        area_object = Area.objects.get(ident=object_id)
-        areaconfig_object = AreaConfiguration()
-        area_config = []
-        for k,v in area_object.__dict__.iteritems():
-            if k == 'ident' or k == 'name':
-                area_config.append(
-                    {'property': k,
-                     'value': v,
-                     'editable': False,
-                     'type': type(v).__name__})
+        buckets = Buckets.objects.filter(area__ident=object_id)
+        if buckets.exists():
+            return self.bucket_configuration(list(buckets))
+        else:
+            return self.bucket_configuration([Bucket()])
 
-        for k,v in areaconfig_object.__dict__.iteritems():
-            if k == 'start_dt' or k == 'ts_precipitation_id':
+    def bucket_configuration(self, buckets):
+        """
+        Creates list of dictionaries objects from
+        passed buckets object.
+        """
+        bucket_config = []
+        for bucket in buckets:
+            bucket_config.append(bucket.__dict__)
+        return bucket_config
+
+
+class WaterBalanceStructureConfiguration(View):
+    """
+    Structure configuration.
+    """
+    def get(self, request, object_id):
+        structure_object = None
+        return []
+
+
+class WaterBalanceAreaConfiguration(View):
+    """
+    Area configuration.
+    """
+    def get(self, request, object_id, grid_name):
+        areaconfig_objects = AreaConfiguration.objects.filter(ident=object_id)
+        if areaconfig_objects.exists():
+            return self.area_configuration(areaconfig_objects[0], grid_name)
+        else:
+            return self.initial_area_configuration(object_id, grid_name)
+
+    def area_configuration(self, area, grid_name):
+        """
+        Retrives area configuration.
+        Expected singel area configuration object.
+        """
+        area_config = []
+        for k, v in area.__dict__.iteritems():
+            grid_field = AreaGridFieldsConfiguration.objects.filter(
+                field_name__field_name=k,
+                grid__name__iexact=grid_name)
+            if grid_field.exists():
                 area_config.append(
-                    {'property': k,
+                    {'property': grid_field[0].display_name,
                      'value': v,
-                     'editable': False,
-                     'type': type(v).__name__})
+                     'editable': grid_field[0].editable,
+                     'type': grid_field[0].field_type})
         return area_config
 
-    def timeseries(self):
-        pass
+    def initial_area_configuration(self, object_id, grid_name):
+        """
+        Cteates initial configuration.
+        """
+        area_object = Area.objects.get(ident=object_id)
+        areaconfig_object = AreaConfiguration(
+            ident=area_object.ident,
+            name=area_object.name)
+        area_config = self.area_configuration(areaconfig_object, grid_name)
+        return area_config
+
 
     # def post(self, request, pk=None):
 

@@ -5,16 +5,18 @@ from lizard_wbconfiguration.models import ParameterMapping
 from lizard_wbconfiguration.models import Structure
 from lizard_wbconfiguration.models import Bucket
 from lizard_wbconfiguration.models import BucketsType
+from lizard_wbconfiguration.models import AreaGridConfiguration
+from lizard_wbconfiguration.models import AreaGridFieldsConfiguration
 
 
-# class StructureInline(admin.TabularInline):
-#     model = Structure
+class GriedFieldsInline(admin.TabularInline):
+    model = AreaGridFieldsConfiguration
 
 
-# class AreaStructureAdmin(admin.ModelAdmin):
-#     inlines = [
-#         StructureInline,
-#         ]
+class GridAdmin(admin.ModelAdmin):
+    inlines = [
+        GriedFieldsInline,
+        ]
 
 
 admin.site.register(AreaConfiguration)
@@ -22,3 +24,4 @@ admin.site.register(ParameterMapping)
 admin.site.register(Structure)
 admin.site.register(Bucket)
 admin.site.register(BucketsType)
+admin.site.register(AreaGridConfiguration, GridAdmin)
