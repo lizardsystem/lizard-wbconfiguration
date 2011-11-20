@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
 from lizard_wbconfiguration.models import Structure
-from lizard_wbconfiguration.models import AreaGridFieldsConfiguration
+from lizard_wbconfiguration.models import AreaGridFieldConfiguration
 from lizard_wbconfiguration.models import Bucket
 from lizard_area.models import Area
 
@@ -76,7 +76,7 @@ class WaterBalanceAreaConfiguration(View):
         """
         area_config = []
         for k, v in area.__dict__.iteritems():
-            grid_field = AreaGridFieldsConfiguration.objects.filter(
+            grid_field = AreaGridFieldConfiguration.objects.filter(
                 field_name__field_name=k,
                 grid__name__iexact=grid_name)
             if grid_field.exists():

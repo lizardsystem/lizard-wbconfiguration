@@ -35,7 +35,7 @@ def parameter(ident):
 
 class AreaGridConfiguration(models.Model):
     """
-    Water balance front end configuration.
+    Grid of front end.
     """
     name = models.CharField(max_length=128)
 
@@ -46,14 +46,19 @@ class AreaGridConfiguration(models.Model):
 class AreaField(models.Model):
     """
     Field names of Area, Communique and AreaConfiguration model.
+    Code field = api_name + "." + model_name + "." + field_name
     """
-    field_name = models.CharField(max_length=128)
+    code = models.CharField(primary_key=True, max_length=256)
+    field_name = models.CharField(max_length=100)
+    app_name = models.CharField(max_length=50)
+    model_name = models.CharField(max_length=100)
+
 
     def __unicode__(self):
-        return "%s" % self.field_name
+        return "%s" % self.code
 
 
-class AreaGridFieldsConfiguration(models.Model):
+class AreaGridFieldConfiguration(models.Model):
     """
     Configuration grid fields.
     """
@@ -64,6 +69,9 @@ class AreaGridFieldsConfiguration(models.Model):
     field_type = models.CharField(max_length=128)
     grid = models.ForeignKey(AreaGridConfiguration)
     sequence = models.IntegerField()
+
+    class Admin:
+        list_filter = ('field_name')
 
     def __unicode__(self):
         return "%s %s" % (self.grid, self.field_name)
