@@ -34,11 +34,16 @@ class Command(BaseCommand):
 
     @transaction.commit_on_success
     def handle(self, *args, **options):
+        if not options['app'] or not options['model_name']:
+            logger.error("Expected --app and --model args. Use -help for example.")
+            return
+
         model = get_model(options['app'], options['model_name'])
-        for field in model._meta._fields():
+        model_obj = model()
+        for k, v in model_obj.__dict__.iteritems():
             AreaField.objects.get_or_create(
-                code = ".".join([options['app'],options['model_name'],field.name]),
+                code = ".".join([options['app'],options['model_name'],k]),
                 app_name = options['app'],
                 model_name = options['model_name'],
-                field_name=field.name)
-            logger.debug('Inserting "%s" field', field.name)
+                field_name=k)
+            logger.debug('Inserting "%s" field', k)

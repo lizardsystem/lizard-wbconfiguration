@@ -38,6 +38,8 @@ class AreaGridConfiguration(models.Model):
     Grid of front end.
     """
     name = models.CharField(max_length=128)
+    app_name = models.CharField(max_length=50)
+    model_name = models.CharField(max_length=100)
 
     def __unicode__(self):
         return "%s" % self.name
@@ -62,7 +64,7 @@ class AreaGridFieldConfiguration(models.Model):
     """
     Configuration grid fields.
     """
-    field_name = models.ForeignKey(AreaField, unique=True, max_length=128)
+    field_name = models.ForeignKey(AreaField, max_length=128)
     display_name = models.CharField(max_length=128)
     editable = models.BooleanField()
     visible = models.BooleanField()

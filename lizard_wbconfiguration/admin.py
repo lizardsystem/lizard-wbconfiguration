@@ -22,14 +22,26 @@ class AreaGridFieldConfigurationInline(admin.TabularInline):
     #raw_id_fields = ("field_name",)
     #actions = [make_published]
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        print "_______________________________________"
-        print kwargs
-        print db_field.name
+    def fomrfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "field_name":
+            kwargs["queryset"] = AreaField.objects.filter(
+                model_name="bucket")
+        return super(AreaGridFieldConfigurationInline, self).formfield_for_foreignkey(
+            db_field, request, **kwargs)
 
-        #if db_field.name == "car":
-        #    kwargs["queryset"] = Car.objects.filter(owner=request.user)
-        return super(AreaGridFieldConfigurationInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
+    # def formfield_for_dbfield(self, field, **kwargs):
+    #     print "+++++++++++++++++++++++"
+    #     print dir(field.value_from_object)
+    #     print field.name
+    #     if field.name == 'grid':
+    #         print "---------------------------------"
+    #         print self.get_object(kwargs['request'], AreaGridConfiguration)
+    #         # Note - get_object hasn't been defined yet
+    #         # parent_trip = self.get_object(kwargs['request'], Trip)
+    #         # contained_areagrid = AreaGridConfiguration.objects.filter(
+    #         #     area__contains=parent_trip.area.area)
+    #         # return forms.ModelChoiceField(queryset=contained_areas )
+    #     return super(AreaGridFieldConfigurationInline, self).formfield_for_dbfield(field, **kwargs)
 
 
 

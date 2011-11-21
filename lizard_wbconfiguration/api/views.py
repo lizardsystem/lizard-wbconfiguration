@@ -89,7 +89,7 @@ class WaterBalanceAreaConfiguration(View):
 
     def initial_area_configuration(self, object_id, grid_name):
         """
-        Cteates initial configuration.
+        Creates initial configuration.
         """
         area_object = Area.objects.get(ident=object_id)
         areaconfig_object = AreaConfiguration(
