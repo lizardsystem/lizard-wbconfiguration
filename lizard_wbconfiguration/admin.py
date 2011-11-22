@@ -30,12 +30,13 @@ class AreaGridFieldConfigurationInline(admin.TabularInline):
             db_field, request, **kwargs)
 
     # def formfield_for_dbfield(self, field, **kwargs):
-    #     print "+++++++++++++++++++++++"
-    #     print dir(field.value_from_object)
-    #     print field.name
+    #     #print "+++++++++++++++++++++++"
     #     if field.name == 'grid':
     #         print "---------------------------------"
-    #         print self.get_object(kwargs['request'], AreaGridConfiguration)
+    #         #print field._get_val_from_obj()
+    #         #print field.name
+    #         #print field.value_to_string(()
+    #         # print self.get_object(kwargs['request'], AreaGridConfiguration)
     #         # Note - get_object hasn't been defined yet
     #         # parent_trip = self.get_object(kwargs['request'], Trip)
     #         # contained_areagrid = AreaGridConfiguration.objects.filter(

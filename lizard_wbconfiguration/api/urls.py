@@ -22,7 +22,7 @@ urlpatterns = patterns(
         '(?P<grid_name>[0-9a-zA-Z]+)/$',
         WaterBalanceAreaConfiguration.as_view(),
         name=NAME_PREFIX + 'area_configuration'),
-    url(r'^bucket_configuration/(?P<object_id>[0-9a-zA-Z]+)/$',
+    url(r'^bucket_configuration/$',
         WaterBalanceBucketConfiguration.as_view(),
         name=NAME_PREFIX + 'bucket_configuration')
     )

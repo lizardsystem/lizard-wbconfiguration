@@ -2,12 +2,14 @@
 API views not coupled to models.
 """
 from django.core.urlresolvers import reverse
+from django.utils import simplejson as json
 
 from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
 from lizard_wbconfiguration.models import Structure
 from lizard_wbconfiguration.models import AreaGridFieldConfiguration
 from lizard_wbconfiguration.models import Bucket
+
 from lizard_area.models import Area
 
 from lizard_fewsnorm.models import GeoLocationCache
@@ -31,12 +33,15 @@ class RootView(View):
 class WaterBalanceBucketConfiguration(View):
     """
     """
-    def get(self, request, object_id):
-        buckets = Buckets.objects.filter(area__ident=object_id)
+
+    def get(self, request):
+        object_id = request.GET.get('object_id', None)
+        buckets = Bucket.objects.filter(area__ident=object_id)
         if buckets.exists():
             return self.bucket_configuration(list(buckets))
         else:
-            return self.bucket_configuration([Bucket()])
+            bucket = self.create_bucket(object_id)
+            return self.bucket_configuration([bucket])
 
     def bucket_configuration(self, buckets):
         """
@@ -47,6 +52,30 @@ class WaterBalanceBucketConfiguration(View):
         for bucket in buckets:
             bucket_config.append(bucket.__dict__)
         return bucket_config
+
+    def create_bucket(self, object_id):
+        area_config = AreaConfiguration.objects.get(ident=object_id)
+        bucket = Bucket(area=area_config)
+        bucket.save()
+        return bucket
+
+    def post(self, request, pk=None):
+        data = json.loads(self.CONTENT.get('data', []))
+        print "1++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        if type(data) == dict:
+            data = [data]
+        print "++++++++++++++++++++++++++++++++++++++++++++++++"
+        print data
+        for record in data:
+            print "============Save record=================="
+            bucket = Bucket.objects.get(id=int(record['id']))
+            del record['id']
+            for (key, value) in record.items():
+                setattr(bucket, key, value)
+                print "set attr. %s - %s " % (key, value)
+            bucket.save()
+
+        return {'success': True}
 
 
 class WaterBalanceStructureConfiguration(View):
@@ -67,7 +96,7 @@ class WaterBalanceAreaConfiguration(View):
         if areaconfig_objects.exists():
             return self.area_configuration(areaconfig_objects[0], grid_name)
         else:
-            return self.initial_area_configuration(object_id, grid_name)
+            return self.initial_area_configuration(object_id, grid_name, 'admin')
 
     def area_configuration(self, area, grid_name):
         """
@@ -87,28 +116,32 @@ class WaterBalanceAreaConfiguration(View):
                      'type': grid_field[0].field_type})
         return area_config
 
-    def initial_area_configuration(self, object_id, grid_name):
+    def initial_area_configuration(self, object_id, grid_name, user_name):
         """
         Creates initial configuration.
         """
         area_object = Area.objects.get(ident=object_id)
         areaconfig_object = AreaConfiguration(
             ident=area_object.ident,
-            name=area_object.name)
+            name=area_object.name,
+            area=area_object)
+        areaconfig_object.save()
         area_config = self.area_configuration(areaconfig_object, grid_name)
         return area_config
 
+    def post(self, request, object_id):
+        data = json.loads(self.CONTENT.get('data', []))
+        print "========================================="
+        print data
+        if type(data) == dict:
+            data = [data]
+        for record in data:
+            print "============Save record=================="
+            area_config = AreaConfiguration.objects.get(ident=str(record['ident']))
+            del record['id']
+            for (key, value) in record.items():
+                setattr(area_config, key, value)
+                print "set attr. %s - %s " % (key, value)
+            area_config.save()
 
-    # def post(self, request, pk=None):
-
-    #     data = json.loads(self.CONTENT.get('data', []))
-    #     if type(data) == dict:
-    #         data = [data]
-    #     for record in data:
-    #         area_config = AreaConfiguration.objects.get(id=int(record['id']))
-    #         del record['id']
-    #         for (key, value) in record.items():
-    #             setattr(area_config, key, value)
-    #         area_config.save()
-
-    #     return {'success': True}
+        return {'success': True}

@@ -55,7 +55,6 @@ class AreaField(models.Model):
     app_name = models.CharField(max_length=50)
     model_name = models.CharField(max_length=100)
 
-
     def __unicode__(self):
         return "%s" % self.code
 
@@ -79,11 +78,13 @@ class AreaGridFieldConfiguration(models.Model):
         return "%s %s" % (self.grid, self.field_name)
 
 
-class AreaConfiguration(Area):
+class AreaConfiguration(models.Model):
     """
     Areaconfiguration for water balance.
     """
-
+    ident = models.CharField(unique=True, max_length=64)
+    name = models.CharField(max_length=128)
+    area = models.OneToOneField(Area)
     start_dt = models.DateTimeField(null=True, blank=True,
                                     verbose_name="Start date")
     ts_precipitation = models.ForeignKey(TimeSeriesCache,
