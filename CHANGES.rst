@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Implemented functions to view and maintain buckets.
+
+- Added deleted field into Bucket, Structure model.
 
 
 0.1.1 (2011-11-07)

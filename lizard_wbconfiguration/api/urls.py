@@ -18,11 +18,13 @@ urlpatterns = patterns(
     url(r'^$',
         RootView.as_view(),
         name=NAME_PREFIX + 'root'),
-    url(r'^area_configuration/(?P<object_id>[0-9a-zA-Z]+)/' \
-        '(?P<grid_name>[0-9a-zA-Z]+)/$',
+    url(r'^area_configuration/$',
         WaterBalanceAreaConfiguration.as_view(),
         name=NAME_PREFIX + 'area_configuration'),
     url(r'^bucket_configuration/$',
         WaterBalanceBucketConfiguration.as_view(),
-        name=NAME_PREFIX + 'bucket_configuration')
+        name=NAME_PREFIX + 'bucket_configuration'),
+    url(r'^structure_configuration/$',
+        WaterBalanceBucketConfiguration.as_view(),
+        name=NAME_PREFIX + 'structure_configuration')
     )

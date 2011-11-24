@@ -59,6 +59,6 @@ class AreaGridConfigurationAdmin(admin.ModelAdmin):
 # admin.site.register(ParameterMapping)
 # admin.site.register(Structure)
 # admin.site.register(Bucket)
-# admin.site.register(BucketsType)
+admin.site.register(BucketsType)
 admin.site.register(AreaField)
 admin.site.register(AreaGridConfiguration, AreaGridConfigurationAdmin)

@@ -206,6 +206,7 @@ class Structure(models.Model):
     """
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
+    area = models.ForeignKey(AreaConfiguration)
     is_computed = models.BooleanField()
     in_out = models.BooleanField()
     deb_is_ts = models.BooleanField()
@@ -230,13 +231,14 @@ class Structure(models.Model):
     incr_concentr_nitrogen = models.DecimalField(max_digits=5,
                                                  decimal_places=3,
                                                  null=True, blank=True)
+    deleted = models.BooleanField()
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
 
 
 class BucketsType(models.Model):
-    bucket_type = models.CharField(max_length=128)
+    bucket_type = models.CharField(unique=True, max_length=128)
     description = models.CharField(max_length=256,
                                    null=True,
                                    blank=True)
@@ -351,3 +353,4 @@ class Bucket(models.Model):
     label_drainaige_indraft = models.DecimalField(max_digits=5,
                                                   decimal_places=3,
                                                   null=True, blank=True)
+    deleted = models.BooleanField()

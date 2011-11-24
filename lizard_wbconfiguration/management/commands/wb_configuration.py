@@ -39,11 +39,11 @@ class Command(BaseCommand):
             return
 
         model = get_model(options['app'], options['model_name'])
-        model_obj = model()
-        for k, v in model_obj.__dict__.iteritems():
+        #model_obj = model()
+        for field in model._meta.fields:
             AreaField.objects.get_or_create(
-                code = ".".join([options['app'],options['model_name'],k]),
-                app_name = options['app'],
-                model_name = options['model_name'],
-                field_name=k)
-            logger.debug('Inserting "%s" field', k)
+                code = ".".join([options['app'], options['model_name'], field.name]),
+                app_name = options['app'].lower(),
+                model_name = options['model_name'].lower(),
+                field_name=field.name)
+            logger.debug('Inserting "%s" field', field.name)
