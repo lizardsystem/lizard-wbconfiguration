@@ -6,10 +6,9 @@ from django.utils import simplejson as json
 
 from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
-from lizard_wbconfiguration.models import Structure
 from lizard_wbconfiguration.models import AreaGridFieldConfiguration
-from lizard_wbconfiguration.models import Bucket
 from lizard_wbconfiguration.models import BucketsType
+from lizard_wbconfiguration import models
 
 from lizard_area.models import Area
 
@@ -30,78 +29,115 @@ class RootView(View):
             }
 
 
-class WaterBalanceBucketConfiguration(View):
+class WaterBalanceDBF(View):
+    """
+    Creates a dbf file.
+    """
+
+    def post(self, request):
+        """
+        Creates a dbf file.
+        """
+        return {'success': True}
+
+
+class WaterBalanceAreaObjectConfiguration(View):
     """
     """
 
     def get(self, request):
         object_id = request.GET.get('object_id', None)
-        buckets = Bucket.objects.filter(
+        area_object_type = request.GET.get('area_object_type', None)
+        area_object_class = self.area_object_class(object_id, area_object_type)
+
+        if area_object_class is None:
+            return []
+
+        area_objects = area_object_class.objects.filter(
             area__ident=object_id,
             deleted=False)
-        if buckets.exists():
-            return self.bucket_configuration(list(buckets))
+        if area_objects.exists():
+            return self.area_object_configuration(list(area_objects))
         else:
-            bucket = self.create_bucket(object_id)
-            return self.bucket_configuration([bucket])
+            area_object = self.create_area_object(object_id, area_object_class)
+            return self.area_object_configuration([area_object])
 
-    def bucket_configuration(self, buckets):
+    def area_object_class(self, object_id, area_object_type):
+        try:
+            if area_object_type.lower() == 'bucket':
+                return getattr(models, "Bucket")
+            elif area_object_type.lower() == 'structure':
+                return getattr(models, "Structure")
+            else:
+                logger.debug("UNKNOWN area object type '%s'.",
+                             area_object_type)
+                return None
+        except AttributeError:
+            logger.debug("UNKNOWN area object type '%s'.", area_object_type)
+            return None
+
+    def area_object_configuration(self, area_objects):
         """
         Creates list of dictionaries objects from
-        passed buckets object.
+        passed area_objects object.
         """
-        bucket_config = []
-        for bucket in buckets:
-            bucket_as_dict = {}
-            for field in bucket._meta.fields:
+        area_object_config = []
+        for area_object in area_objects:
+            area_object_as_dict = {}
+            for field in area_object._meta.fields:
                 if field.rel:
-                    value = str(getattr(bucket, field.name))
+                    value = str(getattr(area_object, field.name))
                 else:
-                    value = field.value_from_object(bucket)
-                bucket_as_dict[field.name] = value
-            bucket_config.append(bucket_as_dict)
-        return bucket_config
+                    value = field.value_from_object(area_object)
+                area_object_as_dict[field.name] = value
+            area_object_config.append(area_object_as_dict)
+        return area_object_config
 
-    def create_bucket(self, object_id):
+    def create_area_object(self, object_id, area_object_class):
         """
-        Creates a Bucket object related to AreaConfiguration.
+        Creates a area object object related to AreaConfiguration.
         """
-        print object_id
         area_config = AreaConfiguration.objects.get(ident=object_id)
-        print area_config
-        bucket = Bucket(area=area_config)
-        bucket.save()
-        return bucket
+        area_object = area_object_class(area=area_config)
+        area_object.save()
+        return area_object
 
-    def retrieve_bucket_id(self, record):
+    def retrieve_id(self, record):
+        """
+        Retrieve and cast to integer id element
+        from record object.
+        """
         if type(record) == dict:
             id = record.get('id', None)
             try:
                 return int(id)
             except ValueError:
-                logger.debug("Bucket ID '%s' is NOT a integer", id)
+                logger.debug("Bucket ID '%s' is NOT an integer", id)
                 return -1
 
     def post(self, request):
         """
-        Retrieve data from content, find the bucket,
-        if bucket not available create a new.
-        Remove id element from data to avoid overriding Bucket.id.
+        Retrieve data from content, find the area object,
+        if area object not available create a new.
+        Remove id element from data to avoid overriding id of area object.
         ForeignKey fields need a related object (TimeSeriesCache, BucketType).
         Save the data.
         @TODO replace value.split(',')[2] with timeseriescache.id
         """
         object_id = self.CONTENT.get('object_id', None)
+        area_object_type = self.CONTENT.get('area_object_type', None)
         data = json.loads(self.CONTENT.get('data', []))
         if type(data) == dict:
             data = [data]
-
+        area_object_class = self.area_object_class(object_id, area_object_type)
         for record in data:
-            buckets = Bucket.objects.filter(id=self.retrieve_bucket_id(record))
-            if buckets.exists():
-                bucket = buckets[0]
+            area_objects = area_object_class.objects.filter(
+                id=self.retrieve_id(record))
+            if area_objects.exists():
+                area_object = area_objects[0]
             else:
-                bucket = self.create_bucket(object_id)
+                area_object = self.create_area_object(
+                    object_id, area_object_class)
             del record['id']
             for (key, value) in record.items():
                 key = str(key)
@@ -109,18 +145,18 @@ class WaterBalanceBucketConfiguration(View):
                 if value == "" or value == "None":
                     continue
                 try:
-                    bucket_field = bucket._meta.get_field(key)
+                    area_object_field = area_object._meta.get_field(key)
                 except:
                     continue
-                if bucket_field.rel is not None:
-                    if bucket_field.rel.to == TimeSeriesCache:
+                if area_object_field.rel is not None:
+                    if area_object_field.rel.to == TimeSeriesCache:
                         try:
                             timeseriescache = TimeSeriesCache.objects.get(
                                 pk=value.split(',')[2])
                             value = timeseriescache
                         except IndexError:
                             return {'success': False}
-                    elif bucket_field.rel.to == BucketsType:
+                    elif area_object_field.rel.to == BucketsType:
                         bucket_types = BucketsType.objects.filter(
                             bucket_type=value)
                         if not bucket_types.exists():
@@ -129,59 +165,8 @@ class WaterBalanceBucketConfiguration(View):
                         value = bucket_type
                     else:
                         return {'success': False}
-                setattr(bucket, key, value)
-            bucket.save()
-        return {'success': True}
-
-
-class WaterBalanceStructureConfiguration(View):
-    """
-    Structure configuration.
-    """
-    def get(self, request):
-        object_id = request.GET.get('object_id', None)
-        buckets = Bucket.objects.filter(
-            area__ident=object_id,
-            deleted=False)
-        if buckets.exists():
-            return self.bucket_configuration(list(buckets))
-        else:
-            bucket = self.create_bucket(object_id)
-            return self.bucket_configuration([bucket])
-
-    def structure_configuration(self, structures):
-        """
-        Creates list of dictionaries objects from
-        passed structure object.
-        """
-        structure_config = []
-        for structure in structures:
-            structure_config.append(structure.__dict__)
-        return structure_config
-
-    def create_structure(self, object_id):
-        area_configuration = AreaConfiguration.objects.get(ident=object_id)
-        structures = None
-        # structure = Structure(area_co=area_config)
-        # structure.save()
-        return structures
-
-    def post(self, request):
-        object_id = request.GET.get('object_id', None)
-        data = json.loads(self.CONTENT.get('data', []))
-        if type(data) == dict:
-            data = [data]
-        for record in data:
-            structures = Structure.objects.filter(id=record.get('id', -1))
-            if structures.exists():
-                structere = structures[0]
-            else:
-                structere = self.create_structere(object_id)
-            del record['id']
-            for (key, value) in record.items():
-                setattr(structere, key, value)
-            structere.save()
-
+                setattr(area_object, key, value)
+            area_object.save()
         return {'success': True}
 
 

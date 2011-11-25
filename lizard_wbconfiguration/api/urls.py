@@ -7,7 +7,7 @@ from django.contrib import admin
 
 from lizard_wbconfiguration.api.views import RootView
 from lizard_wbconfiguration.api.views import WaterBalanceAreaConfiguration
-from lizard_wbconfiguration.api.views import WaterBalanceBucketConfiguration
+from lizard_wbconfiguration.api.views import WaterBalanceAreaObjectConfiguration
 
 admin.autodiscover()
 
@@ -21,10 +21,7 @@ urlpatterns = patterns(
     url(r'^area_configuration/$',
         WaterBalanceAreaConfiguration.as_view(),
         name=NAME_PREFIX + 'area_configuration'),
-    url(r'^bucket_configuration/$',
-        WaterBalanceBucketConfiguration.as_view(),
-        name=NAME_PREFIX + 'bucket_configuration'),
-    url(r'^structure_configuration/$',
-        WaterBalanceBucketConfiguration.as_view(),
-        name=NAME_PREFIX + 'structure_configuration')
+    url(r'^area_object_configuration/$',
+        WaterBalanceAreaObjectConfiguration.as_view(),
+        name=NAME_PREFIX + 'area_object_configuration'),
     )
