@@ -5,6 +5,12 @@ Changelog of lizard-wbconfiguration
 0.1.2 (unreleased)
 ------------------
 
+- Added admin scherm to configure dbf fields.
+
+- Created management command to create dbf file.
+
+- Added functions to create dbf files.
+
 - Added fixture 001_wbconfiguration.
 
 - Implemented functions to view and maintain structures.

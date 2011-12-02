@@ -5,5 +5,12 @@ from django.test import TestCase
 
 class ExampleTest(TestCase):
 
-    def test_something(self):
-        self.assertEquals(1, 1)
+    def setUp(self):
+        """
+        Setup test.
+        """
+        pass
+
+
+    def test_save_areaconfiguration(self):
+        pass

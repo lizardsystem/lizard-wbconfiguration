@@ -25,3 +25,8 @@ Run syncdb to build the models.
 Load fixtures.
 
     $> bin/django loaddata 001_wbconfiguration
+
+Create the dbf files voor AreaConfiguration, Buckets and Structures
+with management command::
+
+    $> bin/django wbconfiguration_to_dbf --ident=[area configuration ident]

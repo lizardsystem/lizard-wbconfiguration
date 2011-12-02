@@ -8,6 +8,26 @@ from lizard_fewsnorm.models import ParameterCache
 
 logger = logging.getLogger(__name__)
 
+WB_DBF_MODELS = (
+    ('AreaConfiguration', 'AreaConfiguration'),
+    ('Bucket', 'Bucket'),
+    ('Structure', 'Structure')
+)
+
+DBF_FIELD_TYPES = (
+    ('C', 'Text'),
+    ('N', 'Number'),
+    ('D', 'Date'),
+)
+
+EXTJS_DATA_TYPES = (
+    ('boolean', 'boolean'),
+    ('date', 'date'),
+    ('float', 'float'),
+    ('text', 'text'),
+    ('timeserie', 'timeserie'),
+)
+
 
 class ParameterMapping(models.Model):
     """
@@ -31,6 +51,23 @@ def parameter(ident):
         logger.warning("Parameter ident '%s' is NOT properly mapped." % ident)
         parameter = None
     return parameter
+
+
+class WBConfigurationDBFMapping(models.Model):
+    model_name = models.CharField(max_length=128, choices=WB_DBF_MODELS)
+    wbfield_name = models.CharField(max_length=128)
+    dbffield_name = models.CharField(max_length=128)
+    dbffield_type = models.CharField(max_length=1, choices=DBF_FIELD_TYPES)
+    dbffield_length = models.IntegerField(null=True, blank=True)
+    dbffield_decimals = models.IntegerField(null=True, blank=True)
+
+    def __unicode__(self):
+        return "%s wb=%s dbf=%s" % (self.model_name,
+                                    self.wbfield_name,
+                                    self.dbffield_name)
+
+    class Meta:
+        ordering = ['id']
 
 
 class AreaGridConfiguration(models.Model):
@@ -67,7 +104,7 @@ class AreaGridFieldConfiguration(models.Model):
     display_name = models.CharField(max_length=128)
     editable = models.BooleanField()
     visible = models.BooleanField()
-    field_type = models.CharField(max_length=128)
+    field_type = models.CharField(max_length=128, choices=EXTJS_DATA_TYPES)
     grid = models.ForeignKey(AreaGridConfiguration)
     sequence = models.IntegerField()
 
@@ -79,9 +116,8 @@ class AreaGridFieldConfiguration(models.Model):
 
 
 class AreaConfiguration(models.Model):
-    """
-    Areaconfiguration for water balance.
-    """
+    """ Areaconfiguration for water balance."""
+
     ident = models.CharField(unique=True, max_length=64)
     name = models.CharField(max_length=128)
     area = models.OneToOneField(Area)

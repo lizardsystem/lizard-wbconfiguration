@@ -9,6 +9,7 @@ from lizard_wbconfiguration.models import BucketsType
 from lizard_wbconfiguration.models import AreaGridConfiguration
 from lizard_wbconfiguration.models import AreaField
 from lizard_wbconfiguration.models import AreaGridFieldConfiguration
+from lizard_wbconfiguration.models import WBConfigurationDBFMapping
 
 
 def make_published(modeladmin, request, queryset):
@@ -54,11 +55,22 @@ class AreaGridConfigurationAdmin(admin.ModelAdmin):
         AreaGridFieldConfigurationInline,
         ]
 
+class WBConfigurationDBFMappingAdmin(admin.ModelAdmin):
+    list_display = ('id',
+                    'model_name',
+                    'wbfield_name',
+                    'dbffield_name',
+                    'dbffield_type',
+                    'dbffield_length',
+                    'dbffield_decimals',)
+    list_filter = ('model_name',)
+
 
 # admin.site.register(AreaConfiguration)
 # admin.site.register(ParameterMapping)
 # admin.site.register(Structure)
 # admin.site.register(Bucket)
+admin.site.register(WBConfigurationDBFMapping, WBConfigurationDBFMappingAdmin)
 admin.site.register(BucketsType)
 admin.site.register(AreaField)
 admin.site.register(AreaGridConfiguration, AreaGridConfigurationAdmin)

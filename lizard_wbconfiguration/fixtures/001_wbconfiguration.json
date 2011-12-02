@@ -1,5 +1,626 @@
 [
   {
+    "pk": 3, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "C", 
+      "wbfield_name": "ident", 
+      "dbffield_length": 64, 
+      "dbffield_name": "code", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "C", 
+      "wbfield_name": "name", 
+      "dbffield_length": 128, 
+      "dbffield_name": "naam", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "D", 
+      "wbfield_name": "start_dt", 
+      "dbffield_length": null, 
+      "dbffield_name": "start", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_precipitation", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_neersla", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_evaporation", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_evap", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "max_intake", 
+      "dbffield_length": 5, 
+      "dbffield_name": "max_inl", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "max_outtake", 
+      "dbffield_length": 5, 
+      "dbffield_name": "max_uitl", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_concentr_chloride_1", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_refcl1", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_concentr_chloride_2", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_refcl2", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "surface", 
+      "dbffield_length": 10, 
+      "dbffield_name": "oppervlak", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "bottom_height", 
+      "dbffield_length": 10, 
+      "dbffield_name": "bodemh", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_water_level", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_refwp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "kwel_is_ts", 
+      "dbffield_length": 1, 
+      "dbffield_name": "kwel_is_ts", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "kwel", 
+      "dbffield_length": 5, 
+      "dbffield_name": "kwel", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_kwel", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_kwel", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "wegz_is_ts", 
+      "dbffield_length": 1, 
+      "dbffield_name": "wegz_is_ts", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "wegz", 
+      "dbffield_length": 5, 
+      "dbffield_name": "wegz", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_wegz", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_wegz", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "peilh_issp", 
+      "dbffield_length": 1, 
+      "dbffield_name": "peilh_issp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "sp_is_ts", 
+      "dbffield_length": 1, 
+      "dbffield_name": "sp_is_ts", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ts_sp", 
+      "dbffield_length": 10, 
+      "dbffield_name": "ts_sp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "winterp", 
+      "dbffield_length": 5, 
+      "dbffield_name": "winterp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "lentep", 
+      "dbffield_length": 5, 
+      "dbffield_name": "lentep", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "zomerp", 
+      "dbffield_length": 5, 
+      "dbffield_name": "zomerp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "herfstp", 
+      "dbffield_length": 5, 
+      "dbffield_name": "herfstp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "D", 
+      "wbfield_name": "start_wp", 
+      "dbffield_length": null, 
+      "dbffield_name": "start_wp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "D", 
+      "wbfield_name": "start_lp", 
+      "dbffield_length": null, 
+      "dbffield_name": "start_lp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "D", 
+      "wbfield_name": "start_zp", 
+      "dbffield_length": null, 
+      "dbffield_name": "start_zp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "D", 
+      "wbfield_name": "start_hp", 
+      "dbffield_length": null, 
+      "dbffield_name": "start_hp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": null
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "marge_ond", 
+      "dbffield_length": 5, 
+      "dbffield_name": "marge_ond", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "marge_bov", 
+      "dbffield_length": 5, 
+      "dbffield_name": "marge_bov", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_min_1", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_min_1", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_inc_1", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_inc_1", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_min_2", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_min_2", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_inc_2", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_inc_2", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_min_3", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_min_3", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_inc_3", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_inc_3", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_min_4", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_min_4", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "nutc_inc_4", 
+      "dbffield_length": 5, 
+      "dbffield_name": "nutc_inc_4", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "ini_con_cl", 
+      "dbffield_length": 5, 
+      "dbffield_name": "ini_con_cl", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "init_water_level", 
+      "dbffield_length": 5, 
+      "dbffield_name": "ini_wp", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "concentr_chloride_precipitation", 
+      "dbffield_length": 5, 
+      "dbffield_name": "ns_con_cl", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "concentr_chloride_seepage", 
+      "dbffield_length": 5, 
+      "dbffield_name": "kw_con_cl", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "min_concentr_phosphate_precipitation", 
+      "dbffield_length": 5, 
+      "dbffield_name": "ns_con_p_m", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "min_concentr_phopshate_seepage", 
+      "dbffield_length": 5, 
+      "dbffield_name": "kw_con_p_m", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "incr_concentr_phosphate_precipitation", 
+      "dbffield_length": 5, 
+      "dbffield_name": "ns_con_p_i", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "incr_concentr_phosphate_seepage", 
+      "dbffield_length": 5, 
+      "dbffield_name": "kw_con_p_i", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "min_concentr_nitrogyn_precipitation", 
+      "dbffield_length": 5, 
+      "dbffield_name": "ns_con_n_m", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "min_concentr_nitrogyn_seepage", 
+      "dbffield_length": 5, 
+      "dbffield_name": "kw_con_n_m", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "incr_concentr_nitrogyn_precipitation", 
+      "dbffield_length": 5, 
+      "dbffield_name": "ns_con_n_i", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping", 
+    "fields": {
+      "dbffield_type": "N", 
+      "wbfield_name": "incr_concentr_nitrogyn_seepage", 
+      "dbffield_length": 5, 
+      "dbffield_name": "kw_con_n_i", 
+      "model_name": "AreaConfiguration", 
+      "dbffield_decimals": 3
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "lizard_wbconfiguration.areagridconfiguration", 
+    "fields": {
+      "model_name": "areaconfiguration", 
+      "name": "area", 
+      "app_name": "lizard_wbconfiguration"
+    }
+  }, 
+  {
     "pk": 1, 
     "model": "lizard_wbconfiguration.areagridconfiguration", 
     "fields": {
@@ -512,19 +1133,6 @@
     }
   }, 
   {
-    "pk": 9, 
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
-    "fields": {
-      "field_type": "timeserie", 
-      "display_name": "Tijdseries KWEL", 
-      "sequence": 4, 
-      "editable": true, 
-      "visible": false, 
-      "grid": 1, 
-      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_kwel"
-    }
-  }, 
-  {
     "pk": 8, 
     "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
     "fields": {
@@ -535,6 +1143,747 @@
       "visible": true, 
       "grid": 1, 
       "field_name": "lizard_wbconfiguration.areaconfiguration.name"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "text", 
+      "display_name": "Start datum", 
+      "sequence": 3, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.start_dt"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "Neerslag", 
+      "sequence": 4, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_precipitation"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "Tijdseries KWEL", 
+      "sequence": 4, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 1, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_kwel"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "text", 
+      "display_name": "Ident", 
+      "sequence": 1, 
+      "editable": false, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ident"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "text", 
+      "display_name": "Naam", 
+      "sequence": 2, 
+      "editable": false, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.name"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "Verdamping", 
+      "sequence": 5, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_evaporation"
+    }
+  }, 
+  {
+    "pk": 18, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "ts_concentr_chloride_1", 
+      "sequence": 8, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_concentr_chloride_1"
+    }
+  }, 
+  {
+    "pk": 21, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "ts_concentr_chloride_1", 
+      "sequence": 8, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_concentr_chloride_1"
+    }
+  }, 
+  {
+    "pk": 22, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "ts_concentr_chloride_2", 
+      "sequence": 9, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_concentr_chloride_2"
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "ts_concentr_chloride_2", 
+      "sequence": 10, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_concentr_chloride_2"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "ts_water_level", 
+      "sequence": 13, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_water_level"
+    }
+  }, 
+  {
+    "pk": 27, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "boolean", 
+      "display_name": "kwel_is_ts", 
+      "sequence": 14, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.kwel_is_ts"
+    }
+  }, 
+  {
+    "pk": 29, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "Tijdseries kwel", 
+      "sequence": 16, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_kwel"
+    }
+  }, 
+  {
+    "pk": 30, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "boolean", 
+      "display_name": "wegz_is_ts", 
+      "sequence": 17, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.wegz_is_ts"
+    }
+  }, 
+  {
+    "pk": 32, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "ts_wegz", 
+      "sequence": 19, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_wegz"
+    }
+  }, 
+  {
+    "pk": 33, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "boolean", 
+      "display_name": "peilh_issp", 
+      "sequence": 20, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.peilh_issp"
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "boolean", 
+      "display_name": "sp_is_ts", 
+      "sequence": 21, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.sp_is_ts"
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "timeserie", 
+      "display_name": "ts_sp", 
+      "sequence": 22, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_sp"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "date", 
+      "display_name": "Start datum", 
+      "sequence": 4, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 1, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.start_dt"
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "text", 
+      "display_name": "Begin winterpeil", 
+      "sequence": 27, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.start_wp"
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "text", 
+      "display_name": "Begin lentepeil", 
+      "sequence": 28, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.start_lp"
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "text", 
+      "display_name": "Begin zomerpeil", 
+      "sequence": 29, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.start_zp"
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "text", 
+      "display_name": "Begin herfstpeil", 
+      "sequence": 30, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.start_hp"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Max inlaat", 
+      "sequence": 6, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.max_intake"
+    }
+  }, 
+  {
+    "pk": 17, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Max uiplaat", 
+      "sequence": 7, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.max_outtake"
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Max inlaat", 
+      "sequence": 6, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.max_intake"
+    }
+  }, 
+  {
+    "pk": 20, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Max uiplaat", 
+      "sequence": 7, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.max_outtake"
+    }
+  }, 
+  {
+    "pk": 24, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Opervlakte", 
+      "sequence": 11, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.surface"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Bodem hoogte", 
+      "sequence": 12, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.bottom_height"
+    }
+  }, 
+  {
+    "pk": 28, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Kwel", 
+      "sequence": 15, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.kwel"
+    }
+  }, 
+  {
+    "pk": 31, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "wegz", 
+      "sequence": 18, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.wegz"
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Winterpeil", 
+      "sequence": 23, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.winterp"
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Lentepeil", 
+      "sequence": 24, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.lentep"
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Zomerpeil", 
+      "sequence": 25, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.zomerp"
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "Herfstpeil", 
+      "sequence": 26, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.herfstp"
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "marge_ond", 
+      "sequence": 31, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.marge_ond"
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "marge_bov", 
+      "sequence": 32, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.marge_bov"
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_min_1", 
+      "sequence": 33, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_min_1"
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_inc_1", 
+      "sequence": 34, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_inc_1"
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_min_2", 
+      "sequence": 35, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_min_2"
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_inc_2", 
+      "sequence": 36, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_inc_2"
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_min_3", 
+      "sequence": 37, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_min_3"
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_inc_3", 
+      "sequence": 38, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_inc_3"
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_min_4", 
+      "sequence": 39, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_min_4"
+    }
+  }, 
+  {
+    "pk": 53, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "nutc_inc_4", 
+      "sequence": 40, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_inc_4"
+    }
+  }, 
+  {
+    "pk": 54, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "ini_con_cl", 
+      "sequence": 41, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ini_con_cl"
+    }
+  }, 
+  {
+    "pk": 55, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "init_water_level", 
+      "sequence": 42, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.init_water_level"
+    }
+  }, 
+  {
+    "pk": 56, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "concentr_chloride_precipitation", 
+      "sequence": 43, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.concentr_chloride_precipitation"
+    }
+  }, 
+  {
+    "pk": 57, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "concentr_chloride_seepage", 
+      "sequence": 44, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.concentr_chloride_seepage"
+    }
+  }, 
+  {
+    "pk": 58, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "min_concentr_phosphate_precipitation", 
+      "sequence": 45, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.min_concentr_phosphate_precipitation"
+    }
+  }, 
+  {
+    "pk": 59, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "min_concentr_phopshate_seepage", 
+      "sequence": 46, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.incr_concentr_phosphate_seepage"
+    }
+  }, 
+  {
+    "pk": 60, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "incr_concentr_phosphate_precipitation", 
+      "sequence": 47, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.incr_concentr_phosphate_precipitation"
+    }
+  }, 
+  {
+    "pk": 61, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "incr_concentr_phosphate_seepage", 
+      "sequence": 48, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.incr_concentr_phosphate_seepage"
+    }
+  }, 
+  {
+    "pk": 62, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "min_concentr_nitrogyn_precipitation", 
+      "sequence": 49, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.min_concentr_nitrogyn_precipitation"
+    }
+  }, 
+  {
+    "pk": 63, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "min_concentr_nitrogyn_seepage", 
+      "sequence": 50, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.min_concentr_nitrogyn_seepage"
+    }
+  }, 
+  {
+    "pk": 64, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "incr_concentr_nitrogyn_precipitation", 
+      "sequence": 51, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.incr_concentr_nitrogyn_precipitation"
+    }
+  }, 
+  {
+    "pk": 65, 
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration", 
+    "fields": {
+      "field_type": "float", 
+      "display_name": "incr_concentr_nitrogyn_seepage", 
+      "sequence": 52, 
+      "editable": true, 
+      "visible": true, 
+      "grid": 2, 
+      "field_name": "lizard_wbconfiguration.areaconfiguration.incr_concentr_nitrogyn_seepage"
     }
   }, 
   {
@@ -813,64 +2162,6 @@
       "ident": "6530", 
       "sp_is_ts": false, 
       "name": "Bloemendalerpolder en Gemeenschapspolder Oost", 
-      "ts_water_level": null, 
-      "incr_concentr_nitrogyn_precipitation": null, 
-      "max_intake": null, 
-      "concentr_chloride_precipitation": null, 
-      "ts_precipitation": null, 
-      "min_concentr_phosphate_precipitation": null, 
-      "herfstp": null, 
-      "marge_ond": null, 
-      "nutc_min_1": null, 
-      "wegz_is_ts": false, 
-      "ts_sp": null, 
-      "start_dt": null
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "lizard_wbconfiguration.areaconfiguration", 
-    "fields": {
-      "nutc_inc_2": null, 
-      "nutc_inc_3": null, 
-      "start_wp": null, 
-      "nutc_inc_1": null, 
-      "min_concentr_phopshate_seepage": null, 
-      "nutc_inc_4": null, 
-      "ini_con_cl": null, 
-      "max_outtake": null, 
-      "surface": null, 
-      "ts_concentr_chloride_2": null, 
-      "ts_concentr_chloride_1": null, 
-      "kwel_is_ts": false, 
-      "start_lp": null, 
-      "marge_bov": null, 
-      "start_hp": null, 
-      "min_concentr_nitrogyn_seepage": null, 
-      "ts_kwel": 2345, 
-      "area": 430, 
-      "incr_concentr_phosphate_precipitation": null, 
-      "ts_evaporation": null, 
-      "winterp": null, 
-      "init_water_level": null, 
-      "kwel": null, 
-      "min_concentr_nitrogyn_precipitation": null, 
-      "nutc_min_2": null, 
-      "nutc_min_3": null, 
-      "ts_wegz": null, 
-      "zomerp": null, 
-      "nutc_min_4": null, 
-      "wegz": null, 
-      "incr_concentr_phosphate_seepage": null, 
-      "incr_concentr_nitrogyn_seepage": null, 
-      "concentr_chloride_seepage": null, 
-      "peilh_issp": false, 
-      "bottom_height": null, 
-      "start_zp": null, 
-      "lentep": null, 
-      "ident": "2210", 
-      "sp_is_ts": false, 
-      "name": "Bijlmer", 
       "ts_water_level": null, 
       "incr_concentr_nitrogyn_precipitation": null, 
       "max_intake": null, 
@@ -1814,64 +3105,6 @@
     }
   }, 
   {
-    "pk": 23, 
-    "model": "lizard_wbconfiguration.areaconfiguration", 
-    "fields": {
-      "nutc_inc_2": null, 
-      "nutc_inc_3": null, 
-      "start_wp": null, 
-      "nutc_inc_1": null, 
-      "min_concentr_phopshate_seepage": null, 
-      "nutc_inc_4": null, 
-      "ini_con_cl": null, 
-      "max_outtake": null, 
-      "surface": null, 
-      "ts_concentr_chloride_2": null, 
-      "ts_concentr_chloride_1": null, 
-      "kwel_is_ts": false, 
-      "start_lp": null, 
-      "marge_bov": null, 
-      "start_hp": null, 
-      "min_concentr_nitrogyn_seepage": null, 
-      "ts_kwel": null, 
-      "area": 342, 
-      "incr_concentr_phosphate_precipitation": null, 
-      "ts_evaporation": null, 
-      "winterp": null, 
-      "init_water_level": null, 
-      "kwel": null, 
-      "min_concentr_nitrogyn_precipitation": null, 
-      "nutc_min_2": null, 
-      "nutc_min_3": null, 
-      "ts_wegz": null, 
-      "zomerp": null, 
-      "nutc_min_4": null, 
-      "wegz": null, 
-      "incr_concentr_phosphate_seepage": null, 
-      "incr_concentr_nitrogyn_seepage": null, 
-      "concentr_chloride_seepage": null, 
-      "peilh_issp": false, 
-      "bottom_height": null, 
-      "start_zp": null, 
-      "lentep": null, 
-      "ident": "3311", 
-      "sp_is_ts": false, 
-      "name": "Bethunepolder", 
-      "ts_water_level": null, 
-      "incr_concentr_nitrogyn_precipitation": null, 
-      "max_intake": null, 
-      "concentr_chloride_precipitation": null, 
-      "ts_precipitation": null, 
-      "min_concentr_phosphate_precipitation": null, 
-      "herfstp": null, 
-      "marge_ond": null, 
-      "nutc_min_1": null, 
-      "wegz_is_ts": false, 
-      "ts_sp": null, 
-      "start_dt": null
-    }
-  }, 
-  {
     "pk": 24, 
     "model": "lizard_wbconfiguration.areaconfiguration", 
     "fields": {
@@ -1920,6 +3153,238 @@
       "max_intake": null, 
       "concentr_chloride_precipitation": null, 
       "ts_precipitation": null, 
+      "min_concentr_phosphate_precipitation": null, 
+      "herfstp": null, 
+      "marge_ond": null, 
+      "nutc_min_1": null, 
+      "wegz_is_ts": false, 
+      "ts_sp": null, 
+      "start_dt": null
+    }
+  }, 
+  {
+    "pk": 23, 
+    "model": "lizard_wbconfiguration.areaconfiguration", 
+    "fields": {
+      "nutc_inc_2": null, 
+      "nutc_inc_3": null, 
+      "start_wp": null, 
+      "nutc_inc_1": null, 
+      "min_concentr_phopshate_seepage": null, 
+      "nutc_inc_4": null, 
+      "ini_con_cl": null, 
+      "max_outtake": null, 
+      "surface": null, 
+      "ts_concentr_chloride_2": null, 
+      "ts_concentr_chloride_1": null, 
+      "kwel_is_ts": false, 
+      "start_lp": null, 
+      "marge_bov": null, 
+      "start_hp": null, 
+      "min_concentr_nitrogyn_seepage": null, 
+      "ts_kwel": 1514, 
+      "area": 342, 
+      "incr_concentr_phosphate_precipitation": null, 
+      "ts_evaporation": null, 
+      "winterp": null, 
+      "init_water_level": null, 
+      "kwel": null, 
+      "min_concentr_nitrogyn_precipitation": null, 
+      "nutc_min_2": null, 
+      "nutc_min_3": null, 
+      "ts_wegz": null, 
+      "zomerp": null, 
+      "nutc_min_4": null, 
+      "wegz": null, 
+      "incr_concentr_phosphate_seepage": null, 
+      "incr_concentr_nitrogyn_seepage": null, 
+      "concentr_chloride_seepage": null, 
+      "peilh_issp": false, 
+      "bottom_height": null, 
+      "start_zp": null, 
+      "lentep": null, 
+      "ident": "3311", 
+      "sp_is_ts": false, 
+      "name": "test", 
+      "ts_water_level": null, 
+      "incr_concentr_nitrogyn_precipitation": null, 
+      "max_intake": null, 
+      "concentr_chloride_precipitation": null, 
+      "ts_precipitation": null, 
+      "min_concentr_phosphate_precipitation": null, 
+      "herfstp": null, 
+      "marge_ond": null, 
+      "nutc_min_1": null, 
+      "wegz_is_ts": false, 
+      "ts_sp": null, 
+      "start_dt": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "lizard_wbconfiguration.areaconfiguration", 
+    "fields": {
+      "nutc_inc_2": null, 
+      "nutc_inc_3": null, 
+      "start_wp": null, 
+      "nutc_inc_1": null, 
+      "min_concentr_phopshate_seepage": null, 
+      "nutc_inc_4": null, 
+      "ini_con_cl": null, 
+      "max_outtake": null, 
+      "surface": null, 
+      "ts_concentr_chloride_2": null, 
+      "ts_concentr_chloride_1": null, 
+      "kwel_is_ts": false, 
+      "start_lp": null, 
+      "marge_bov": null, 
+      "start_hp": null, 
+      "min_concentr_nitrogyn_seepage": null, 
+      "ts_kwel": 1514, 
+      "area": 430, 
+      "incr_concentr_phosphate_precipitation": null, 
+      "ts_evaporation": null, 
+      "winterp": null, 
+      "init_water_level": null, 
+      "kwel": null, 
+      "min_concentr_nitrogyn_precipitation": null, 
+      "nutc_min_2": null, 
+      "nutc_min_3": null, 
+      "ts_wegz": null, 
+      "zomerp": null, 
+      "nutc_min_4": null, 
+      "wegz": null, 
+      "incr_concentr_phosphate_seepage": null, 
+      "incr_concentr_nitrogyn_seepage": null, 
+      "concentr_chloride_seepage": null, 
+      "peilh_issp": false, 
+      "bottom_height": null, 
+      "start_zp": null, 
+      "lentep": null, 
+      "ident": "2210", 
+      "sp_is_ts": false, 
+      "name": "Bijlme", 
+      "ts_water_level": null, 
+      "incr_concentr_nitrogyn_precipitation": null, 
+      "max_intake": null, 
+      "concentr_chloride_precipitation": null, 
+      "ts_precipitation": null, 
+      "min_concentr_phosphate_precipitation": null, 
+      "herfstp": null, 
+      "marge_ond": null, 
+      "nutc_min_1": null, 
+      "wegz_is_ts": false, 
+      "ts_sp": null, 
+      "start_dt": "2015-02-01 00:00:00"
+    }
+  }, 
+  {
+    "pk": 25, 
+    "model": "lizard_wbconfiguration.areaconfiguration", 
+    "fields": {
+      "nutc_inc_2": null, 
+      "nutc_inc_3": null, 
+      "start_wp": null, 
+      "nutc_inc_1": null, 
+      "min_concentr_phopshate_seepage": null, 
+      "nutc_inc_4": null, 
+      "ini_con_cl": null, 
+      "max_outtake": "1.340", 
+      "surface": "20000000.0", 
+      "ts_concentr_chloride_2": 1514, 
+      "ts_concentr_chloride_1": 2345, 
+      "kwel_is_ts": true, 
+      "start_lp": null, 
+      "marge_bov": null, 
+      "start_hp": null, 
+      "min_concentr_nitrogyn_seepage": null, 
+      "ts_kwel": 2345, 
+      "area": 330, 
+      "incr_concentr_phosphate_precipitation": null, 
+      "ts_evaporation": 1518, 
+      "winterp": "1.100", 
+      "init_water_level": null, 
+      "kwel": "-1.360", 
+      "min_concentr_nitrogyn_precipitation": null, 
+      "nutc_min_2": null, 
+      "nutc_min_3": null, 
+      "ts_wegz": 1514, 
+      "zomerp": "-1.200", 
+      "nutc_min_4": null, 
+      "wegz": "10.000", 
+      "incr_concentr_phosphate_seepage": null, 
+      "incr_concentr_nitrogyn_seepage": null, 
+      "concentr_chloride_seepage": null, 
+      "peilh_issp": true, 
+      "bottom_height": "1.350", 
+      "start_zp": null, 
+      "lentep": null, 
+      "ident": "2120", 
+      "sp_is_ts": true, 
+      "name": "Bovenkerkerpolder", 
+      "ts_water_level": 2141, 
+      "incr_concentr_nitrogyn_precipitation": null, 
+      "max_intake": "3.330", 
+      "concentr_chloride_precipitation": null, 
+      "ts_precipitation": 2345, 
+      "min_concentr_phosphate_precipitation": null, 
+      "herfstp": null, 
+      "marge_ond": null, 
+      "nutc_min_1": null, 
+      "wegz_is_ts": true, 
+      "ts_sp": 2345, 
+      "start_dt": "2012-01-22 00:00:00"
+    }
+  }, 
+  {
+    "pk": 26, 
+    "model": "lizard_wbconfiguration.areaconfiguration", 
+    "fields": {
+      "nutc_inc_2": null, 
+      "nutc_inc_3": null, 
+      "start_wp": null, 
+      "nutc_inc_1": null, 
+      "min_concentr_phopshate_seepage": null, 
+      "nutc_inc_4": null, 
+      "ini_con_cl": null, 
+      "max_outtake": null, 
+      "surface": null, 
+      "ts_concentr_chloride_2": null, 
+      "ts_concentr_chloride_1": null, 
+      "kwel_is_ts": false, 
+      "start_lp": null, 
+      "marge_bov": null, 
+      "start_hp": null, 
+      "min_concentr_nitrogyn_seepage": null, 
+      "ts_kwel": null, 
+      "area": 434, 
+      "incr_concentr_phosphate_precipitation": null, 
+      "ts_evaporation": 2345, 
+      "winterp": null, 
+      "init_water_level": null, 
+      "kwel": null, 
+      "min_concentr_nitrogyn_precipitation": null, 
+      "nutc_min_2": null, 
+      "nutc_min_3": null, 
+      "ts_wegz": null, 
+      "zomerp": null, 
+      "nutc_min_4": null, 
+      "wegz": null, 
+      "incr_concentr_phosphate_seepage": null, 
+      "incr_concentr_nitrogyn_seepage": null, 
+      "concentr_chloride_seepage": null, 
+      "peilh_issp": false, 
+      "bottom_height": null, 
+      "start_zp": null, 
+      "lentep": null, 
+      "ident": "2110", 
+      "sp_is_ts": false, 
+      "name": "Middelpolder onder Amstelveen", 
+      "ts_water_level": null, 
+      "incr_concentr_nitrogyn_precipitation": null, 
+      "max_intake": "-1.300", 
+      "concentr_chloride_precipitation": null, 
+      "ts_precipitation": 1514, 
       "min_concentr_phosphate_precipitation": null, 
       "herfstp": null, 
       "marge_ond": null, 
@@ -2084,6 +3549,48 @@
       "name": "", 
       "incr_concentr_phosphate": null, 
       "area": 18, 
+      "deleted": false, 
+      "min_concentr_phosphate": null, 
+      "min_concentr_nitrogen": null, 
+      "incr_concentr_nitrogen": null, 
+      "concentr_chloride": null, 
+      "is_computed": false, 
+      "deb_zomer": null, 
+      "in_out": false, 
+      "ts_debiet": null, 
+      "deb_wint": null, 
+      "deb_is_ts": false
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "lizard_wbconfiguration.structure", 
+    "fields": {
+      "code": "", 
+      "name": "", 
+      "incr_concentr_phosphate": null, 
+      "area": 25, 
+      "deleted": false, 
+      "min_concentr_phosphate": null, 
+      "min_concentr_nitrogen": null, 
+      "incr_concentr_nitrogen": null, 
+      "concentr_chloride": null, 
+      "is_computed": false, 
+      "deb_zomer": null, 
+      "in_out": false, 
+      "ts_debiet": null, 
+      "deb_wint": null, 
+      "deb_is_ts": false
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "lizard_wbconfiguration.structure", 
+    "fields": {
+      "code": "", 
+      "name": "", 
+      "incr_concentr_phosphate": null, 
+      "area": 26, 
       "deleted": false, 
       "min_concentr_phosphate": null, 
       "min_concentr_nitrogen": null, 
@@ -2930,54 +4437,6 @@
     }
   }, 
   {
-    "pk": 19, 
-    "model": "lizard_wbconfiguration.bucket", 
-    "fields": {
-      "code": "", 
-      "drainage_fraction": null, 
-      "concentr_chloride_drainage_indraft": null, 
-      "init_water_level": null, 
-      "concentr_chloride_flow_off": null, 
-      "surface": null, 
-      "incr_concentr_phosphate_flow_off": null, 
-      "incr_concentr_phosphate_drainage_indraft": null, 
-      "min_concentr_nitrogen_flow_off": null, 
-      "ts_flowoff": null, 
-      "min_concentr_phosphate_flow_off": null, 
-      "area": 23, 
-      "bottom_drainage_fraction": null, 
-      "bottom_init_water_level": null, 
-      "porosity": null, 
-      "incr_concentr_nitrogen_drainage_indraft": null, 
-      "min_concentr_nitrogen_drainage_indraft": null, 
-      "label_flow_off": null, 
-      "ts_drainageindraft": null, 
-      "min_water_level": null, 
-      "bottom_crop_evaporation_factor": null, 
-      "bottom_max_water_level": null, 
-      "bottom_indraft_fraction": null, 
-      "replace_impact_by_nutricalc": false, 
-      "kwelwegz_is_ts": false, 
-      "deleted": false, 
-      "min_concentr_phosphate_drainage_indraft": null, 
-      "bottom_porosity": null, 
-      "bottom_min_water_level": null, 
-      "label_drainaige_indraft": null, 
-      "is_computed": false, 
-      "min_crop_evaporation_factor": null, 
-      "ts_referenceoverflow": null, 
-      "bucket_type": null, 
-      "man_water_level": null, 
-      "name": "", 
-      "incr_concentr_nitrogen_flow_off": null, 
-      "kwelwegz": null, 
-      "indraft_fraction": null, 
-      "crop_evaporation_factor": null, 
-      "bottom_min_crop_evaporation_factor": null, 
-      "ts_kwelwegz": null
-    }
-  }, 
-  {
     "pk": 20, 
     "model": "lizard_wbconfiguration.bucket", 
     "fields": {
@@ -2993,54 +4452,6 @@
       "ts_flowoff": null, 
       "min_concentr_phosphate_flow_off": null, 
       "area": 6, 
-      "bottom_drainage_fraction": null, 
-      "bottom_init_water_level": null, 
-      "porosity": null, 
-      "incr_concentr_nitrogen_drainage_indraft": null, 
-      "min_concentr_nitrogen_drainage_indraft": null, 
-      "label_flow_off": null, 
-      "ts_drainageindraft": null, 
-      "min_water_level": null, 
-      "bottom_crop_evaporation_factor": null, 
-      "bottom_max_water_level": null, 
-      "bottom_indraft_fraction": null, 
-      "replace_impact_by_nutricalc": false, 
-      "kwelwegz_is_ts": false, 
-      "deleted": false, 
-      "min_concentr_phosphate_drainage_indraft": null, 
-      "bottom_porosity": null, 
-      "bottom_min_water_level": null, 
-      "label_drainaige_indraft": null, 
-      "is_computed": false, 
-      "min_crop_evaporation_factor": null, 
-      "ts_referenceoverflow": null, 
-      "bucket_type": null, 
-      "man_water_level": null, 
-      "name": "", 
-      "incr_concentr_nitrogen_flow_off": null, 
-      "kwelwegz": null, 
-      "indraft_fraction": null, 
-      "crop_evaporation_factor": null, 
-      "bottom_min_crop_evaporation_factor": null, 
-      "ts_kwelwegz": null
-    }
-  }, 
-  {
-    "pk": 2, 
-    "model": "lizard_wbconfiguration.bucket", 
-    "fields": {
-      "code": "", 
-      "drainage_fraction": null, 
-      "concentr_chloride_drainage_indraft": null, 
-      "init_water_level": null, 
-      "concentr_chloride_flow_off": null, 
-      "surface": "2000.0", 
-      "incr_concentr_phosphate_flow_off": null, 
-      "incr_concentr_phosphate_drainage_indraft": null, 
-      "min_concentr_nitrogen_flow_off": null, 
-      "ts_flowoff": null, 
-      "min_concentr_phosphate_flow_off": null, 
-      "area": 7, 
       "bottom_drainage_fraction": null, 
       "bottom_init_water_level": null, 
       "porosity": null, 
@@ -3665,6 +5076,1014 @@
       "ts_flowoff": null, 
       "min_concentr_phosphate_flow_off": null, 
       "area": 18, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 34, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 7, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": 2, 
+      "man_water_level": "0.000", 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 35, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": 2, 
+      "man_water_level": null, 
+      "name": "test", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 36, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "Bakje 2", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 37, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 7, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": "0.000", 
+      "name": "Bakje 2", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 38, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 39, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "Bakje 4", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 40, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 7, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": "0.000", 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 41, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 42, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 7, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": "0.000", 
+      "name": "baje 9", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 43, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 44, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 45, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": "2000.0", 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": 2, 
+      "man_water_level": null, 
+      "name": "Bakje 2", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 46, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 7, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 47, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 7, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": "0.000", 
+      "name": "Bakje 2", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 48, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 7, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": "0.000", 
+      "name": "Bakje 1", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 49, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 23, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": "0.000", 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 50, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": "0.000", 
+      "concentr_chloride_drainage_indraft": "0.000", 
+      "init_water_level": "0.000", 
+      "concentr_chloride_flow_off": "0.000", 
+      "surface": "0.0", 
+      "incr_concentr_phosphate_flow_off": "0.000", 
+      "incr_concentr_phosphate_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_flow_off": "0.000", 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": "0.000", 
+      "area": 23, 
+      "bottom_drainage_fraction": "0.000", 
+      "bottom_init_water_level": "0.000", 
+      "porosity": "0.000", 
+      "incr_concentr_nitrogen_drainage_indraft": "0.000", 
+      "min_concentr_nitrogen_drainage_indraft": "0.000", 
+      "label_flow_off": "0.000", 
+      "ts_drainageindraft": null, 
+      "min_water_level": "0.000", 
+      "bottom_crop_evaporation_factor": "0.000", 
+      "bottom_max_water_level": "0.000", 
+      "bottom_indraft_fraction": "0.000", 
+      "replace_impact_by_nutricalc": true, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": "0.000", 
+      "bottom_porosity": "0.000", 
+      "bottom_min_water_level": "0.000", 
+      "label_drainaige_indraft": "0.000", 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": "0.000", 
+      "ts_referenceoverflow": null, 
+      "bucket_type": 2, 
+      "man_water_level": "0.000", 
+      "name": "Bakje 3", 
+      "incr_concentr_nitrogen_flow_off": "0.000", 
+      "kwelwegz": "0.000", 
+      "indraft_fraction": "0.000", 
+      "crop_evaporation_factor": "0.000", 
+      "bottom_min_crop_evaporation_factor": "0.000", 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 19, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 23, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": 2, 
+      "man_water_level": null, 
+      "name": "Bakje 4", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 51, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 25, 
+      "bottom_drainage_fraction": null, 
+      "bottom_init_water_level": null, 
+      "porosity": null, 
+      "incr_concentr_nitrogen_drainage_indraft": null, 
+      "min_concentr_nitrogen_drainage_indraft": null, 
+      "label_flow_off": null, 
+      "ts_drainageindraft": null, 
+      "min_water_level": null, 
+      "bottom_crop_evaporation_factor": null, 
+      "bottom_max_water_level": null, 
+      "bottom_indraft_fraction": null, 
+      "replace_impact_by_nutricalc": false, 
+      "kwelwegz_is_ts": false, 
+      "deleted": false, 
+      "min_concentr_phosphate_drainage_indraft": null, 
+      "bottom_porosity": null, 
+      "bottom_min_water_level": null, 
+      "label_drainaige_indraft": null, 
+      "is_computed": false, 
+      "min_crop_evaporation_factor": null, 
+      "ts_referenceoverflow": null, 
+      "bucket_type": null, 
+      "man_water_level": null, 
+      "name": "", 
+      "incr_concentr_nitrogen_flow_off": null, 
+      "kwelwegz": null, 
+      "indraft_fraction": null, 
+      "crop_evaporation_factor": null, 
+      "bottom_min_crop_evaporation_factor": null, 
+      "ts_kwelwegz": null
+    }
+  }, 
+  {
+    "pk": 52, 
+    "model": "lizard_wbconfiguration.bucket", 
+    "fields": {
+      "code": "", 
+      "drainage_fraction": null, 
+      "concentr_chloride_drainage_indraft": null, 
+      "init_water_level": null, 
+      "concentr_chloride_flow_off": null, 
+      "surface": null, 
+      "incr_concentr_phosphate_flow_off": null, 
+      "incr_concentr_phosphate_drainage_indraft": null, 
+      "min_concentr_nitrogen_flow_off": null, 
+      "ts_flowoff": null, 
+      "min_concentr_phosphate_flow_off": null, 
+      "area": 26, 
       "bottom_drainage_fraction": null, 
       "bottom_init_water_level": null, 
       "porosity": null, 
