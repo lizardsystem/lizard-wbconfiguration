@@ -223,16 +223,16 @@ class WaterBalanceAreaObjectConfiguration(View):
         area_object_class = self.area_object_class(area_object_type)
 
         if area_object_class is None:
-            return []
+            return {'data': []}
 
         area_objects = area_object_class.objects.filter(
             area__ident=object_id,
             deleted=False)
         if area_objects.exists():
-            return self.area_object_configuration(list(area_objects))
+            return {'data': self.area_object_configuration(list(area_objects))}
         else:
             area_object = self.create_area_object(object_id, area_object_class)
-            return self.area_object_configuration([area_object])
+            return {'data': self.area_object_configuration([area_object])}
 
     def area_object_class(self, area_object_type):
         try:
@@ -297,11 +297,22 @@ class WaterBalanceAreaObjectConfiguration(View):
         @TODO replace value.split(',')[2] with timeseriescache.id
         """
         object_id = self.CONTENT.get('object_id', None)
+        action = request.GET.get('action', None)
         area_object_type = self.CONTENT.get('area_object_type', None)
         data = json.loads(self.CONTENT.get('data', []))
         if type(data) == dict:
             data = [data]
         area_object_class = self.area_object_class(area_object_type)
+
+        if action == 'delete':
+            for area in data:
+                area_object = area_object_class.objects.get(
+                    pk=area['id'])
+                area_object.deleted = True
+                area_object.save()
+            return {'success': True }
+
+        touched_objects = []
         for record in data:
             area_objects = area_object_class.objects.filter(
                 id=self.retrieve_id(record))
@@ -311,6 +322,9 @@ class WaterBalanceAreaObjectConfiguration(View):
                 area_object = self.create_area_object(
                     object_id, area_object_class)
             del record['id']
+
+            print area_object
+            area_object.area = AreaConfiguration.objects.get(ident=object_id)
             for (key, value) in record.items():
                 key = str(key)
                 value = str(value)
@@ -338,7 +352,9 @@ class WaterBalanceAreaObjectConfiguration(View):
                         return {'success': False}
                 setattr(area_object, key, value)
             area_object.save()
-        return {'success': True}
+            touched_objects.append(area_object)
+
+        return {'success': True, 'data': self.area_object_configuration(touched_objects)}
 
 
 class WaterBalanceAreaConfiguration(View):
