@@ -267,7 +267,7 @@ class Structure(models.Model):
     incr_concentr_nitrogen = models.DecimalField(max_digits=5,
                                                  decimal_places=3,
                                                  null=True, blank=True)
-    deleted = models.BooleanField()
+    deleted = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
@@ -389,4 +389,4 @@ class Bucket(models.Model):
     label_drainaige_indraft = models.DecimalField(max_digits=5,
                                                   decimal_places=3,
                                                   null=True, blank=True)
-    deleted = models.BooleanField()
+    deleted = models.BooleanField(default=False)
