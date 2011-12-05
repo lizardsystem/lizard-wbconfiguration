@@ -322,7 +322,7 @@ class Bucket(models.Model):
                                    null=True, blank=True)
     indraft_fraction = models.DecimalField(max_digits=5, decimal_places=3,
                                    null=True, blank=True)
-    man_water_level = models.DecimalField(max_digits=5, decimal_places=3,
+    max_water_level = models.DecimalField(max_digits=5, decimal_places=3,
                                    null=True, blank=True)
     min_water_level = models.DecimalField(max_digits=5, decimal_places=3,
                                    null=True, blank=True)

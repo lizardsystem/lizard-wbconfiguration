@@ -451,8 +451,6 @@ class WaterBalanceAreaConfiguration(View):
         for field in data:
             field_name = str(field['id'])
             value = str(field['value'])
-            print "============= %s", value
-            print "+++++++++++++%s", field_name
 
             if field_name == 'id':
                 continue
@@ -462,7 +460,6 @@ class WaterBalanceAreaConfiguration(View):
                 logger.debug("Field '%s.%s' is NOT exists." % (
                       area_config._meta.module_name, field_name))
                 continue
-            print "-----------------------------------------------------"
 
             if areaconfig_field.rel:
                 if areaconfig_field.rel.to == TimeSeriesCache:
