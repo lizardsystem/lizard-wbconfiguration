@@ -392,6 +392,7 @@ class WaterBalanceAreaConfiguration(View):
                      'property': grid_field[0].display_name,
                      'value': value,
                      'editable': grid_field[0].editable,
+                     'ts_parameter': grid_field[0].ts_parameter,
                      'type': grid_field[0].field_type})
         return area_config
 
@@ -461,7 +462,7 @@ class WaterBalanceAreaConfiguration(View):
 
         if type(data) == dict:
             data = [data]
-        print data
+
         area_config = AreaConfiguration.objects.get(ident=object_id)
 
         for field in data:
