@@ -4,8 +4,23 @@ Changelog of lizard-wbconfiguration
 
 0.1.2 (unreleased)
 ------------------
+- Added functions to create structure code.
 
-- Nothing changed yet.
+- Added function to create default structures.
+
+- Added admin scherm to configure dbf fields.
+
+- Created management command to create dbf file.
+
+- Added functions to create dbf files.
+
+- Added fixture 001_wbconfiguration.
+
+- Implemented functions to view and maintain structures.
+
+- Implemented functions to view and maintain buckets.
+
+- Added deleted field into Bucket, Structure model.
 
 
 0.1.1 (2011-11-07)
