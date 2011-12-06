@@ -110,7 +110,8 @@ class AreaGridFieldConfiguration(models.Model):
     display_name = models.CharField(max_length=128)
     editable = models.BooleanField()
     visible = models.BooleanField()
-    ts_parameter = models.CharField(max_length=128)
+    ts_parameter = models.CharField(max_length=128,
+                                    blank=True, null=True)
     field_type = models.CharField(max_length=128, choices=EXTJS_DATA_TYPES)
     grid = models.ForeignKey(AreaGridConfiguration)
     sequence = models.IntegerField()
@@ -284,8 +285,10 @@ class Structure(models.Model):
     def code_number(self):
         """Retrieve number of last structure from code."""
         number = 0
-        if self.code is not None:
-            number = int(code_aray[len(code_areay-1)])
+        delimeter = '__'
+        if (self.code is not None) and (self.code.find(delimeter) > 0):
+            code_array = self.code.split(delimeter)
+            number = int(code_array[len(code_array) - 1])
         return number
 
     def create_code(self, number):
@@ -296,7 +299,8 @@ class Structure(models.Model):
         2100 - ident of area configuration
         01 - structure number
         """
-        self.code = "WB_%s__%d" % (self.area.ident, number)
+
+        return "WB_%s__%d" % (self.area.ident, number)
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)

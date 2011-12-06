@@ -184,9 +184,8 @@ class WaterBalanceDBF(View):
             logger.debug("Value of %s.%s is None." % (
                     area_object._meta.module_name, field_name))
             return None
-
         if isinstance(value, TimeSeriesCache):
-            value = self.retrieve_series_key(value)
+            value = str(value.parametercache.ident)
         elif isinstance(value, Area):
             value = value.id
         elif isinstance(value, BucketsType):
@@ -286,8 +285,15 @@ class WaterBalanceAreaObjectConfiguration(View):
         return True
 
     def exists_default_structure(self, area_configuration, in_out):
+        """ Check and activate default structures. """
         structures = Structure.objects.filter(in_out=in_out,
-                                              area__id=area_configuration.id)
+                                              area__id=area_configuration.id,
+                                              is_computed=True)
+        for structure in structures:
+            if structure.deleted == True:
+                structure.deleted = False
+                structure.save()
+
         if structures.exists():
             return True
         return False
@@ -300,16 +306,16 @@ class WaterBalanceAreaObjectConfiguration(View):
         in_out -- the string choices see above STUCTURE_IN_OUT
         """
         names = {'in': "Peilhandhaving In defaul",
-                 'out': "Peilhandhaving Out default"}
+                 'uit': "Peilhandhaving Out default"}
         try:
             structure = Structure(name=names[in_out],
                                   in_out=in_out,
                                   area=area_configuration,
-                                  is_computed)
-            last_codenumber = last_structure_codenumber(area_configuration)
+                                  is_computed=True)
+            last_codenumber = self.last_structure_codenumber(
+                area_configuration)
             if last_codenumber is None:
                 last_codenumber = structure.code_number()
-
             structure.code = structure.create_code(last_codenumber + 1)
             structure.save()
         except Exception as ex:
@@ -317,7 +323,7 @@ class WaterBalanceAreaObjectConfiguration(View):
 
     def create_default_structures(self, object_id):
         area_config = AreaConfiguration.objects.get(ident=object_id)
-        in_out = ('in', 'out')
+        in_out = ('in', 'uit')
 
         for item in in_out:
             if self.check_amount_structures(area_config) == False:
@@ -327,7 +333,7 @@ class WaterBalanceAreaObjectConfiguration(View):
 
     def last_structure_codenumber(self, area_configuration):
         """ Return code number of the last structure. """
-        structures = AreaConfiguration.objects.filter(
+        structures = Structure.objects.filter(
             area__id=area_configuration.id)
         number = None
         if structures.exists():
@@ -339,8 +345,16 @@ class WaterBalanceAreaObjectConfiguration(View):
         """
         Creates a area object object related to AreaConfiguration.
         """
-        area_config = AreaConfiguration.objects.get(ident=object_id)
-        area_object = area_object_class(area=area_config)
+        area_configuration = AreaConfiguration.objects.get(ident=object_id)
+        area_object = area_object_class(area=area_configuration)
+        if isinstance(area_object, Structure):
+            if self.check_amount_structures(area_configuration) == False:
+                return None
+            last_codenumber = self.last_structure_codenumber(
+                area_configuration)
+            if last_codenumber is None:
+                last_codenumber = area_object.code_number()
+            area_object.code = area_object.create_code(last_codenumber + 1)
         area_object.save()
         return area_object
 
@@ -356,6 +370,21 @@ class WaterBalanceAreaObjectConfiguration(View):
             except ValueError:
                 logger.debug("Bucket ID '%s' is NOT an integer", id)
                 return -1
+
+    def delete_area_object(data, area_object_class):
+        """Deactivate area objects exclusive computed structures."""
+        success = True
+        try:
+            for area in data:
+                area_object = area_object_class.objects.get(
+                    pk=area['id'])
+                if type(area_object) == Structure and area_object.is_computed:
+                    continue
+                area_object.deleted = True
+                area_object.save()
+        except:
+                success = False
+        return success
 
     def post(self, request):
         """
@@ -375,12 +404,8 @@ class WaterBalanceAreaObjectConfiguration(View):
         area_object_class = self.area_object_class(area_object_type)
 
         if action == 'delete':
-            for area in data:
-                area_object = area_object_class.objects.get(
-                    pk=area['id'])
-                area_object.deleted = True
-                area_object.save()
-            return {'success': True}
+            success = self.delete_area_object(data, area_object_class)
+            return {'success': success}
 
         touched_objects = []
         for record in data:
@@ -391,9 +416,10 @@ class WaterBalanceAreaObjectConfiguration(View):
             else:
                 area_object = self.create_area_object(
                     object_id, area_object_class)
+                if area_object is None:
+                    return {'success': False}
             del record['id']
 
-            print area_object
             area_object.area = AreaConfiguration.objects.get(ident=object_id)
             for (key, value) in record.items():
                 key = str(key)
