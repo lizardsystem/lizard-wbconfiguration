@@ -72,7 +72,8 @@ class WaterBalanceDBF(View):
 
             logger.debug("Export area configuration.")
 
-            is_created_1 = self.create_dbf('areaconfiguration', [area_configuration])
+            is_created_1 = self.create_dbf('areaconfiguration',
+                                           [area_configuration])
 
             buckets = Bucket.objects.filter(area=area_configuration)
             logger.debug("Export bucket.")
@@ -107,7 +108,7 @@ class WaterBalanceDBF(View):
             return filename
         else:
             logger.debug('Location to write .dbf files is not defined.')
-            logger.debug('Used the working directory and default file name "%s".' % default_filename)
+            logger.debug('Used default file name "%s".' % default_filename)
             return default_filename
 
     def create_dbf(self, model_name, area_objects):
@@ -161,7 +162,8 @@ class WaterBalanceDBF(View):
         for area_object in area_objects:
             rec = out.newRecord()
             for item in mapping:
-                value = self.retrieve_value(area_object, item.wbfield_name.lower())
+                value = self.retrieve_value(area_object,
+                                            item.wbfield_name.lower())
                 if value is not None:
                     rec[item.dbffield_name] = value
             rec.store()
@@ -215,6 +217,9 @@ class WaterBalanceDBF(View):
 
 class WaterBalanceAreaObjectConfiguration(View):
     """
+    View and save the area configuration objects.
+    Buckets and Structures.
+    Area configuration contains 2 default structures(in, out).
     """
 
     def get(self, request):
@@ -225,9 +230,13 @@ class WaterBalanceAreaObjectConfiguration(View):
         if area_object_class is None:
             return {'data': []}
 
+        if area_object_class == Structure:
+            self.create_default_structures(object_id)
+
         area_objects = area_object_class.objects.filter(
             area__ident=object_id,
             deleted=False)
+
         if area_objects.exists():
             return {'data': self.area_object_configuration(list(area_objects))}
         else:
@@ -264,6 +273,51 @@ class WaterBalanceAreaObjectConfiguration(View):
                 area_object_as_dict[field.name] = value
             area_object_config.append(area_object_as_dict)
         return area_object_config
+
+    def check_amount_structures(self, area_configuration):
+        """Check allowed amount structures per area."""
+        amount = 10
+        structures = Structure.objects.filter(
+            area__id=area_configuration.id)
+        if len(structures) >= amount:
+            logger.debug("Amount of structures is %d allowed %d, area %s" % (
+                    len(structures), amount, area_configuration.ident))
+            return False
+        return True
+
+    def exists_default_structure(self, area_configuration, in_out):
+        structures = Structure.objects.filter(in_out=in_out,
+                                              area__id=area_configuration.id)
+        if structures.exists():
+            return True
+        return False
+
+    def create_default_structure(self, area_configuration, in_out):
+        """Creates default structure.
+
+        Arguments:
+        area_configuration -- the object instance of AreaConfiguratin
+        in_out -- the string choices see above STUCTURE_IN_OUT
+        """
+        names = {'in': "Peilhandhaving In defaul",
+                 'out': "Peilhandhaving Out default"}
+        try:
+            structure = Structure(name=names[in_out],
+                                  in_out=in_out,
+                                  area=area_configuration)
+            structure.save()
+        except Exception as ex:
+            logger.debug(','.join(map(str, ex.args)))
+
+    def create_default_structures(self, object_id):
+        area_config = AreaConfiguration.objects.get(ident=object_id)
+        in_out = ('in', 'out')
+
+        for item in in_out:
+            if self.check_amount_structures(area_config) == False:
+                break
+            if self.exists_default_structure(area_config, item) == False:
+                self.create_default_structure(area_config, item)
 
     def create_area_object(self, object_id, area_object_class):
         """
@@ -310,7 +364,7 @@ class WaterBalanceAreaObjectConfiguration(View):
                     pk=area['id'])
                 area_object.deleted = True
                 area_object.save()
-            return {'success': True }
+            return {'success': True}
 
         touched_objects = []
         for record in data:
@@ -354,7 +408,8 @@ class WaterBalanceAreaObjectConfiguration(View):
             area_object.save()
             touched_objects.append(area_object)
 
-        return {'success': True, 'data': self.area_object_configuration(touched_objects)}
+        return {'success': True,
+                'data': self.area_object_configuration(touched_objects)}
 
 
 class WaterBalanceAreaConfiguration(View):
