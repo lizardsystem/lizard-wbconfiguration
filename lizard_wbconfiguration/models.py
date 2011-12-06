@@ -110,6 +110,7 @@ class AreaGridFieldConfiguration(models.Model):
     display_name = models.CharField(max_length=128)
     editable = models.BooleanField()
     visible = models.BooleanField()
+    ts_parameter = models.CharField(max_length=128)
     field_type = models.CharField(max_length=128, choices=EXTJS_DATA_TYPES)
     grid = models.ForeignKey(AreaGridConfiguration)
     sequence = models.IntegerField()
