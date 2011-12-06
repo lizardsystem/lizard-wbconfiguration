@@ -304,7 +304,13 @@ class WaterBalanceAreaObjectConfiguration(View):
         try:
             structure = Structure(name=names[in_out],
                                   in_out=in_out,
-                                  area=area_configuration)
+                                  area=area_configuration,
+                                  is_computed)
+            last_codenumber = last_structure_codenumber(area_configuration)
+            if last_codenumber is None:
+                last_codenumber = structure.code_number()
+
+            structure.code = structure.create_code(last_codenumber + 1)
             structure.save()
         except Exception as ex:
             logger.debug(','.join(map(str, ex.args)))
@@ -318,6 +324,16 @@ class WaterBalanceAreaObjectConfiguration(View):
                 break
             if self.exists_default_structure(area_config, item) == False:
                 self.create_default_structure(area_config, item)
+
+    def last_structure_codenumber(self, area_configuration):
+        """ Return code number of the last structure. """
+        structures = AreaConfiguration.objects.filter(
+            area__id=area_configuration.id)
+        number = None
+        if structures.exists():
+            last_structure = max(structures)
+            number = last_structure.code_number()
+        return number
 
     def create_area_object(self, object_id, area_object_class):
         """

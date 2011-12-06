@@ -287,7 +287,7 @@ class Structure(models.Model):
             number = int(code_aray[len(code_areay-1)])
         return number
 
-    def create_code(self, ident, number):
+    def create_code(self, number):
         """Create structure code.
 
         The format is 'WB_2100__01' where:
@@ -295,7 +295,7 @@ class Structure(models.Model):
         2100 - ident of area configuration
         01 - structure number
         """
-        self.code = "WB_%s__%d" % (area.ident, number)
+        self.code = "WB_%s__%d" % (self.area.ident, number)
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
