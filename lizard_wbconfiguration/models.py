@@ -1,6 +1,7 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt.
 import logging
 from django.db import models
+from django.db.models import Max
 
 from lizard_area.models import Area
 from lizard_fewsnorm.models import TimeSeriesCache
@@ -26,6 +27,11 @@ EXTJS_DATA_TYPES = (
     ('float', 'float'),
     ('text', 'text'),
     ('timeserie', 'timeserie'),
+)
+
+STRUCTURE_IN_OUT = (
+    ('in', 'In'),
+    ('uit', 'Uit')
 )
 
 
@@ -117,7 +123,10 @@ class AreaGridFieldConfiguration(models.Model):
 
 
 class AreaConfiguration(models.Model):
-    """ Areaconfiguration for water balance."""
+    """
+    Areaconfiguration for water balance.
+    Contains 2 deafault structures (in/out).
+    """
 
     ident = models.CharField(unique=True, max_length=64)
     name = models.CharField(max_length=128)
@@ -245,7 +254,9 @@ class Structure(models.Model):
     name = models.CharField(max_length=128)
     area = models.ForeignKey(AreaConfiguration)
     is_computed = models.BooleanField()
-    in_out = models.BooleanField()
+    in_out = models.CharField(max_length=3,
+                              null=True, blank=True,
+                              choices=STRUCTURE_IN_OUT)
     deb_is_ts = models.BooleanField()
     ts_debiet = models.ForeignKey(
         TimeSeriesCache,
@@ -270,8 +281,28 @@ class Structure(models.Model):
                                                  null=True, blank=True)
     deleted = models.BooleanField(default=False)
 
+    def code_number(self):
+        """Retrieve number of last structure from code."""
+        number = 0
+        if self.code is not None:
+            number = int(code_aray[len(code_areay-1)])
+        return number
+
+    def create_code(self, ident, number):
+        """Create structure code.
+
+        The format is 'WB_2100__01' where:
+        WB - water balance
+        2100 - ident of area configuration
+        01 - structure number
+        """
+        self.code = "WB_%s__%d" % (area.ident, number)
+
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
+
+    class Meta:
+        ordering = ['id']
 
 
 class BucketsType(models.Model):
@@ -391,3 +422,6 @@ class Bucket(models.Model):
                                                   decimal_places=3,
                                                   null=True, blank=True)
     deleted = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['id']
