@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.2 (unreleased)
+0.1.2 (2011-12-07)
 ------------------
 - Added functions to create structure code.
 
