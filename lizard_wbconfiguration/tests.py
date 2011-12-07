@@ -1,21 +1,30 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt.
 
 from django.test import TestCase
-
 from lizard_area.models import Area
-
-from lizard_fewsnorm import Location
-
-from lizard_wbconfiguration.models import Structure
 from lizard_wbconfiguration.models import AreaConfiguration
+from lizard_wbconfiguration.api.views import WaterBalanceAreaObjectConfiguration
+from django.contrib.auth.models import User
+from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.geos import Point
 
 
-class ExampleTest(TestCase):
+class StructureTest(TestCase):
 
     def setUp(self):
-        self.db_name = 'fewsnorm'
-        self.structures = []
+        self.area = None
         self.area_configuration = None
+
+    def create_area(self):
+        user = User(username='admin', password='admin')
+        user.save()
+        geo_object_group = self.get_or_create_geoobjectgroup(
+            user.username)
+        self.area = Area(ident="test", name="test",
+                         geo_object_group=geo_object_group,
+                         geometry=GEOSGeometry(Point(0, 0), srid=4326),
+                         data_administrator_id=1)
+        self.area.save()
 
     def create_areaconfiguration(self, area):
         try:
@@ -28,42 +37,32 @@ class ExampleTest(TestCase):
         except:
             return False
 
-    def fewsnorm_locations(self, area):
-        locations = Location.objects.using('db_name').all()
-        if locations.exists():
-            locations = locations[:2]
-        return locations
+    def test_create_structures(self):
+        in_out = ['in', 'uit']
+        self.create_area()
+        self.create_areaconfiguration(self.area)
+        area_object_config = WaterBalanceAreaObjectConfiguration()
+        area_object_config.create_default_structure(
+            self.area_configuration, in_out[0])
+        is_created = area_object_config.exists_default_structure(
+            self.area_configuration, in_out[0])
+        self.assertEquals(is_created, True)
 
-    def create_structures(self, locations):
-        is_created = False
-        for location in locations:
-            try:
-                structure = Structure(
-                    code=location.id,
-                    name=location.name,
-                    area=self.area_configuration)
-                structure.save()
-                self.structures.append(structure)
-                is_created = True
-            except:
-                is_created = False
-        return is_created
-
-    def test_save_structure(self):
-        areas = Area.objects.all()
-        is_created = False
-        if areas.exists():
-            self.create_areaconfiguration(areas[0])
-            locations = self.fewsnorm_locations()
-            is_created = self.create_structures(locations)
-        self.asserEquals(is_created, True)
+    def get_or_create_geoobjectgroup(self, user_name):
+        from lizard_geo.models import GeoObjectGroup
+        user_obj = User.objects.get(username=user_name)
+        group_name = 'test'
+        group_slug = 'test'
+        geo_object_group, created = GeoObjectGroup.objects.get_or_create(
+            name=group_name, slug=group_slug, created_by=user_obj)
+        if created:
+            geo_object_group.source_log = 'test'
+            geo_object_group.save()
+        return geo_object_group
 
     def tearDown(self):
         """Clear the Stuctures and AreaConfiguration."""
-        if self.area_configuration.id is not None:
-            AreaConfiguration.objects.get(
-                pk=self.area_configuration.id).delete()
-
-        for structure in self.structures:
-            if structure.id is not None:
-                Structure.objects.get(pk=structure.id).delete()
+        if self.area is not None:
+            Area.objects.all().delete
+        if self.area_configuration is not None:
+            AreaConfiguration.objects.all().delete()

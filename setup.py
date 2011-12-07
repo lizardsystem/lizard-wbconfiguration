@@ -15,10 +15,12 @@ install_requires = [
     'django-nose',
     'djangorestframework',
     'lizard-area',
+    'lizard-geo',
     'lizard-fewsnorm',
     'lizard-esf',
     'lizard-ui >= 3.0',
     'pkginfo',
+    'dbfpy',
     ],
 
 tests_require = [
