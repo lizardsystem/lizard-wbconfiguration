@@ -1,9 +1,9 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt.
 import logging
 from django.db import models
-from django.db.models import Max
 
 from lizard_area.models import Area
+
 from lizard_fewsnorm.models import TimeSeriesCache
 from lizard_fewsnorm.models import ParameterCache
 
@@ -254,7 +254,7 @@ class Structure(models.Model):
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
     area = models.ForeignKey(AreaConfiguration)
-    is_computed = models.BooleanField()
+    is_computed = models.BooleanField(default=False)
     in_out = models.CharField(max_length=3,
                               null=True, blank=True,
                               choices=STRUCTURE_IN_OUT)

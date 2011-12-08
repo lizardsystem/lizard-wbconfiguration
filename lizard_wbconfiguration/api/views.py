@@ -7,6 +7,7 @@ import datetime
 from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 from django.db.models.fields import DateTimeField
+from django.db.models.fields import BooleanField
 
 from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
@@ -224,7 +225,7 @@ class WaterBalanceAreaObjectConfiguration(View):
     def get(self, request):
         object_id = request.GET.get('object_id', None)
         area_object_type = request.GET.get('area_object_type', None)
-        area_object_class = self.area_object_class(area_object_type)
+        area_object_class = self.areaobject_class(area_object_type)
 
         if area_object_class is None:
             return {'data': []}
@@ -236,13 +237,9 @@ class WaterBalanceAreaObjectConfiguration(View):
             area__ident=object_id,
             deleted=False)
 
-        if area_objects.exists():
-            return {'data': self.area_object_configuration(list(area_objects))}
-        else:
-            area_object = self.create_area_object(object_id, area_object_class)
-            return {'data': self.area_object_configuration([area_object])}
+        return {'data': self.areaobject_configuration(list(area_objects))}
 
-    def area_object_class(self, area_object_type):
+    def areaobject_class(self, area_object_type):
         try:
             if area_object_type.lower() == 'bucket':
                 return getattr(models, "Bucket")
@@ -256,7 +253,7 @@ class WaterBalanceAreaObjectConfiguration(View):
             logger.debug("UNKNOWN area object type '%s'.", area_object_type)
             return None
 
-    def area_object_configuration(self, area_objects):
+    def areaobject_configuration(self, area_objects):
         """
         Creates list of dictionaries like
         [{key: value, key: value,},{key: value,},]
@@ -277,7 +274,8 @@ class WaterBalanceAreaObjectConfiguration(View):
         """Check allowed amount structures per area."""
         amount = 10
         structures = Structure.objects.filter(
-            area__id=area_configuration.id)
+            area__id=area_configuration.id,
+            deleted=False)
         if len(structures) >= amount:
             logger.debug("Amount of structures is %d allowed %d, area %s" % (
                     len(structures), amount, area_configuration.ident))
@@ -289,6 +287,7 @@ class WaterBalanceAreaObjectConfiguration(View):
         structures = Structure.objects.filter(in_out=in_out,
                                               area__id=area_configuration.id,
                                               is_computed=True)
+        print "%s AANTAL DEFAULT STRUCTURES %d" % (in_out, len(structures))
         for structure in structures:
             if structure.deleted == True:
                 structure.deleted = False
@@ -328,7 +327,7 @@ class WaterBalanceAreaObjectConfiguration(View):
         for item in in_out:
             if self.check_amount_structures(area_config) == False:
                 break
-            if self.exists_default_structure(area_config, item) == False:
+            if not self.exists_default_structure(area_config, item):
                 self.create_default_structure(area_config, item)
 
     def last_structure_codenumber(self, area_configuration):
@@ -337,26 +336,13 @@ class WaterBalanceAreaObjectConfiguration(View):
             area__id=area_configuration.id)
         number = None
         if structures.exists():
-            last_structure = max(structures)
+            last_structure = structures.order_by('-id')[0]
             number = last_structure.code_number()
         return number
 
-    def create_area_object(self, object_id, area_object_class):
-        """
-        Creates a area object object related to AreaConfiguration.
-        """
-        area_configuration = AreaConfiguration.objects.get(ident=object_id)
-        area_object = area_object_class(area=area_configuration)
-        if isinstance(area_object, Structure):
-            if self.check_amount_structures(area_configuration) == False:
-                return None
-            last_codenumber = self.last_structure_codenumber(
-                area_configuration)
-            if last_codenumber is None:
-                last_codenumber = area_object.code_number()
-            area_object.code = area_object.create_code(last_codenumber + 1)
-        area_object.save()
-        return area_object
+    def str2bool(self, value):
+        mapping = {'false': False, 'true': True}
+        return mapping[value.lower()]
 
     def retrieve_id(self, record):
         """
@@ -368,22 +354,141 @@ class WaterBalanceAreaObjectConfiguration(View):
             try:
                 return int(id)
             except ValueError:
-                logger.debug("Bucket ID '%s' is NOT an integer", id)
+                logger.debug("Area  '%s' is NOT an integer", id)
                 return -1
 
-    def delete_area_object(data, area_object_class):
+    def create_areaobject(self, area, areaobject_class):
+        """
+        Create a area object related to AreaConfiguration.
+        Set code into the object.
+        """
+        print "create_areaobject %s" % area.ident
+        area_object = areaobject_class(area=area)
+        print "Area object of %s." % area.ident
+        if isinstance(area_object, Structure):
+            if self.check_amount_structures(area) == False:
+                return None
+            last_codenumber = self.last_structure_codenumber(area)
+            if last_codenumber is None:
+                last_codenumber = area_object.code_number()
+
+            area_object.code = area_object.create_code(last_codenumber + 1)
+            area_object.save()
+        return area_object
+
+    def delete_areaobjects(self, data, areaobject_class):
         """Deactivate area objects exclusive computed structures."""
         success = True
         try:
-            for area in data:
-                area_object = area_object_class.objects.get(
-                    pk=area['id'])
+            for record in data:
+                areaobject_id = self.retrieve_id(record)
+                print areaobject_class
+                area_objects = areaobject_class.objects.filter(
+                    id=areaobject_id)
+                print len(area_objects)
+                if not area_objects.exists():
+                    continue
+                area_object = area_objects[0]
+                print area_object.code
+                print type(area_object) == Structure and area_object.is_computed
                 if type(area_object) == Structure and area_object.is_computed:
                     continue
                 area_object.deleted = True
                 area_object.save()
         except:
                 success = False
+        return success
+
+    def create_areaobjects(self, data, area, areaobject_class):
+        """Create area object."""
+        touched_objects = []
+        success = True
+        for record in data:
+            if 'id' in record.keys():
+                del record['id']
+            print "objects "
+            area_object = self.create_areaobject(area, areaobject_class)
+            if area_object is None:
+                success = False
+                continue
+            if not self.update_areaobject(record, area_object):
+                print "SSSSSSSSSSSSSSSSS"
+                success = False
+            print "Starting save"
+
+            #self.area_object.save()
+            print "END Save"
+            touched_objects.append(area_object)
+        return (success, touched_objects)
+
+    def update_areaobjects(self, data, areaobject_class):
+        print "UPDATES"
+        touched_objects = []
+        success = True
+        for record in data:
+            print "ID"
+            areaobject_id = self.retrieve_id(record)
+            print areaobject_id
+            area_objects = areaobject_class.objects.filter(id=areaobject_id)
+            if not area_objects.exists():
+                logger.error("%s with id=%s not exists." % (
+                        areaobject_class._meta.module_name, areaobject_id))
+                success = False
+                continue
+            area_object = area_objects[0]
+            print "UPDATE OB.%s" % area_object.code
+            if not self.update_areaobject(record, area_object):
+                print "ACTI TRUE"
+                success = False
+            touched_objects.append(area_object)
+        return (success, touched_objects)
+
+    def update_areaobject(self, record, area_object):
+        """Set values into area object.
+        @TODO replace value.split(',')[2] with timeseriescache.id.
+        """
+        success = True
+        for (key, value) in record.items():
+            key = str(key)
+            value = str(value)
+            print "%s %s" % (key, value)
+            if value == "" or value == "None":
+                continue
+            try:
+                areaobject_field = area_object._meta.get_field(key)
+            except:
+                logger.error("Field %s.%s not exists." % (
+                        area_object._meta.module_name, key))
+                success = False
+                continue
+            if areaobject_field.rel is not None:
+                if areaobject_field.rel.to == TimeSeriesCache:
+                    try:
+                        timeseriescache = TimeSeriesCache.objects.get(
+                            pk=value.split(',')[2])
+                        value = timeseriescache
+                    except IndexError as ex:
+                        logger.error(','.join(map(str, ex.args)))
+                        success = False
+                        continue
+                elif areaobject_field.rel.to == BucketsType:
+                    bucket_types = BucketsType.objects.filter(
+                        bucket_type=value)
+                    if not bucket_types.exists():
+                        logger.error("Bucket type %s not exists" % value)
+                        success = False
+                        continue
+                    value = bucket_types[0]
+                else:
+                    logger.error("Undefined relation to %s." % (
+                            areaobject_field.rel.to))
+            if isinstance(areaobject_field, BooleanField):
+                print "BOOOOOL"
+                value = self.str2bool(value)
+                print type(value)
+            setattr(area_object, key, value)
+            area_object.save()
+            print "Set"
         return success
 
     def post(self, request):
@@ -393,65 +498,37 @@ class WaterBalanceAreaObjectConfiguration(View):
         Removes id element from data to avoid overriding id of area object.
         ForeignKey fields need a related object (TimeSeriesCache, BucketType).
         Saves the data.
-        @TODO replace value.split(',')[2] with timeseriescache.id
         """
         object_id = self.CONTENT.get('object_id', None)
         action = request.GET.get('action', None)
-        area_object_type = self.CONTENT.get('area_object_type', None)
+        areaobject_type = self.CONTENT.get('area_object_type', None)
         data = json.loads(self.CONTENT.get('data', []))
         if type(data) == dict:
             data = [data]
-        area_object_class = self.area_object_class(area_object_type)
+
+        areaobject_class = self.areaobject_class(areaobject_type)
+        print "+++++++++++++ %s", areaobject_class
+        touched_objects = []
 
         if action == 'delete':
-            success = self.delete_area_object(data, area_object_class)
-            return {'success': success}
+            succes  = self.delete_areaobjects(
+                data, areaobject_class)
+        elif action == 'create':
+            area = AreaConfiguration.objects.get(ident=object_id)
+            print area.ident
+            success, touched_objects = self.create_areaobjects(
+                data, area, areaobject_class)
+        elif action == 'update':
+            print "BEDIN UP."
+            print data
+            success, touched_objects = self.update_areaobjects(
+                data, areaobject_class)
+        else:
+            logger.error("UKNOWN post action '%s'." % action)
+            success = False
 
-        touched_objects = []
-        for record in data:
-            area_objects = area_object_class.objects.filter(
-                id=self.retrieve_id(record))
-            if area_objects.exists():
-                area_object = area_objects[0]
-            else:
-                area_object = self.create_area_object(
-                    object_id, area_object_class)
-                if area_object is None:
-                    return {'success': False}
-            del record['id']
-
-            area_object.area = AreaConfiguration.objects.get(ident=object_id)
-            for (key, value) in record.items():
-                key = str(key)
-                value = str(value)
-                if value == "" or value == "None":
-                    continue
-                try:
-                    area_object_field = area_object._meta.get_field(key)
-                except:
-                    continue
-                if area_object_field.rel is not None:
-                    if area_object_field.rel.to == TimeSeriesCache:
-                        try:
-                            timeseriescache = TimeSeriesCache.objects.get(
-                                pk=value.split(',')[2])
-                            value = timeseriescache
-                        except IndexError:
-                            return {'success': False}
-                    elif area_object_field.rel.to == BucketsType:
-                        bucket_types = BucketsType.objects.filter(
-                            bucket_type=value)
-                        if not bucket_types.exists():
-                            return {'success': False}
-                        value = bucket_types[0]
-                    else:
-                        return {'success': False}
-                setattr(area_object, key, value)
-            area_object.save()
-            touched_objects.append(area_object)
-
-        return {'success': True,
-                'data': self.area_object_configuration(touched_objects)}
+        return {'success': success,
+                'data': self.areaobject_configuration(touched_objects)}
 
 
 class WaterBalanceAreaConfiguration(View):
