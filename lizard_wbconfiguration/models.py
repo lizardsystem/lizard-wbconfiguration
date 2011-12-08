@@ -254,7 +254,7 @@ class Structure(models.Model):
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
     area = models.ForeignKey(AreaConfiguration)
-    is_computed = models.BooleanField()
+    is_computed = models.BooleanField(default=False)
     in_out = models.CharField(max_length=3,
                               null=True, blank=True,
                               choices=STRUCTURE_IN_OUT)
