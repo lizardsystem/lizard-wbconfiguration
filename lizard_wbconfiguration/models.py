@@ -294,7 +294,7 @@ class Structure(models.Model):
     def create_code(self, number):
         """Create structure code.
 
-        The format is 'WB_2100__01' where:
+        The format is 'kw_2100__01' where:
         WB - water balance
         2100 - ident of area configuration
         01 - structure number
@@ -426,6 +426,26 @@ class Bucket(models.Model):
                                                   decimal_places=3,
                                                   null=True, blank=True)
     deleted = models.BooleanField(default=False)
+
+    def code_number(self):
+        """Retrieve number of last bucket from code per area."""
+        number = 0
+        delimeter = '__'
+        if (self.code is not None) and (self.code.find(delimeter) > 0):
+            code_array = self.code.split(delimeter)
+            number = int(code_array[len(code_array) - 1])
+        return number
+
+    def create_code(self, number):
+        """Create bucket code.
+
+        The format is 'wb_2100__01' where:
+        WB - water balance
+        2100 - ident of area configuration
+        01 - structure number
+        """
+
+        return "wb_%s__%d" % (self.area.ident, number)
 
     class Meta:
         ordering = ['id']
