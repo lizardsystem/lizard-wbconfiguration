@@ -7,7 +7,13 @@ from lizard_area.models import Area
 from lizard_fewsnorm.models import TimeSeriesCache
 from lizard_fewsnorm.models import ParameterCache
 
+
 logger = logging.getLogger(__name__)
+
+DATA_OWNER = (
+    ('Owner 1', 'Owner 1'),
+    ('Owner 1', 'Owner 2')
+)
 
 WB_DBF_MODELS = (
     ('AreaConfiguration', 'AreaConfiguration'),
@@ -74,6 +80,20 @@ class WBConfigurationDBFMapping(models.Model):
 
     class Meta:
         ordering = ['id']
+
+
+class DBFConfiguration(models.Model):
+    """Configuration for creating dbf's."""
+    dbf_type = models.CharField(max_length=128, choices=WB_DBF_MODELS)
+    owner = models.CharField(max_length=128, choices=DATA_OWNER,
+                             null=True, blank=True)
+    save_to = models.CharField(max_length=128, null=True, blank=True,
+                               help_text="Example: '/home/naam/dbf/'.")
+    filename = models.CharField(max_length=128,
+                                help_text="Example: 'Buckets'.")
+
+    def __unicode__(self):
+        return "%s %s" % (self.dbf_type, self.owner)
 
 
 class AreaGridConfiguration(models.Model):
@@ -242,6 +262,8 @@ class AreaConfiguration(models.Model):
     incr_concentr_nitrogyn_seepage = models.DecimalField(
         max_digits=5, decimal_places=3,
         null=True, blank=True)
+    owner = models.CharField(max_length=128, choices=DATA_OWNER,
+                             null=True, blank=True)
 
     def __unicode__(self):
         return "%s" % self.ident
@@ -281,6 +303,8 @@ class Structure(models.Model):
                                                  decimal_places=3,
                                                  null=True, blank=True)
     deleted = models.BooleanField(default=False)
+    owner = models.CharField(max_length=128, choices=DATA_OWNER,
+                             null=True, blank=True)
 
     def code_number(self):
         """Retrieve number of last structure from code."""
@@ -295,12 +319,12 @@ class Structure(models.Model):
         """Create structure code.
 
         The format is 'kw_2100__01' where:
-        WB - water balance
+        kw - kunstwerk water balance
         2100 - ident of area configuration
         01 - structure number
         """
 
-        return "WB_%s__%d" % (self.area.ident, number)
+        return "kw_%s__%d" % (self.area.ident, number)
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
@@ -426,6 +450,8 @@ class Bucket(models.Model):
                                                   decimal_places=3,
                                                   null=True, blank=True)
     deleted = models.BooleanField(default=False)
+    owner = models.CharField(max_length=128, choices=DATA_OWNER,
+                             null=True, blank=True)
 
     def code_number(self):
         """Retrieve number of last bucket from code per area."""
@@ -440,9 +466,9 @@ class Bucket(models.Model):
         """Create bucket code.
 
         The format is 'wb_2100__01' where:
-        WB - water balance
+        wb - water balance bucket
         2100 - ident of area configuration
-        01 - structure number
+        01 - bucket number
         """
 
         return "wb_%s__%d" % (self.area.ident, number)

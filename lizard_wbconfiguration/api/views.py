@@ -1,7 +1,7 @@
 """
 API views not coupled to models.
 """
-import sys
+import os
 import datetime
 
 from django.core.urlresolvers import reverse
@@ -55,6 +55,32 @@ class WaterBalanceDBF(View):
         success = self.export_configuration_to_dbf(object_id)
         return {'success': success}
 
+    def export_areaconfiguration(self, owner, save_to, filename):
+        """Export areaconfigurations into dbf."""
+        filepath = self.file_path(save_to, filename)
+        area_configurations = AreaConfiguration.objects.filter(owner=owner)
+        success = self.create_dbf('areaconfiguration',
+                                  area_configurations,
+                                  filepath)
+        logger.debug("Status export areaconfig. is '%s' for %s to %s" % (
+                success, owner, filepath))
+
+    def export_bucketconfiguration(self, owner, save_to, filename):
+        """Export buckets into dbf."""
+        filepath = self.file_path(save_to, filename)
+        buckets = Bucket.objects.filter(owner=owner)
+        success = self.create_dbf('bucket', buckets, filepath)
+        logger.debug("Status export buckets is '%s' for %s into %s" % (
+                success, owner, filepath))
+
+    def export_structureconfiguration(self, owner, save_to, filename):
+        """Export structures into dbf."""
+        filepath = self.file_path(save_to, filename)
+        structures = Structure.objects.filter(owner=owner)
+        success = self.create_dbf('structure', structures, filepath)
+        logger.debug("Status export buckets is '%s' for %s into %s" % (
+                success, owner, filepath))
+
     def export_configuration_to_dbf(self, object_id):
         """
         Exports water balance configuration of passed area
@@ -72,22 +98,42 @@ class WaterBalanceDBF(View):
             area_configuration = area_configurations[0]
 
             logger.debug("Export area configuration.")
-
+            filename = self.create_filename('areaconfiguration')
             is_created_1 = self.create_dbf('areaconfiguration',
-                                           [area_configuration])
+                                           [area_configuration],
+                                           filename)
 
             buckets = Bucket.objects.filter(area=area_configuration)
             logger.debug("Export bucket.")
-            is_created_2 = self.create_dbf('bucket', buckets)
+            filename = self.create_filename('bucket')
+            is_created_2 = self.create_dbf('bucket', buckets, filename)
 
             structures = Structure.objects.filter(area=area_configuration)
             logger.debug("Export structure.")
-            is_created_3 = self.create_dbf('structure', structures)
+            filename = self.create_filename('structure')
+            is_created_3 = self.create_dbf('structure', structures, filename)
 
             if is_created_1 and is_created_2 and is_created_3:
                 return True
             else:
                 return False
+
+    def file_path(self, save_to, filename):
+        success = True
+        if not os.path.exists(save_to):
+            logger.error("Path %s not exists" % save_to)
+            success = False
+
+        if filename is None or len(filename) < 1:
+            logger.error("File name is not exists")
+            success = False
+
+        if success:
+            filename = ".".join((filename, 'dbf'))
+            filepath = os.path.abspath(os.path.join(save_to, filename))
+        else:
+            filepath = self.create_filename('')
+        return filepath
 
     def create_filename(self, modul_name):
         default_filename = 'not_configured.dbf'
@@ -112,12 +158,11 @@ class WaterBalanceDBF(View):
             logger.debug('Used default file name "%s".' % default_filename)
             return default_filename
 
-    def create_dbf(self, model_name, area_objects):
+    def create_dbf(self, model_name, area_objects, filename):
         """
         Creates a dbf file.
         """
         success = False
-        filename = self.create_filename(model_name)
 
         mapping = WBConfigurationDBFMapping.objects.filter(
             model_name__iexact=model_name)
@@ -136,9 +181,10 @@ class WaterBalanceDBF(View):
             logger.error("%s, %s, %s" % (ex.message, ex.filename, ex.strerror))
         except ValueError as ex:
             logger.error("%s" % (ex.message))
-        except:
-            logger.error("Unexpected error: %s", sys.exc_info()[0])
-
+        except TypeError as ex:
+            logger.error(','.join(map(str, ex.args)))
+        except Exception as ex:
+            logger.error(','.join(map(str, ex.args)))
         return success
 
     def fields_to_dbf(self, area_objects, mapping, out):
@@ -146,7 +192,6 @@ class WaterBalanceDBF(View):
         Adds fields into dbf file.
         """
         for area_object in area_objects:
-            print len(mapping)
             for item in mapping:
                 field_options = [str(item.dbffield_name),
                                  str(item.dbffield_type)]
@@ -186,11 +231,11 @@ class WaterBalanceDBF(View):
                     area_object._meta.module_name, field_name))
             return None
         if isinstance(value, TimeSeriesCache):
-            value = str(value.parametercache.ident)
+            value = str(value.geolocationcache.ident)
         elif isinstance(value, Area):
             value = value.id
         elif isinstance(value, BucketsType):
-            value = value.name
+            value = value.bucket_type
         elif isinstance(value, unicode):
             value = str(value)
         elif isinstance(value, bool):
@@ -282,12 +327,23 @@ class WaterBalanceAreaObjectConfiguration(View):
             return False
         return True
 
+    def check_amount_buckets(self, area_configuration):
+        """Check allowed amount structures per area."""
+        amount = 10
+        buckets = Bucket.objects.filter(
+            area__id=area_configuration.id,
+            deleted=False)
+        if len(buckets) >= amount:
+            logger.debug("Amount of buckets is %d allowed %d, area %s" % (
+                    len(buckets), amount, area_configuration.ident))
+            return False
+        return True
+
     def exists_default_structure(self, area_configuration, in_out):
         """ Check and activate default structures. """
         structures = Structure.objects.filter(in_out=in_out,
                                               area__id=area_configuration.id,
                                               is_computed=True)
-        print "%s AANTAL DEFAULT STRUCTURES %d" % (in_out, len(structures))
         for structure in structures:
             if structure.deleted == True:
                 structure.deleted = False
@@ -305,17 +361,18 @@ class WaterBalanceAreaObjectConfiguration(View):
         in_out -- the string choices see above STUCTURE_IN_OUT
         """
         names = {'in': "Peilhandhaving In defaul",
-                 'uit': "Peilhandhaving Out default"}
+                 'uit': "Peilhandhaving Uit default"}
         try:
             structure = Structure(name=names[in_out],
                                   in_out=in_out,
                                   area=area_configuration,
                                   is_computed=True)
-            last_codenumber = self.last_structure_codenumber(
-                area_configuration)
+            last_codenumber = self.last_areaobject_codenumber(
+                area_configuration, Structure)
             if last_codenumber is None:
                 last_codenumber = structure.code_number()
             structure.code = structure.create_code(last_codenumber + 1)
+            structure.owner = 'Owner 1'
             structure.save()
         except Exception as ex:
             logger.debug(','.join(map(str, ex.args)))
@@ -330,14 +387,14 @@ class WaterBalanceAreaObjectConfiguration(View):
             if not self.exists_default_structure(area_config, item):
                 self.create_default_structure(area_config, item)
 
-    def last_structure_codenumber(self, area_configuration):
+    def last_areaobject_codenumber(self, area_configuration, areaobject_class):
         """ Return code number of the last structure. """
-        structures = Structure.objects.filter(
+        area_objects = areaobject_class.objects.filter(
             area__id=area_configuration.id)
         number = None
-        if structures.exists():
-            last_structure = structures.order_by('-id')[0]
-            number = last_structure.code_number()
+        if area_objects.exists():
+            last_areaobject = area_objects.order_by('-id')[0]
+            number = last_areaobject.code_number()
         return number
 
     def str2bool(self, value):
@@ -357,40 +414,17 @@ class WaterBalanceAreaObjectConfiguration(View):
                 logger.debug("Area  '%s' is NOT an integer", id)
                 return -1
 
-    def create_areaobject(self, area, areaobject_class):
-        """
-        Create a area object related to AreaConfiguration.
-        Set code into the object.
-        """
-        print "create_areaobject %s" % area.ident
-        area_object = areaobject_class(area=area)
-        print "Area object of %s." % area.ident
-        if isinstance(area_object, Structure):
-            if self.check_amount_structures(area) == False:
-                return None
-            last_codenumber = self.last_structure_codenumber(area)
-            if last_codenumber is None:
-                last_codenumber = area_object.code_number()
-
-            area_object.code = area_object.create_code(last_codenumber + 1)
-            area_object.save()
-        return area_object
-
     def delete_areaobjects(self, data, areaobject_class):
         """Deactivate area objects exclusive computed structures."""
         success = True
         try:
             for record in data:
                 areaobject_id = self.retrieve_id(record)
-                print areaobject_class
                 area_objects = areaobject_class.objects.filter(
                     id=areaobject_id)
-                print len(area_objects)
                 if not area_objects.exists():
                     continue
                 area_object = area_objects[0]
-                print area_object.code
-                print type(area_object) == Structure and area_object.is_computed
                 if type(area_object) == Structure and area_object.is_computed:
                     continue
                 area_object.deleted = True
@@ -399,6 +433,28 @@ class WaterBalanceAreaObjectConfiguration(View):
                 success = False
         return success
 
+    def create_areaobject(self, area, areaobject_class):
+        """
+        Create a area object related to AreaConfiguration.
+        Set code into the object.
+        """
+        area_object = areaobject_class(area=area)
+        if isinstance(area_object, Structure):
+            if self.check_amount_structures(area) == False:
+                return None
+        if isinstance(area_object, Bucket):
+            if self.check_amount_buckets(area) == False:
+                return None
+        last_codenumber = self.last_areaobject_codenumber(
+            area, areaobject_class)
+        if last_codenumber is None:
+            last_codenumber = area_object.code_number()
+
+        area_object.code = area_object.create_code(last_codenumber + 1)
+        area_object.owner = 'Owner 1'
+        area_object.save()
+        return area_object
+
     def create_areaobjects(self, data, area, areaobject_class):
         """Create area object."""
         touched_objects = []
@@ -406,29 +462,21 @@ class WaterBalanceAreaObjectConfiguration(View):
         for record in data:
             if 'id' in record.keys():
                 del record['id']
-            print "objects "
             area_object = self.create_areaobject(area, areaobject_class)
             if area_object is None:
                 success = False
                 continue
             if not self.update_areaobject(record, area_object):
-                print "SSSSSSSSSSSSSSSSS"
                 success = False
-            print "Starting save"
 
-            #self.area_object.save()
-            print "END Save"
             touched_objects.append(area_object)
         return (success, touched_objects)
 
     def update_areaobjects(self, data, areaobject_class):
-        print "UPDATES"
         touched_objects = []
         success = True
         for record in data:
-            print "ID"
             areaobject_id = self.retrieve_id(record)
-            print areaobject_id
             area_objects = areaobject_class.objects.filter(id=areaobject_id)
             if not area_objects.exists():
                 logger.error("%s with id=%s not exists." % (
@@ -436,9 +484,7 @@ class WaterBalanceAreaObjectConfiguration(View):
                 success = False
                 continue
             area_object = area_objects[0]
-            print "UPDATE OB.%s" % area_object.code
             if not self.update_areaobject(record, area_object):
-                print "ACTI TRUE"
                 success = False
             touched_objects.append(area_object)
         return (success, touched_objects)
@@ -451,7 +497,6 @@ class WaterBalanceAreaObjectConfiguration(View):
         for (key, value) in record.items():
             key = str(key)
             value = str(value)
-            print "%s %s" % (key, value)
             if value == "" or value == "None":
                 continue
             try:
@@ -483,12 +528,9 @@ class WaterBalanceAreaObjectConfiguration(View):
                     logger.error("Undefined relation to %s." % (
                             areaobject_field.rel.to))
             if isinstance(areaobject_field, BooleanField):
-                print "BOOOOOL"
                 value = self.str2bool(value)
-                print type(value)
             setattr(area_object, key, value)
             area_object.save()
-            print "Set"
         return success
 
     def post(self, request):
@@ -507,20 +549,16 @@ class WaterBalanceAreaObjectConfiguration(View):
             data = [data]
 
         areaobject_class = self.areaobject_class(areaobject_type)
-        print "+++++++++++++ %s", areaobject_class
         touched_objects = []
 
         if action == 'delete':
-            succes  = self.delete_areaobjects(
+            success = self.delete_areaobjects(
                 data, areaobject_class)
         elif action == 'create':
             area = AreaConfiguration.objects.get(ident=object_id)
-            print area.ident
             success, touched_objects = self.create_areaobjects(
                 data, area, areaobject_class)
         elif action == 'update':
-            print "BEDIN UP."
-            print data
             success, touched_objects = self.update_areaobjects(
                 data, areaobject_class)
         else:
@@ -666,6 +704,7 @@ class WaterBalanceAreaConfiguration(View):
                 if value is None:
                     continue
             setattr(area_config, field_name, value)
+        area_config.owner = 'Owner 1'
         area_config.save()
         return {'success': True}
 
@@ -674,17 +713,22 @@ class WaterBalanceAreaConfiguration(View):
         try:
             if field.name == 'start_dt':
                 val = datetime.datetime.strptime(
-                    value, self.startdate_format())
+                    value, self.date_format())
             else:
                 curr_year = datetime.datetime.today().year
-                val = datetime.datetime.strftime(
-                    "%s/%s" % (curr_year, value),
-                    self.startseason_format())
+                val = datetime.datetime.strptime(
+                    "%s/%s" % (value, curr_year),
+                    self.date_format())
         except ValueError as ex:
-            logger.error(ex.message)
+            logger.debug(','.join(map(str, ex.args)))
+        except TypeError as ex:
+            logger.debug(','.join(map(str, ex.args)))
+        except Exception as ex:
+            logger.debug(','.join(map(str, ex.args)))
+
         return val
 
-    def startdate_format(self):
+    def date_format(self):
         return "%d/%m/%Y"
 
     def startseason_format(self):

@@ -5,7 +5,14 @@ Changelog of lizard-wbconfiguration
 0.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Created task to export area configuraition periodically.
+
+- Added functions to create bucket code.
+
+- Added functionalities to export water balance area configurations
+  into dbf.
+
+- Added model DBFConfiguration to configure export to dbf.
 
 
 0.1.2 (2011-12-07)

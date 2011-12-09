@@ -24,7 +24,7 @@ Run syncdb to build the models.
 
 Load fixtures.
 
-    $> bin/django loaddata wb_configuration
+    $> bin/django loaddata lizard_wbconfiguration
 
 Create the dbf files voor AreaConfiguration, Buckets and Structures
 with management command::
@@ -34,27 +34,38 @@ with management command::
 
 AreaConfiguration
 ----------------------------------------
-Each area configuration could contains 10 structures.
-2 of them are default and the other 8 ara free addedebale.
+Each area configuration could contains 10 structures. 2 of them are default and the other 8 ara free addetable.
 
-the structure will be created automaticlly on openign the waterbalance
-configuration form with is_computed=true (Peilhandhaving In
-defaul and Peilhandhaving Uit defaul). This 2 structures are not
-deletable.
 
 Structeres
 --------------------------------------------
-Defualt structures - the structure will be created automaticlly on opennign the waterbalance
-configuration form with is_computed=true (Peilhandhaving In
-defaul and Peilhandhaving Uit defaul). This 2 structures are not
-deletable.
+Defualt structures - the structure will be created automaticlly on openign the waterbalance
+configuration form with name 'Peilhandhaving In defaul' and
+'Peilhandhaving Uit defaul'. This 2 structures are not deletable.
 
-Structures have a code of the next format:
+Structures get a code of the next format:
 kw_<area ident>__<number 1-10>
 for example: kw_2100__4
 
 Buckets
 --------------------------------------------
-The buckets have a code of the next format:
+The buckets get a code of the next format:
 wb_<area ident>__<number 1-10>
 for example: wb_2100__4
+
+Configuration
+---------------------------------
+To configure table 'Gebied eigenschappen' and 'Openwater' use form
+'Area grid configuration'.
+
+To configure dbf export use admin form 'Dbf configuration'.
+
+To map water balance configuration fields with dbf fields use admin
+form 'Wb configuration dbf mappings'.
+
+Run export as periodic task
+-----------------------------------
+To configure periodic task 'Export db configuration to dbf' use admin
+form 'Djcelery/Periodic tasks'. Then start supervisor:
+
+  $> bin/supervisord
