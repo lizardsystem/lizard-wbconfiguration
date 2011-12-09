@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.3 (unreleased)
+0.1.3 (2011-12-09)
 ------------------
 
 - Created task to export area configuraition periodically.
