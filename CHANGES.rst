@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed problem of repeated columns in dbf (issue #3).
+
+- Fixed problem with decimal field (issue #2).
 
 
 0.1.3 (2011-12-09)

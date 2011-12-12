@@ -171,35 +171,34 @@ class WaterBalanceDBF(View):
             logger.debug("Create en open dbf file.")
             out = Dbf(filename, new=True)
             logger.debug("Add fields.")
-            self.fields_to_dbf(area_objects, mapping, out)
+            self.fields_to_dbf(mapping, out)
             logger.debug("Store data.")
             self.store_data(area_objects, mapping, out)
             logger.debug("Close file.")
             out.close()
             success = True
         except IOError as ex:
-            logger.error("%s, %s, %s" % (ex.message, ex.filename, ex.strerror))
+            logger.error(','.join(map(str, ex.args)))
         except ValueError as ex:
-            logger.error("%s" % (ex.message))
+            logger.error(','.join(map(str, ex.args)))
         except TypeError as ex:
             logger.error(','.join(map(str, ex.args)))
         except Exception as ex:
             logger.error(','.join(map(str, ex.args)))
         return success
 
-    def fields_to_dbf(self, area_objects, mapping, out):
+    def fields_to_dbf(self, mapping, out):
         """
         Adds fields into dbf file.
         """
-        for area_object in area_objects:
-            for item in mapping:
-                field_options = [str(item.dbffield_name),
-                                 str(item.dbffield_type)]
-                if item.dbffield_decimals is not None:
-                    field_options.append(item.dbffield_decimals)
-                if item.dbffield_length is not None:
-                    field_options.append(item.dbffield_length)
-                out.addField(tuple(field_options))
+        for item in mapping:
+            field_options = [str(item.dbffield_name),
+                             str(item.dbffield_type)]
+            if item.dbffield_length is not None:
+                field_options.append(item.dbffield_length)
+            if item.dbffield_decimals is not None:
+                field_options.append(item.dbffield_decimals)
+            out.addField(tuple(field_options))
 
     def store_data(self, area_objects, mapping, out):
         """

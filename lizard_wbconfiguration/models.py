@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 DATA_OWNER = (
     ('Owner 1', 'Owner 1'),
-    ('Owner 1', 'Owner 2')
+    ('Owner 2', 'Owner 2')
 )
 
 WB_DBF_MODELS = (
