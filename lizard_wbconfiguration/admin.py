@@ -7,6 +7,9 @@ from lizard_wbconfiguration.models import AreaField
 from lizard_wbconfiguration.models import AreaGridFieldConfiguration
 from lizard_wbconfiguration.models import WBConfigurationDBFMapping
 from lizard_wbconfiguration.models import DBFConfiguration
+from lizard_wbconfiguration.models import Structure
+
+from lizard_security.admin import SecurityFilteredAdmin
 
 
 class AreaGridFieldConfigurationInline(admin.TabularInline):
@@ -44,3 +47,5 @@ admin.site.register(WBConfigurationDBFMapping, WBConfigurationDBFMappingAdmin)
 admin.site.register(BucketsType)
 admin.site.register(AreaField)
 admin.site.register(AreaGridConfiguration, AreaGridConfigurationAdmin)
+admin.site.register(Structure, SecurityFilteredAdmin)
+

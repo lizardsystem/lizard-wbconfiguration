@@ -7,6 +7,9 @@ from lizard_area.models import Area
 from lizard_fewsnorm.models import TimeSeriesCache
 from lizard_fewsnorm.models import ParameterCache
 
+from lizard_security.manager import FilteredManager
+from lizard_security.models import DataSet
+
 
 logger = logging.getLogger(__name__)
 
@@ -273,6 +276,11 @@ class Structure(models.Model):
     """
     Structure.
     """
+    supports_object_permissions = True
+    data_set = models.ForeignKey(DataSet,
+                                 null=True,
+                                 blank=True)
+    objects = FilteredManager()
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
     area = models.ForeignKey(AreaConfiguration)
