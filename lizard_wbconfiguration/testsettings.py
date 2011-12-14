@@ -35,26 +35,19 @@ DATABASES = {
         'PASSWORD': 'buildout',
         'HOST': 'localhost',  # empty string for localhost.
         'PORT': '',  # empty string for default.
-        },
-    'fewsnorm': {
-        'NAME': 'fewsnorm',
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'USER': 'buildout',
-        'PASSWORD': 'buildout',
-        'HOST': 'localhost',  # empty string for localhost.
-        'PORT': '',  # empty string for default.
         }
     }
 
 SITE_ID = 1
 INSTALLED_APPS = [
+    'lizard_security',
     'lizard_wbconfiguration',
     'lizard_geo',  # Must come before lizard_area
     'lizard_area',
     'lizard_fewsnorm',
     'staticfiles',
     'compressor',
-    'south',
+    #'south',
     'django_nose',
     'django_extensions',
     'django.contrib.admin',
@@ -77,6 +70,19 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
 )
+
+MIDDLEWARE_CLASSES = (
+    # Gzip needs to be at the top.
+    'django.middleware.gzip.GZipMiddleware',
+    # Below is the default list, don't modify it.
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'tls.TLSRequestMiddleware',
+    'lizard_security.middleware.SecurityMiddleware',
+    )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 

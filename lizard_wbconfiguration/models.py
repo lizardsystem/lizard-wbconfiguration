@@ -5,7 +5,6 @@ from django.db import models
 from lizard_area.models import Area
 
 from lizard_fewsnorm.models import TimeSeriesCache
-from lizard_fewsnorm.models import ParameterCache
 
 from lizard_security.manager import FilteredManager
 from lizard_security.models import DataSet
@@ -42,30 +41,6 @@ STRUCTURE_IN_OUT = (
     ('in', 'In'),
     ('uit', 'Uit')
 )
-
-
-class ParameterMapping(models.Model):
-    """
-    Map wbconfigurations parameters with cached parameters
-    """
-    parametercache = models.ForeignKey(ParameterCache)
-    ident_wbconfiguration = models.CharField(unique=True,
-                                             max_length=128)
-
-    def __unicode__(self):
-        return "%s %s" % (
-            self.parametercache.ident,
-            self.ident_wbconfiguration)
-
-
-def parameter(ident):
-    try:
-        parameter = ParameterMapping.objects.get(
-            ident_wbconfiguration=ident).parametercache
-    except:
-        logger.warning("Parameter ident '%s' is NOT properly mapped." % ident)
-        parameter = None
-    return parameter
 
 
 class WBConfigurationDBFMapping(models.Model):

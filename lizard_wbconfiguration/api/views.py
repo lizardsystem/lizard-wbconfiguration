@@ -23,6 +23,9 @@ from lizard_area.models import Area
 from lizard_fewsnorm.models import TimeSeriesCache
 from lizard_fewsnorm.models import Series
 
+import lizard_security.manager
+from lizard_security.models import DataSet
+
 from dbfpy.dbf import Dbf
 
 import pkg_resources
@@ -539,7 +542,9 @@ class WaterBalanceAreaObjectConfiguration(View):
         Removes id element from data to avoid overriding id of area object.
         ForeignKey fields need a related object (TimeSeriesCache, BucketType).
         Saves the data.
+
         """
+
         object_id = self.CONTENT.get('object_id', None)
         action = request.GET.get('action', None)
         areaobject_type = self.CONTENT.get('area_object_type', None)
@@ -655,6 +660,14 @@ class WaterBalanceAreaConfiguration(View):
         area_config = self.area_configuration(areaconfig_object, grid_name)
         return area_config
 
+    def allowed_data_set_id(self, request):
+        """Returns first allowed data_set_id."""
+        data_set_ids = request.allowed_data_set_ids
+        for data_set_id in data_set_ids:
+            return data_set_id
+        return None
+
+
     def post(self, request, pk=None):
         """
         Saves area configuration.
@@ -665,6 +678,11 @@ class WaterBalanceAreaConfiguration(View):
         Escapes saving id field.
         """
         object_id = self.CONTENT.get('object_id', None)
+        data_set_id = self.allowed_data_set_id(request)
+        if data_set_id is None:
+            logger.debug("User %s is not allowed to maintain any data sets.",
+                         request.user.name)
+            return {'success': False}
 
         if not object_id:
             return {'success': False}
