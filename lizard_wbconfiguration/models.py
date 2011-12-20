@@ -240,8 +240,11 @@ class AreaConfiguration(models.Model):
     incr_concentr_nitrogyn_seepage = models.DecimalField(
         max_digits=5, decimal_places=3,
         null=True, blank=True)
-    owner = models.CharField(max_length=128, choices=DATA_OWNER,
-                             null=True, blank=True)
+    supports_object_permissions = True
+    data_set = models.ForeignKey(DataSet,
+                                 null=True,
+                                 blank=True)
+    objects = FilteredManager()
 
     def __unicode__(self):
         return "%s" % self.ident
@@ -286,8 +289,11 @@ class Structure(models.Model):
                                                  decimal_places=3,
                                                  null=True, blank=True)
     deleted = models.BooleanField(default=False)
-    owner = models.CharField(max_length=128, choices=DATA_OWNER,
-                             null=True, blank=True)
+    supports_object_permissions = True
+    data_set = models.ForeignKey(DataSet,
+                                 null=True,
+                                 blank=True)
+    objects = FilteredManager()
 
     def code_number(self):
         """Retrieve number of last structure from code."""
@@ -439,8 +445,12 @@ class Bucket(models.Model):
                                                   decimal_places=3,
                                                   null=True, blank=True)
     deleted = models.BooleanField(default=False)
-    owner = models.CharField(max_length=128, choices=DATA_OWNER,
-                             null=True, blank=True)
+    supports_object_permissions = True
+    data_set = models.ForeignKey(DataSet,
+                                 null=True,
+                                 blank=True)
+    objects = FilteredManager()
+
 
     def code_number(self):
         """Retrieve number of last bucket from code per area."""

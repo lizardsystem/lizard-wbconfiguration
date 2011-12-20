@@ -58,31 +58,31 @@ class WaterBalanceDBF(View):
         success = self.export_configuration_to_dbf(object_id)
         return {'success': success}
 
-    def export_areaconfiguration(self, owner, save_to, filename):
+    def export_areaconfiguration(self, dataset, save_to, filename):
         """Export areaconfigurations into dbf."""
         filepath = self.file_path(save_to, filename)
-        area_configurations = AreaConfiguration.objects.filter(owner=owner)
+        area_configurations = AreaConfiguration.objects.filter(data_set=dataset)
         success = self.create_dbf('areaconfiguration',
                                   area_configurations,
                                   filepath)
         logger.debug("Status export areaconfig. is '%s' for %s to %s" % (
-                success, owner, filepath))
+                success, dataset.name, filepath))
 
-    def export_bucketconfiguration(self, owner, save_to, filename):
+    def export_bucketconfiguration(self, dataset, save_to, filename):
         """Export buckets into dbf."""
         filepath = self.file_path(save_to, filename)
-        buckets = Bucket.objects.filter(owner=owner)
+        buckets = Bucket.objects.filter(data_set=dataset)
         success = self.create_dbf('bucket', buckets, filepath)
         logger.debug("Status export buckets is '%s' for %s into %s" % (
-                success, owner, filepath))
+                success, datatset.name, filepath))
 
-    def export_structureconfiguration(self, owner, save_to, filename):
+    def export_structureconfiguration(self, dataset, save_to, filename):
         """Export structures into dbf."""
         filepath = self.file_path(save_to, filename)
-        structures = Structure.objects.filter(owner=owner)
+        structures = Structure.objects.filter(data_set=dataset)
         success = self.create_dbf('structure', structures, filepath)
         logger.debug("Status export buckets is '%s' for %s into %s" % (
-                success, owner, filepath))
+                success, dataset.name, filepath))
 
     def export_configuration_to_dbf(self, object_id):
         """
@@ -238,6 +238,8 @@ class WaterBalanceDBF(View):
             value = value.id
         elif isinstance(value, BucketsType):
             value = value.code
+        elif isinstance(value, DataSet):
+            value = value.name
         elif isinstance(value, unicode):
             value = str(value)
         elif isinstance(value, bool):
@@ -368,13 +370,13 @@ class WaterBalanceAreaObjectConfiguration(View):
             structure = Structure(name=names[in_out],
                                   in_out=in_out,
                                   area=area_configuration,
-                                  is_computed=True)
+                                  is_computed=True,
+                                  data_set=area_configuration.data_set)
             last_codenumber = self.last_areaobject_codenumber(
                 area_configuration, Structure)
             if last_codenumber is None:
                 last_codenumber = structure.code_number()
             structure.code = structure.create_code(last_codenumber + 1)
-            structure.owner = 'Owner 1'
             structure.save()
         except Exception as ex:
             logger.debug(','.join(map(str, ex.args)))
@@ -440,7 +442,8 @@ class WaterBalanceAreaObjectConfiguration(View):
         Create a area object related to AreaConfiguration.
         Set code into the object.
         """
-        area_object = areaobject_class(area=area)
+        area_object = areaobject_class(area=area,
+                                       data_set=area.data_set)
         if isinstance(area_object, Structure):
             if self.check_amount_structures(area) == False:
                 return None
@@ -453,7 +456,6 @@ class WaterBalanceAreaObjectConfiguration(View):
             last_codenumber = area_object.code_number()
 
         area_object.code = area_object.create_code(last_codenumber + 1)
-        area_object.owner = 'Owner 1'
         area_object.save()
         return area_object
 
@@ -655,7 +657,8 @@ class WaterBalanceAreaConfiguration(View):
         areaconfig_object = AreaConfiguration(
             ident=area_object.ident,
             name=area_object.name,
-            area=area_object)
+            area=area_object,
+            data_set=area_object)
         areaconfig_object.save()
         area_config = self.area_configuration(areaconfig_object, grid_name)
         return area_config
@@ -721,7 +724,6 @@ class WaterBalanceAreaConfiguration(View):
                 if value is None:
                     continue
             setattr(area_config, field_name, value)
-        area_config.owner = 'Owner 1'
         area_config.save()
         return {'success': True}
 
