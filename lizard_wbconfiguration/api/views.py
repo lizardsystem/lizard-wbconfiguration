@@ -237,7 +237,7 @@ class WaterBalanceDBF(View):
         elif isinstance(value, Area):
             value = value.id
         elif isinstance(value, BucketsType):
-            value = value.bucket_type
+            value = value.code
         elif isinstance(value, unicode):
             value = str(value)
         elif isinstance(value, bool):

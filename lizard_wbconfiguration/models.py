@@ -292,7 +292,7 @@ class Structure(models.Model):
     def code_number(self):
         """Retrieve number of last structure from code."""
         number = 0
-        delimeter = '__'
+        delimeter = '_PS'
         if (self.code is not None) and (self.code.find(delimeter) > 0):
             code_array = self.code.split(delimeter)
             number = int(code_array[len(code_array) - 1])
@@ -301,13 +301,13 @@ class Structure(models.Model):
     def create_code(self, number):
         """Create structure code.
 
-        The format is 'kw_2100__01' where:
-        kw - kunstwerk water balance
+        The format is '2100_PS1' where:
         2100 - ident of area configuration
+        PS - pumping stations
         01 - structure number
         """
 
-        return "kw_%s__%d" % (self.area.ident, number)
+        return "%s_PS%d" % (self.area.ident, number)
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
@@ -317,7 +317,8 @@ class Structure(models.Model):
 
 
 class BucketsType(models.Model):
-    bucket_type = models.CharField(unique=True, max_length=128)
+    code = models.IntegerField(unique=True, null=True, blank=True)
+    bucket_type = models.CharField(max_length=128)
     description = models.CharField(max_length=256,
                                    null=True,
                                    blank=True)
@@ -369,6 +370,8 @@ class Bucket(models.Model):
                                    null=True, blank=True)
     min_water_level = models.DecimalField(max_digits=5, decimal_places=3,
                                    null=True, blank=True)
+    equi_water_level = models.DecimalField(max_digits=5, decimal_places=3,
+                                   null=True, blank=True)
     bottom_porosity = models.DecimalField(max_digits=5, decimal_places=3,
                                    null=True, blank=True)
     bottom_crop_evaporation_factor = models.DecimalField(max_digits=5,
@@ -387,6 +390,9 @@ class Bucket(models.Model):
                                                  decimal_places=3,
                                                  null=True, blank=True)
     bottom_min_water_level = models.DecimalField(max_digits=5,
+                                                 decimal_places=3,
+                                                 null=True, blank=True)
+    bottom_equi_water_level = models.DecimalField(max_digits=5,
                                                  decimal_places=3,
                                                  null=True, blank=True)
     init_water_level = models.DecimalField(max_digits=5, decimal_places=3,
@@ -439,7 +445,7 @@ class Bucket(models.Model):
     def code_number(self):
         """Retrieve number of last bucket from code per area."""
         number = 0
-        delimeter = '__'
+        delimeter = '_gw'
         if (self.code is not None) and (self.code.find(delimeter) > 0):
             code_array = self.code.split(delimeter)
             number = int(code_array[len(code_array) - 1])
@@ -448,13 +454,13 @@ class Bucket(models.Model):
     def create_code(self, number):
         """Create bucket code.
 
-        The format is 'wb_2100__01' where:
-        wb - water balance bucket
+        The format is '2100_gw1' where:
         2100 - ident of area configuration
-        01 - bucket number
+        gw - grond water
+        1 - bucket number
         """
 
-        return "wb_%s__%d" % (self.area.ident, number)
+        return "%s_gw%d" % (self.area.ident, number)
 
     class Meta:
         ordering = ['id']

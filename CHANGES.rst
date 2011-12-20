@@ -9,6 +9,8 @@ Changelog of lizard-wbconfiguration
 
 - Fixed problem with decimal field (issue #2).
 
+- Changed code format for buckets and structures.
+
 
 0.1.3 (2011-12-09)
 ------------------
