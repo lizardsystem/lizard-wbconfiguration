@@ -23,7 +23,6 @@ from lizard_area.models import Area
 from lizard_fewsnorm.models import TimeSeriesCache
 from lizard_fewsnorm.models import Series
 
-import lizard_security.manager
 from lizard_security.models import DataSet
 
 from dbfpy.dbf import Dbf
@@ -58,31 +57,31 @@ class WaterBalanceDBF(View):
         success = self.export_configuration_to_dbf(object_id)
         return {'success': success}
 
-    def export_areaconfiguration(self, dataset, save_to, filename):
+    def export_areaconfiguration(self, owner, save_to, filename):
         """Export areaconfigurations into dbf."""
         filepath = self.file_path(save_to, filename)
-        area_configurations = AreaConfiguration.objects.filter(data_set=dataset)
+        area_configurations = AreaConfiguration.objects.filter(data_set=owner)
         success = self.create_dbf('areaconfiguration',
                                   area_configurations,
                                   filepath)
         logger.debug("Status export areaconfig. is '%s' for %s to %s" % (
-                success, dataset.name, filepath))
+                success, owner.name, filepath))
 
-    def export_bucketconfiguration(self, dataset, save_to, filename):
+    def export_bucketconfiguration(self, owner, save_to, filename):
         """Export buckets into dbf."""
         filepath = self.file_path(save_to, filename)
-        buckets = Bucket.objects.filter(data_set=dataset)
+        buckets = Bucket.objects.filter(data_set=owner)
         success = self.create_dbf('bucket', buckets, filepath)
         logger.debug("Status export buckets is '%s' for %s into %s" % (
-                success, datatset.name, filepath))
+                success, owner.name, filepath))
 
-    def export_structureconfiguration(self, dataset, save_to, filename):
+    def export_structureconfiguration(self, owner, save_to, filename):
         """Export structures into dbf."""
         filepath = self.file_path(save_to, filename)
-        structures = Structure.objects.filter(data_set=dataset)
+        structures = Structure.objects.filter(data_set=owner)
         success = self.create_dbf('structure', structures, filepath)
         logger.debug("Status export buckets is '%s' for %s into %s" % (
-                success, dataset.name, filepath))
+                success, owner.name, filepath))
 
     def export_configuration_to_dbf(self, object_id):
         """
@@ -648,8 +647,7 @@ class WaterBalanceAreaConfiguration(View):
                 value = value.strftime(self.startseason_format())
         return value
 
-    def initial_area_configuration(self, object_id, grid_name,
-                                   user_name):
+    def initial_area_configuration(self, object_id, grid_name):
         """
         Creates initial configuration.
         """
@@ -658,7 +656,7 @@ class WaterBalanceAreaConfiguration(View):
             ident=area_object.ident,
             name=area_object.name,
             area=area_object,
-            data_set=area_object)
+            data_set=area_object.data_set)
         areaconfig_object.save()
         area_config = self.area_configuration(areaconfig_object, grid_name)
         return area_config
@@ -669,7 +667,6 @@ class WaterBalanceAreaConfiguration(View):
         for data_set_id in data_set_ids:
             return data_set_id
         return None
-
 
     def post(self, request, pk=None):
         """
@@ -683,7 +680,7 @@ class WaterBalanceAreaConfiguration(View):
         object_id = self.CONTENT.get('object_id', None)
         data_set_id = self.allowed_data_set_id(request)
         if data_set_id is None:
-            logger.debug("User %s is not allowed to maintain any data sets.",
+            logger.debug("User %s is not allowed to maintain data sets.",
                          request.user.name)
             return {'success': False}
 

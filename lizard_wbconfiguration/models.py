@@ -63,15 +63,15 @@ class WBConfigurationDBFMapping(models.Model):
 class DBFConfiguration(models.Model):
     """Configuration for creating dbf's."""
     dbf_type = models.CharField(max_length=128, choices=WB_DBF_MODELS)
-    owner = models.CharField(max_length=128, choices=DATA_OWNER,
-                             null=True, blank=True)
+    data_set = models.ForeignKey(DataSet, null=True, blank=True)
     save_to = models.CharField(max_length=128, null=True, blank=True,
                                help_text="Example: '/home/naam/dbf/'.")
     filename = models.CharField(max_length=128,
                                 help_text="Example: 'Buckets'.")
+    enabled = models.BooleanField()
 
     def __unicode__(self):
-        return "%s %s" % (self.dbf_type, self.owner)
+        return "%s %s" % (self.dbf_type, self.data_set)
 
 
 class AreaGridConfiguration(models.Model):

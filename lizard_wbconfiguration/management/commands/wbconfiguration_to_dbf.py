@@ -36,7 +36,7 @@ class Command(BaseCommand):
         logger.info("%s water balance configurations to export." % len(
                 dbf_configurations))
         for dbf_configuration in dbf_configurations:
-            owner = dbf_configuration.owner
+            owner = dbf_configuration.data_set
             save_to = dbf_configuration.save_to
             filename = dbf_configuration.filename
             if dbf_configuration.dbf_type == 'AreaConfiguration':
