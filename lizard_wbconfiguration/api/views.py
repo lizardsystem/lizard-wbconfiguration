@@ -586,8 +586,7 @@ class WaterBalanceAreaConfiguration(View):
             return self.area_configuration(areaconfig_objects[0], grid_name)
         else:
             return self.initial_area_configuration(object_id,
-                                                   grid_name,
-                                                   'admin')
+                                                   grid_name)
 
     def area_configuration(self, area, grid_name):
         """

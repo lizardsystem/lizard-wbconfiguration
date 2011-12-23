@@ -130,6 +130,10 @@ class AreaConfiguration(models.Model):
     ident = models.CharField(unique=True, max_length=64)
     name = models.CharField(max_length=128)
     area = models.OneToOneField(Area)
+    y = models.DecimalField(max_digits=10, decimal_places=9,
+                            null=True, blank=True)
+    x = models.DecimalField(max_digits=10, decimal_places=9,
+                            null=True, blank=True)
     start_dt = models.DateTimeField(null=True, blank=True,
                                     verbose_name="Start date")
     ts_precipitation = models.ForeignKey(TimeSeriesCache,
@@ -254,14 +258,13 @@ class Structure(models.Model):
     """
     Structure.
     """
-    supports_object_permissions = True
-    data_set = models.ForeignKey(DataSet,
-                                 null=True,
-                                 blank=True)
-    objects = FilteredManager()
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
     area = models.ForeignKey(AreaConfiguration)
+    y = models.DecimalField(max_digits=10, decimal_places=9,
+                            null=True, blank=True)
+    x = models.DecimalField(max_digits=10, decimal_places=9,
+                            null=True, blank=True)
     is_computed = models.BooleanField(default=False)
     in_out = models.CharField(max_length=3,
                               null=True, blank=True,
@@ -341,6 +344,10 @@ class Bucket(models.Model):
     code = models.CharField(max_length=128)
     bucket_type = models.ForeignKey(BucketsType, null=True, blank=True)
     area = models.ForeignKey(AreaConfiguration)
+    y = models.DecimalField(max_digits=10, decimal_places=9,
+                            null=True, blank=True)
+    x = models.DecimalField(max_digits=10, decimal_places=9,
+                            null=True, blank=True)
     replace_impact_by_nutricalc = models.BooleanField()
     is_computed = models.BooleanField()
     ts_flowoff = models.ForeignKey(TimeSeriesCache,
@@ -450,7 +457,6 @@ class Bucket(models.Model):
                                  null=True,
                                  blank=True)
     objects = FilteredManager()
-
 
     def code_number(self):
         """Retrieve number of last bucket from code per area."""

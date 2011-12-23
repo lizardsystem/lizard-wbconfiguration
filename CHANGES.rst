@@ -11,7 +11,10 @@ Changelog of lizard-wbconfiguration
 
 - Changed code format for buckets and structures.
 
-- Implemented lizard-security for AreaConfiguration, Bucket, Structure.
+- Implemented lizard-security for AreaConfiguration, Bucket,
+  Structure.
+
+- Added x, y fields to Bucket, Structure, AreaConfiguration models.
 
 
 0.1.3 (2011-12-09)
