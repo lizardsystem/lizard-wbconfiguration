@@ -12,10 +12,6 @@ from lizard_security.models import DataSet
 
 logger = logging.getLogger(__name__)
 
-DATA_OWNER = (
-    ('Owner 1', 'Owner 1'),
-    ('Owner 2', 'Owner 2')
-)
 
 WB_DBF_MODELS = (
     ('AreaConfiguration', 'AreaConfiguration'),
@@ -266,6 +262,7 @@ class Structure(models.Model):
     x = models.DecimalField(max_digits=10, decimal_places=9,
                             null=True, blank=True)
     is_computed = models.BooleanField(default=False)
+    ingebr = models.BooleanField(default=True)
     in_out = models.CharField(max_length=3,
                               null=True, blank=True,
                               choices=STRUCTURE_IN_OUT)
@@ -286,7 +283,8 @@ class Structure(models.Model):
     incr_concentr_phosphate = models.DecimalField(max_digits=10,
                                                   decimal_places=3,
                                                   null=True, blank=True)
-    min_concentr_nitrogen = models.DecimalField(max_digits=10, decimal_places=3,
+    min_concentr_nitrogen = models.DecimalField(max_digits=10,
+                                                decimal_places=3,
                                                 null=True, blank=True)
     incr_concentr_nitrogen = models.DecimalField(max_digits=10,
                                                  decimal_places=3,
@@ -350,6 +348,7 @@ class Bucket(models.Model):
                             null=True, blank=True)
     replace_impact_by_nutricalc = models.BooleanField()
     is_computed = models.BooleanField()
+    ingebr = models.BooleanField(default=True)
     ts_flowoff = models.ForeignKey(TimeSeriesCache,
                               null=True, blank=True,
                               related_name='ts_flowoff_bucket')

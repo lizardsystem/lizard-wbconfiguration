@@ -16,6 +16,10 @@ Changelog of lizard-wbconfiguration
 
 - Added x, y fields to Bucket, Structure, AreaConfiguration models.
 
+- Added field ingebr into Bucket, Structure.
+
+- Resized decimal fields to max_digits=10.
+
 
 0.1.3 (2011-12-09)
 ------------------

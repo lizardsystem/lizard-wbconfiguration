@@ -70,7 +70,7 @@ class WaterBalanceDBF(View):
     def export_bucketconfiguration(self, owner, save_to, filename):
         """Export buckets into dbf."""
         filepath = self.file_path(save_to, filename)
-        buckets = Bucket.objects.filter(data_set=owner)
+        buckets = Bucket.objects.filter(data_set=owner, deleted=False)
         success = self.create_dbf('bucket', buckets, filepath)
         logger.debug("Status export buckets is '%s' for %s into %s" % (
                 success, owner.name, filepath))
@@ -78,7 +78,7 @@ class WaterBalanceDBF(View):
     def export_structureconfiguration(self, owner, save_to, filename):
         """Export structures into dbf."""
         filepath = self.file_path(save_to, filename)
-        structures = Structure.objects.filter(data_set=owner)
+        structures = Structure.objects.filter(data_set=owner, deleted=False)
         success = self.create_dbf('structure', structures, filepath)
         logger.debug("Status export buckets is '%s' for %s into %s" % (
                 success, owner.name, filepath))
