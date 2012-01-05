@@ -720,7 +720,14 @@ class WaterBalanceAreaConfiguration(View):
                 if value is None:
                     continue
             setattr(area_config, field_name, value)
-        area_config.save()
+
+        try:
+            area_config.save()
+        except Exception as ex:
+            logger.error("Could not save wb-configuration for %s" % object_id)
+            logger.error(','.join(map(str, ex.args)))
+            return {'success': False}
+
         return {'success': True}
 
     def datetimefield_value(self, field, value):
