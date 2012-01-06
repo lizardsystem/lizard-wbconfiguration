@@ -15,6 +15,7 @@ from lizard_wbconfiguration.models import AreaGridFieldConfiguration
 from lizard_wbconfiguration.models import BucketsType
 from lizard_wbconfiguration.models import Bucket
 from lizard_wbconfiguration.models import Structure
+from lizard_wbconfiguration.models import StructureInOut
 from lizard_wbconfiguration.models import WBConfigurationDBFMapping
 from lizard_wbconfiguration import models
 
@@ -80,7 +81,7 @@ class WaterBalanceDBF(View):
         filepath = self.file_path(save_to, filename)
         structures = Structure.objects.filter(data_set=owner, deleted=False)
         success = self.create_dbf('structure', structures, filepath)
-        logger.debug("Status export buckets is '%s' for %s into %s" % (
+        logger.debug("Status export structure is '%s' for %s into %s" % (
                 success, owner.name, filepath))
 
     def export_configuration_to_dbf(self, object_id):
@@ -237,6 +238,8 @@ class WaterBalanceDBF(View):
             value = value.id
         elif isinstance(value, BucketsType):
             value = value.code
+        elif isinstance(value, StructureInOut):
+            value = value.index
         elif isinstance(value, DataSet):
             value = value.name
         elif isinstance(value, unicode):
@@ -344,7 +347,7 @@ class WaterBalanceAreaObjectConfiguration(View):
 
     def exists_default_structure(self, area_configuration, in_out):
         """ Check and activate default structures. """
-        structures = Structure.objects.filter(in_out=in_out,
+        structures = Structure.objects.filter(in_out__code=in_out,
                                               area__id=area_configuration.id,
                                               is_computed=True)
         for structure in structures:
@@ -366,7 +369,7 @@ class WaterBalanceAreaObjectConfiguration(View):
         names = {'in': "Peilhandhaving In defaul",
                  'uit': "Peilhandhaving Uit default"}
         try:
-            structure = Structure(name=names[in_out],
+            structure = Structure(name=names[in_out.code],
                                   in_out=in_out,
                                   area=area_configuration,
                                   is_computed=True,
@@ -381,6 +384,9 @@ class WaterBalanceAreaObjectConfiguration(View):
             logger.debug(','.join(map(str, ex.args)))
 
     def create_default_structures(self, object_id):
+        """
+        Create 2 defualt structures they not exist.
+        """
         area_config = AreaConfiguration.objects.get(ident=object_id)
         in_out = ('in', 'uit')
 
@@ -388,7 +394,11 @@ class WaterBalanceAreaObjectConfiguration(View):
             if self.check_amount_structures(area_config) == False:
                 break
             if not self.exists_default_structure(area_config, item):
-                self.create_default_structure(area_config, item)
+                try:
+                    inout_obj = StructureInOut.objects.get(code=item)
+                    self.create_default_structure(area_config, inout_obj)
+                except Exception as ex:
+                    logger.debug(','.join(map(str, ex.args)))
 
     def last_areaobject_codenumber(self, area_configuration, areaobject_class):
         """ Return code number of the last structure. """
@@ -527,6 +537,14 @@ class WaterBalanceAreaObjectConfiguration(View):
                         success = False
                         continue
                     value = bucket_types[0]
+                elif areaobject_field.rel.to == StructureInOut:
+                    structure_inout = StructureInOut.objects.filter(
+                        code=value)
+                    if not structure_inout.exists():
+                        logger.error("Bucket type %s not exists" % value)
+                        success = False
+                        continue
+                    value = structure_inout[0]
                 else:
                     logger.error("Undefined relation to %s." % (
                             areaobject_field.rel.to))

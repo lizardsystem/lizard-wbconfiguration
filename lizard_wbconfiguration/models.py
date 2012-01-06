@@ -272,9 +272,8 @@ class Structure(models.Model):
                             null=True, blank=True)
     is_computed = models.BooleanField(default=False)
     ingebr = models.BooleanField(default=True)
-    in_out = models.CharField(max_length=3,
-                              null=True, blank=True,
-                              choices=STRUCTURE_IN_OUT)
+    in_out = models.ForeignKey(StructureInOut,
+                               null=True, blank=True)
     deb_is_ts = models.BooleanField()
     ts_debiet = models.ForeignKey(
         TimeSeriesCache,

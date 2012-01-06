@@ -20,6 +20,8 @@ Changelog of lizard-wbconfiguration
 
 - Resized decimal fields to max_digits=10.
 
+- Changed field in_out in Structure model.
+
 
 0.1.3 (2011-12-09)
 ------------------
