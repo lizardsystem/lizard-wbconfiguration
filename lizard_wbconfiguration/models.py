@@ -250,6 +250,15 @@ class AreaConfiguration(models.Model):
         return "%s" % self.ident
 
 
+class StructureInOut(models.Model):
+    code = models.CharField(max_length=3,
+                            choices=STRUCTURE_IN_OUT)
+    index = models.IntegerField(max_length=1)
+
+    def __unicode__(self):
+        return "%s" % self.code
+
+
 class Structure(models.Model):
     """
     Structure.
