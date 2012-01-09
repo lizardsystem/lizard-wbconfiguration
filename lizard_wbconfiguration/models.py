@@ -46,6 +46,7 @@ class WBConfigurationDBFMapping(models.Model):
     dbffield_type = models.CharField(max_length=1, choices=DBF_FIELD_TYPES)
     dbffield_length = models.IntegerField(null=True, blank=True)
     dbffield_decimals = models.IntegerField(null=True, blank=True)
+    index = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return "%s wb=%s dbf=%s" % (self.model_name,

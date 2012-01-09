@@ -22,6 +22,8 @@ Changelog of lizard-wbconfiguration
 
 - Changed field in_out in Structure model.
 
+- Added index field into WBConfigurationDBFMapping model to order fields.
+
 
 0.1.3 (2011-12-09)
 ------------------

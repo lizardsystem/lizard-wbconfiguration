@@ -40,7 +40,8 @@ class WBConfigurationDBFMappingAdmin(admin.ModelAdmin):
                     'dbffield_name',
                     'dbffield_type',
                     'dbffield_length',
-                    'dbffield_decimals',)
+                    'dbffield_decimals',
+                    'index',)
     list_filter = ('model_name',)
 
 admin.site.register(DBFConfiguration)
