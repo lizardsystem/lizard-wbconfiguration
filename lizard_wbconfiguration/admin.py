@@ -34,15 +34,23 @@ class AreaGridConfigurationAdmin(admin.ModelAdmin):
 
 
 class WBConfigurationDBFMappingAdmin(admin.ModelAdmin):
-    list_display = ('id',
-                    'model_name',
-                    'wbfield_name',
-                    'dbffield_name',
-                    'dbffield_type',
-                    'dbffield_length',
-                    'dbffield_decimals',
-                    'index',)
+    list_display = (
+        'model_name',
+        'wbfield_name',
+        'dbffield_name',
+        'dbffield_type',
+        'dbffield_length',
+        'dbffield_decimals',
+        'index')
+    list_editable = (
+        'wbfield_name',
+        'dbffield_name',
+        'dbffield_type',
+        'dbffield_length',
+        'dbffield_decimals',
+        'index')
     list_filter = ('model_name',)
+
 
 admin.site.register(DBFConfiguration)
 admin.site.register(WBConfigurationDBFMapping, WBConfigurationDBFMappingAdmin)
