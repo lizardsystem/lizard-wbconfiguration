@@ -3,6 +3,7 @@
 from django.test import TestCase
 from lizard_area.models import Area
 from lizard_wbconfiguration.models import AreaConfiguration
+from lizard_wbconfiguration.models import StructureInOut
 from lizard_wbconfiguration.api.views import WaterBalanceAreaObjectConfiguration
 from django.contrib.auth.models import User
 from django.contrib.gis.geos import GEOSGeometry
@@ -26,6 +27,12 @@ class StructureTest(TestCase):
                          data_administrator_id=1)
         self.area.save()
 
+    def create_structure_in_out(self):
+        """Add in/out objects into StructureInOut."""
+        in_out = ('in', 'uit')
+        for item in in_out:
+            StructureInOut(code=item, index=in_out.index(item)).save()
+
     def create_areaconfiguration(self, area):
         try:
             self.area_configuration = AreaConfiguration(
@@ -42,10 +49,12 @@ class StructureTest(TestCase):
         self.create_area()
         self.create_areaconfiguration(self.area)
         area_object_config = WaterBalanceAreaObjectConfiguration()
+        self.create_structure_in_out()
+        inout_obj = StructureInOut.objects.get(code=in_out[0])
         area_object_config.create_default_structure(
-            self.area_configuration, in_out[0])
+            self.area_configuration, inout_obj)
         is_created = area_object_config.exists_default_structure(
-            self.area_configuration, in_out[0])
+            self.area_configuration, inout_obj)
         self.assertEquals(is_created, True)
 
     def get_or_create_geoobjectgroup(self, user_name):

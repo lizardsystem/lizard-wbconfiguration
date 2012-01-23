@@ -385,7 +385,7 @@ class WaterBalanceAreaObjectConfiguration(View):
 
     def create_default_structures(self, object_id):
         """
-        Create 2 defualt structures they not exist.
+        Create 2 defualt structures.
         """
         area_config = AreaConfiguration.objects.get(ident=object_id)
         in_out = ('in', 'uit')
