@@ -12,6 +12,7 @@ long_description = '\n\n'.join([
 install_requires = [
     'Django',
     'lizard_security',
+    'django-celery',
     'django-extensions',
     'django-nose',
     'djangorestframework',
