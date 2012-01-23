@@ -169,7 +169,6 @@ class WaterBalanceDBF(View):
 
         mapping = WBConfigurationDBFMapping.objects.filter(
             model_name__iexact=model_name).order_by('index')
-        print mapping
 
         try:
             logger.debug("Create en open dbf file.")
