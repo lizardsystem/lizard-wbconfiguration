@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from lizard_wbconfiguration.models import AreaConfiguration
 from lizard_wbconfiguration.models import BucketsType
 from lizard_wbconfiguration.models import AreaGridConfiguration
 from lizard_wbconfiguration.models import AreaField
