@@ -59,4 +59,3 @@ admin.site.register(AreaField)
 admin.site.register(AreaGridConfiguration, AreaGridConfigurationAdmin)
 admin.site.register(Structure, SecurityFilteredAdmin)
 admin.site.register(StructureInOut)
-

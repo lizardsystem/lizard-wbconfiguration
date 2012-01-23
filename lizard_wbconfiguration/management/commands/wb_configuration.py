@@ -19,8 +19,8 @@ class Command(BaseCommand):
     (Remove and re-)insert model field names to wb configuration.
     """
 
-    help = ("Example: bin/django wb_configuration --app=app --model_name=model"\
-            "")
+    help = ("Example: bin/django wb_configuration --app=app "\
+                "--model_name=model")
 
     option_list = BaseCommand.option_list + (
         make_option('--app',
@@ -35,15 +35,18 @@ class Command(BaseCommand):
     @transaction.commit_on_success
     def handle(self, *args, **options):
         if not options['app'] or not options['model_name']:
-            logger.error("Expected --app and --model args. Use -help for example.")
+            logger.error("Expected --app and --model args. "\
+                             "Use -help for example.")
             return
 
         model = get_model(options['app'], options['model_name'])
-        #model_obj = model()
         for field in model._meta.fields:
+            code = ".".join([options['app'],
+                             options['model_name'],
+                             field.name])
             AreaField.objects.get_or_create(
-                code = ".".join([options['app'], options['model_name'], field.name]),
-                app_name = options['app'].lower(),
-                model_name = options['model_name'].lower(),
+                code=code,
+                app_name=options['app'].lower(),
+                model_name=options['model_name'].lower(),
                 field_name=field.name)
             logger.debug('Inserting "%s" field', field.name)

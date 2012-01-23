@@ -1,7 +1,6 @@
-
-
 from celery.task import task
 from django.core import management
+
 
 @task()
 def export_wbconfigurations_to_dbf():
