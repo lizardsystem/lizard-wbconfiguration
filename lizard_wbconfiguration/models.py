@@ -241,6 +241,18 @@ class AreaConfiguration(models.Model):
     incr_concentr_nitrogyn_seepage = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
+    min_concentr_so4_precipitation = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    min_concentr_so4_seepage = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    incr_concentr_so4_precipitation = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    incr_concentr_so4_seepage = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
     supports_object_permissions = True
     data_set = models.ForeignKey(DataSet,
                                  null=True,
@@ -298,6 +310,18 @@ class Structure(models.Model):
     incr_concentr_nitrogen = models.DecimalField(max_digits=10,
                                                  decimal_places=3,
                                                  null=True, blank=True)
+    min_concentr_so4_precipitation = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    min_concentr_so4_seepage = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    incr_concentr_so4_precipitation = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    incr_concentr_so4_seepage = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
     deleted = models.BooleanField(default=False)
     supports_object_permissions = True
     data_set = models.ForeignKey(DataSet,
@@ -452,6 +476,18 @@ class Bucket(models.Model):
     incr_concentr_nitrogen_drainage_indraft = models.DecimalField(
         max_digits=10,
         decimal_places=3,
+        null=True, blank=True)
+    min_concentr_so4_precipitation = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    min_concentr_so4_seepage = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    incr_concentr_so4_precipitation = models.DecimalField(
+        max_digits=10, decimal_places=3,
+        null=True, blank=True)
+    incr_concentr_so4_seepage = models.DecimalField(
+        max_digits=10, decimal_places=3,
         null=True, blank=True)
     label_flow_off = models.DecimalField(max_digits=10,
                                          decimal_places=3,
