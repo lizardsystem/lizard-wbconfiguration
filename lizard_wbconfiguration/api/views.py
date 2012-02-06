@@ -698,7 +698,7 @@ class WaterBalanceAreaConfiguration(View):
         data_set_id = self.allowed_data_set_id(request)
         if data_set_id is None:
             logger.debug("User %s is not allowed to maintain data sets.",
-                         request.user.name)
+                         request.user.username)
             return {'success': False}
 
         if not object_id:
