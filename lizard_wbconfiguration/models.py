@@ -310,16 +310,10 @@ class Structure(models.Model):
     incr_concentr_nitrogen = models.DecimalField(max_digits=10,
                                                  decimal_places=3,
                                                  null=True, blank=True)
-    min_concentr_so4_precipitation = models.DecimalField(
+    min_concentr_so4 = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
-    min_concentr_so4_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
-        null=True, blank=True)
-    incr_concentr_so4_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
-        null=True, blank=True)
-    incr_concentr_so4_seepage = models.DecimalField(
+    incr_concentr_so4 = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
     deleted = models.BooleanField(default=False)
@@ -477,16 +471,16 @@ class Bucket(models.Model):
         max_digits=10,
         decimal_places=3,
         null=True, blank=True)
-    min_concentr_so4_precipitation = models.DecimalField(
+    min_concentr_so4_flow_off = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
-    min_concentr_so4_seepage = models.DecimalField(
+    min_concentr_so4_drainage_indraft = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
-    incr_concentr_so4_precipitation = models.DecimalField(
+    incr_concentr_so4_flow_off = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
-    incr_concentr_so4_seepage = models.DecimalField(
+    incr_concentr_so4_drainage_indraft = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
     label_flow_off = models.DecimalField(max_digits=10,

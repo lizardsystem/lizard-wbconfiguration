@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.1.5 (unreleased)
 ------------------
 
-- Added OS4 fields into AreaConfiguration model.
+- Added OS4 fields into AreaConfiguration, Bucket, Structure model.
 
 
 0.1.4 (2012-01-23)
