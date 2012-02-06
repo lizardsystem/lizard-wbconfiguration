@@ -2,10 +2,16 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.5 (unreleased)
+0.1.6 (unreleased)
 ------------------
 
 - Nothing changed yet.
+
+
+0.1.5 (2012-02-06)
+------------------
+
+- Added OS4 fields into AreaConfiguration, Bucket, Structure model.
 
 
 0.1.4 (2012-01-23)
