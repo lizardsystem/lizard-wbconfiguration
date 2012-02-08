@@ -58,6 +58,19 @@ class WaterBalanceDBF(View):
         success = self.export_configuration_to_dbf(object_id)
         return {'success': success}
 
+    def export_aanafvoergebieden(self, owner, save_to, filename):
+        """Export areas into dbf."""
+        filepath = self.file_path(save_to, filename)
+        if owner is not None:
+            areas = Area.objects.filter(data_set=owner)
+            areas = areas.exclude(area_class=Area.AREA_CLASS_KRW_WATERLICHAAM)
+        else:
+            areas = areas.exclude(area_class=Area.AREA_CLASS_KRW_WATERLICHAAM)
+
+        success = self.create_dbf('area', areas, filepath)
+        logger.debug("Status export areas is '%s' for %s to %s" % (
+                success, owner.name, filepath))
+
     def export_areaconfiguration(self, owner, save_to, filename):
         """Export areaconfigurations into dbf."""
         filepath = self.file_path(save_to, filename)

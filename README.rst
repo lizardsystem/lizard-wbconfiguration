@@ -29,8 +29,7 @@ Load fixtures.
 Create the dbf files voor AreaConfiguration, Buckets and Structures
 with management command::
 
-    $> bin/django wbconfiguration_to_dbf --ident=[area configuration
-    ident]
+    $> bin/django wbconfiguration_to_dbf
 
 AreaConfiguration
 ----------------------------------------
@@ -63,9 +62,10 @@ To configure dbf export use admin form 'Dbf configuration'.
 To map water balance configuration fields with dbf fields use admin
 form 'Wb configuration dbf mappings'.
 
-Run export as periodic task
+Export wbconfigurations to dbf  as periodic task
 -----------------------------------
-To configure periodic task 'Export db configuration to dbf' use admin
-form 'Djcelery/Periodic tasks'. Then start supervisor:
+Enable 'create_wb_dbfs' periodic task in admin by Djcelery.
 
-  $> bin/supervisord
+OR use management command
+
+    $> bin/django wbconfiguration_to_dbf

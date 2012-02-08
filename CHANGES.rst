@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added management command 'aanafvoergebieden_to_dbf'.
+
+- Replaced option arguments by management command 'wbconfiguration_to_dbf'.
 
 
 0.1.5 (2012-02-06)

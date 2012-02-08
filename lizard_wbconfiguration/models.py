@@ -16,7 +16,8 @@ logger = logging.getLogger(__name__)
 WB_DBF_MODELS = (
     ('AreaConfiguration', 'AreaConfiguration'),
     ('Bucket', 'Bucket'),
-    ('Structure', 'Structure')
+    ('Structure', 'Structure'),
+    ('Area', 'Area'),
 )
 
 DBF_FIELD_TYPES = (
