@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.6 (unreleased)
+0.1.6 (2012-02-08)
 ------------------
 
 - Added management command 'aanafvoergebieden_to_dbf'.
