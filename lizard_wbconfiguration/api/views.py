@@ -63,9 +63,9 @@ class WaterBalanceDBF(View):
         filepath = self.file_path(save_to, filename)
         if owner is not None:
             areas = Area.objects.filter(data_set=owner)
-            areas = areas.exclude(area_class=Area.AREA_CLASS_KRW_WATERLICHAAM)
         else:
-            areas = areas.exclude(area_class=Area.AREA_CLASS_KRW_WATERLICHAAM)
+            areas = Area.objects.all()
+        areas = areas.exclude(area_class=Area.AREA_CLASS_KRW_WATERLICHAAM)
 
         success = self.create_dbf('area', areas, filepath)
         logger.debug("Status export areas is '%s' for %s to %s" % (

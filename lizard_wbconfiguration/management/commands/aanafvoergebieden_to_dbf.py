@@ -31,4 +31,4 @@ class Command(BaseCommand):
             save_to = dbf_configuration.save_to
             filename = dbf_configuration.filename
             wb_dbf.export_aanafvoergebieden(owner, save_to, filename)
-        logger.info("Export water balance configurations is finished.")
+        logger.info("Export of 'aanafvoergebieden' is finished.")
