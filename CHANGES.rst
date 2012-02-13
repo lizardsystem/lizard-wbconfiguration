@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.1.7 (unreleased)
 ------------------
 
-- Fixed code in api/views.py.
+- Added functionality to export 'aanafvoergebieden' to dbf.
 
 
 0.1.6 (2012-02-08)

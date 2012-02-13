@@ -8,6 +8,8 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 from django.db.models.fields import DateTimeField
 from django.db.models.fields import BooleanField
+from django.contrib.gis.geos import MultiPolygon
+from django.contrib.gis.geos.point import Point
 
 from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
@@ -64,12 +66,12 @@ class WaterBalanceDBF(View):
         if owner is not None:
             areas = Area.objects.filter(data_set=owner)
         else:
-            areas = Area.objects.all()
+            areas = Area.objects.exclude(data_set=None)
         areas = areas.exclude(area_class=Area.AREA_CLASS_KRW_WATERLICHAAM)
 
         success = self.create_dbf('area', areas, filepath)
         logger.debug("Status export areas is '%s' for %s to %s" % (
-                success, owner.name, filepath))
+                success, owner, filepath))
 
     def export_areaconfiguration(self, owner, save_to, filename):
         """Export areaconfigurations into dbf."""
@@ -226,7 +228,14 @@ class WaterBalanceDBF(View):
                 value = self.retrieve_value(area_object,
                                             item.wbfield_name.lower())
                 if value is not None:
-                    rec[item.dbffield_name] = value
+                    dbffield_name = item.dbffield_name.lower()
+                    if dbffield_name == 'x' and isinstance(value, Point):
+                        value = value.x
+                    if dbffield_name == 'y' and isinstance(value, Point):
+                        value = value.y
+
+                    rec[dbffield_name] = value
+
             rec.store()
 
     def retrieve_value(self, area_object, field_name):
@@ -240,6 +249,7 @@ class WaterBalanceDBF(View):
             logger.debug("%s has not attribute %s" % (
                     area_object._meta.module_name, field_name))
             return None
+
         value = getattr(area_object, field_name)
         if value is None:
             logger.debug("Value of %s.%s is None." % (
@@ -248,13 +258,18 @@ class WaterBalanceDBF(View):
         if isinstance(value, TimeSeriesCache):
             value = str(value.geolocationcache.ident)
         elif isinstance(value, Area):
-            value = value.id
+            if field_name.lower() == 'parent':
+                value = value.ident
+            else:
+                value = value.id
         elif isinstance(value, BucketsType):
             value = value.code
         elif isinstance(value, StructureInOut):
             value = value.index
+        elif isinstance(value, MultiPolygon):
+            value = self.get_centrpoint(value)
         elif isinstance(value, DataSet):
-            value = value.name
+            value = str(value.name)
         elif isinstance(value, unicode):
             value = str(value)
         elif isinstance(value, bool):
@@ -262,6 +277,14 @@ class WaterBalanceDBF(View):
         else:
             value = value
         return value
+
+    def get_centrpoint(self, geometry):
+        """Retrieve center point of geometry,
+        transform the gometry to srid=28992."""
+        srid = 28992
+        if geometry.srid != srid:
+            geometry_clone = geometry.transform(srid, clone=True)
+            return geometry_clone.centroid
 
     def retrieve_series_key(self, ts_cache):
         """Retrieve series key.
