@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.7 (unreleased)
+0.1.7 (2012-02-13)
 ------------------
 
 - Added functionality to export 'aanafvoergebieden' to dbf.
