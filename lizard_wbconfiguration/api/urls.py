@@ -6,6 +6,7 @@ from django.contrib import admin
 
 
 from lizard_wbconfiguration.api.views import RootView
+from lizard_wbconfiguration.api.views import WBSummary
 from lizard_wbconfiguration.api.views import WaterBalanceAreaConfiguration
 from lizard_wbconfiguration.api.views import WaterBalanceAreaObjectConfiguration
 
@@ -24,4 +25,7 @@ urlpatterns = patterns(
     url(r'^area_object_configuration/$',
         WaterBalanceAreaObjectConfiguration.as_view(),
         name=NAME_PREFIX + 'area_object_configuration'),
+    url(r'^summary/$',
+        WBSummary.as_view(),
+        name=NAME_PREFIX + 'wb_summary'),
     )

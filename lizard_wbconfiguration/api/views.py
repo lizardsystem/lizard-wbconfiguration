@@ -5,6 +5,7 @@ import os
 import datetime
 
 from django.core.urlresolvers import reverse
+from django.shortcuts import render_to_response
 from django.utils import simplejson as json
 from django.db.models.fields import DateTimeField
 from django.db.models.fields import BooleanField
@@ -809,3 +810,29 @@ class WaterBalanceAreaConfiguration(View):
 
     def startseason_format(self):
         return "%d/%m"
+
+
+class WBSummary(View):
+
+    """
+    WB configuration summary.
+    """
+    def get(self, request):
+        object_id = request.GET.get('object_id', None)
+        areaconfigurations = AreaConfiguration.objects.filter(ident=object_id)
+        context = {}
+        if areaconfigurations.exists():
+            buckets = Bucket.objects.filter(area=areaconfigurations[0])
+            structures_in = Structure.objects.filter(
+                area=areaconfigurations[0],
+                in_out__code='in')
+            structures_out = Structure.objects.filter(
+                area=areaconfigurations[0],
+                in_out__code='uit')
+
+            context = {'areaconfiguration': areaconfigurations[0],
+                       'buckets': buckets,
+                       'structures_in': structures_in,
+                       'structures_out': structures_out}
+
+        return render_to_response('wbconfiguration_summary.html', context)

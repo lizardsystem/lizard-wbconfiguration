@@ -1,0 +1,58 @@
+<div>
+<h2>Sammenvating wbconfiguration</h2>
+
+<table border=0>
+  {% if areaconfiguration %}
+     <tr>
+       <td><b>Naam:</b></td>
+       <td>{{ areaconfiguration.name }}</td>
+     </tr>
+     <tr>
+       <td><b>Ident:</b></td>
+       <td>{{ areaconfiguration.ident }}</td>
+     </tr>
+     <tr>
+       <td><b>Oppervlakte(m2):</b></td>
+       <td>{{ areaconfiguration.surface }}</td>
+     </tr>
+  {% endif %}
+</table>
+<p>
+<h2><u>Bakjes</u></h2>
+<table border=1>
+  <th>Naam</th>
+  <th>Oppervlakte(m2)</th>
+  <th>Type</th>
+  {% for bucket in buckets %}
+     <tr>
+        <td>{{ bucket.name }}</td>
+        <td>{{ bucket.surface }}</td>
+        {% if bucket.bucket_type %}
+        <td>{{ bucket.bucket_type.bucket_type }}</td>
+        {% else %}
+        <td></td>
+        {% endif %}
+     </tr>
+  {% endfor %}
+</table>
+<p>
+<h2><u>Kunstwerken</u></h2>
+<h3>Instroom</h3>
+<table border=1>
+  <th>Naam</th>
+  {% for structure in structures_in %}
+     <tr>
+        <td>{{ structure.name }}</td>
+     </tr>
+  {% endfor %}
+</table>
+<h3>Uitstroom</h3>
+<table border=1>
+  <th>Naam</th>
+  {% for structure in structures_out %}
+     <tr>
+        <td>{{ structure.name }}</td>
+     </tr>
+  {% endfor %}
+</table>
+<div>
