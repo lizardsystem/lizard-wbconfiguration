@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.8 (unreleased)
+0.1.8 (2012-02-13)
 ------------------
 
 - Added functionality to view a summary of wbconfiguration.
