@@ -24,9 +24,6 @@ from lizard_wbconfiguration import models
 
 from lizard_area.models import Area
 
-from lizard_fewsnorm.models import TimeSeriesCache
-from lizard_fewsnorm.models import Series
-
 from lizard_security.models import DataSet
 
 from dbfpy.dbf import Dbf
@@ -256,9 +253,7 @@ class WaterBalanceDBF(View):
             logger.debug("Value of %s.%s is None." % (
                     area_object._meta.module_name, field_name))
             return None
-        if isinstance(value, TimeSeriesCache):
-            value = str(value.geolocationcache.ident)
-        elif isinstance(value, Area):
+        if isinstance(value, Area):
             if field_name.lower() == 'parent':
                 value = value.ident
             else:
@@ -287,20 +282,20 @@ class WaterBalanceDBF(View):
             geometry_clone = geometry.transform(srid, clone=True)
             return geometry_clone.centroid
 
-    def retrieve_series_key(self, ts_cache):
-        """Retrieve series key.
+    # def retrieve_series_key(self, ts_cache):
+    #     """Retrieve series key.
 
-        Arguments:
-        ts_cache -- the instance object of TimeSeriesCache type
+    #     Arguments:
+    #     ts_cache -- the instance object of TimeSeriesCache type
 
-        """
-        db_source = ts_cache.geolocationcache.fews_norm_source
-        series = Series.objects.using(db_source.name).get(
-            location__id=ts_cache.geolocationcache.ident,
-            parameter__id=ts_cache.parametercache.ident,
-            moduleinstance__id=ts_cache.modulecache.ident,
-            timestep__id=ts_cache.timestepcache.ident)
-        return series.serieskey
+    #     """
+    #     db_source = ts_cache.geolocationcache.fews_norm_source
+    #     series = Series.objects.using(db_source.name).get(
+    #         location__id=ts_cache.geolocationcache.ident,
+    #         parameter__id=ts_cache.parametercache.ident,
+    #         moduleinstance__id=ts_cache.modulecache.ident,
+    #         timestep__id=ts_cache.timestepcache.ident)
+    #     return series.serieskey
 
 
 class WaterBalanceAreaObjectConfiguration(View):
@@ -557,16 +552,7 @@ class WaterBalanceAreaObjectConfiguration(View):
                 success = False
                 continue
             if areaobject_field.rel is not None:
-                if areaobject_field.rel.to == TimeSeriesCache:
-                    try:
-                        timeseriescache = TimeSeriesCache.objects.get(
-                            pk=value.split(',')[2])
-                        value = timeseriescache
-                    except IndexError as ex:
-                        logger.error(','.join(map(str, ex.args)))
-                        success = False
-                        continue
-                elif areaobject_field.rel.to == BucketsType:
+                if areaobject_field.rel.to == BucketsType:
                     bucket_types = BucketsType.objects.filter(
                         bucket_type=value)
                     if not bucket_types.exists():
@@ -596,7 +582,7 @@ class WaterBalanceAreaObjectConfiguration(View):
         Retrieve data from content, find the area object,
         if area object not available create a new.
         Removes id element from data to avoid overriding id of area object.
-        ForeignKey fields need a related object (TimeSeriesCache, BucketType).
+        ForeignKey fields need a related object (BucketType).
         Saves the data.
 
         """
@@ -679,14 +665,7 @@ class WaterBalanceAreaConfiguration(View):
             return value
 
         if field.rel is not None:
-            if field.rel.to == TimeSeriesCache:
-                timeseries = getattr(area, field.name)
-                if timeseries is not None:
-                    value = '%s,%s,%s' % (
-                        timeseries.geolocationcache.ident,
-                        timeseries.parametercache.ident,
-                        timeseries.id)
-            elif field.rel.to == Area:
+            if field.rel.to == Area:
                 if value is not None:
                     value = area.id
             else:
@@ -762,11 +741,6 @@ class WaterBalanceAreaConfiguration(View):
                 continue
 
             if areaconfig_field.rel:
-                if areaconfig_field.rel.to == TimeSeriesCache:
-                    timeseriescache = TimeSeriesCache.objects.get(
-                        id=int(value.split(',')[2]))
-                    setattr(area_config, field_name, timeseriescache)
-                    continue
                 if areaconfig_field.rel.to == Area:
                     continue
 
