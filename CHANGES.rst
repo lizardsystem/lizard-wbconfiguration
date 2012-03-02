@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.1.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Deleted ForeignKey-fields referenced to TimeSeriesCache.
+
+- Created timeseries fields as CharField.
 
 
 0.1.8 (2012-02-13)

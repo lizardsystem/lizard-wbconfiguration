@@ -4,8 +4,6 @@ from django.db import models
 
 from lizard_area.models import Area
 
-from lizard_fewsnorm.models import TimeSeriesCache
-
 from lizard_security.manager import FilteredManager
 from lizard_security.models import DataSet
 
@@ -134,48 +132,32 @@ class AreaConfiguration(models.Model):
                             null=True, blank=True)
     start_dt = models.DateTimeField(null=True, blank=True,
                                     verbose_name="Start date")
-    ts_precipitation = models.ForeignKey(TimeSeriesCache,
-                                         null=True, blank=True,
-                                         related_name='ts_precipitation')
-    ts_evaporation = models.ForeignKey(TimeSeriesCache,
-                                       null=True, blank=True,
-                                       related_name='ts_evaporation',)
+    ts_precipitation = models.CharField(max_length=128, null=True, blank=True)
+    ts_evaporation = models.CharField(max_length=128, null=True, blank=True)
     max_intake = models.DecimalField(max_digits=10, decimal_places=3,
                                      null=True, blank=True)
     max_outtake = models.DecimalField(max_digits=10, decimal_places=3,
                                       null=True, blank=True)
-    ts_concentr_chloride_1 = models.ForeignKey(
-        TimeSeriesCache,
-        null=True, blank=True,
-        related_name='ts_concentr_chloride_1')
-    ts_concentr_chloride_2 = models.ForeignKey(
-        TimeSeriesCache,
-        null=True, blank=True,
-        related_name='ts_concentr_chloride_2')
+    ts_concentr_chloride_1 = models.CharField(
+        max_length=128, null=True, blank=True)
+    ts_concentr_chloride_2 = models.CharField(
+        max_length=128, null=True, blank=True)
     surface = models.DecimalField(max_digits=10, decimal_places=1,
                                   null=True, blank=True)
     bottom_height = models.DecimalField(max_digits=10, decimal_places=3,
                                         null=True, blank=True)
-    ts_water_level = models.ForeignKey(TimeSeriesCache,
-                                       null=True, blank=True,
-                                       related_name='ts_water_level')
+    ts_water_level = models.CharField(max_length=128, null=True, blank=True)
     kwel_is_ts = models.BooleanField()
     kwel = models.DecimalField(max_digits=10, decimal_places=3,
                                null=True, blank=True)
-    ts_kwel = models.ForeignKey(TimeSeriesCache,
-                                null=True, blank=True,
-                                related_name='ts_kwel')
+    ts_kwel = models.CharField(max_length=128, null=True, blank=True)
     wegz_is_ts = models.BooleanField()
     wegz = models.DecimalField(max_digits=10, decimal_places=3,
                                null=True, blank=True)
-    ts_wegz = models.ForeignKey(TimeSeriesCache,
-                                null=True, blank=True,
-                                related_name='ts_wegz')
+    ts_wegz = models.CharField(max_length=128, null=True, blank=True)
     peilh_issp = models.BooleanField()
     sp_is_ts = models.BooleanField()
-    ts_sp = models.ForeignKey(TimeSeriesCache,
-                              null=True, blank=True,
-                              related_name='sp')
+    ts_sp = models.CharField(max_length=128, null=True, blank=True)
     winterp = models.DecimalField(max_digits=10, decimal_places=3,
                                   null=True, blank=True)
     lentep = models.DecimalField(max_digits=10, decimal_places=3,
@@ -289,10 +271,7 @@ class Structure(models.Model):
     in_out = models.ForeignKey(StructureInOut,
                                null=True, blank=True)
     deb_is_ts = models.BooleanField()
-    ts_debiet = models.ForeignKey(
-        TimeSeriesCache,
-        related_name='ts_debiet',
-        null=True, blank=True)
+    ts_debiet = models.CharField(max_length=128, null=True, blank=True)
     deb_zomer = models.DecimalField(max_digits=10, decimal_places=3,
                                     null=True, blank=True)
     deb_wint = models.DecimalField(max_digits=10, decimal_places=3,
@@ -377,23 +356,26 @@ class Bucket(models.Model):
     replace_impact_by_nutricalc = models.BooleanField()
     is_computed = models.BooleanField()
     ingebr = models.BooleanField(default=True)
-    ts_flowoff = models.ForeignKey(TimeSeriesCache,
-                              null=True, blank=True,
-                              related_name='ts_flowoff_bucket')
-    ts_drainageindraft = models.ForeignKey(TimeSeriesCache,
-                              null=True, blank=True,
-                              related_name='ts_drainageindraf_bucket')
-    ts_referenceoverflow = models.ForeignKey(TimeSeriesCache,
-                              null=True, blank=True,
-                              related_name='ts_referenceoverflow_bucket')
+    flowoff_is_ts = models.BooleanField()
+    flowoff = models.DecimalField(max_digits=10, decimal_places=3,
+                                  null=True, blank=True)
+    ts_flowoff = models.CharField(max_length=128, null=True, blank=True)
+    drainageindraft_is_ts = models.BooleanField()
+    drainageindraft = models.DecimalField(max_digits=10, decimal_places=3,
+                                          null=True, blank=True)
+    ts_drainageindraft = models.CharField(
+        max_length=128, null=True, blank=True)
+    referenceoverflow_is_ts = models.BooleanField()
+    referenceoverflow = models.DecimalField(max_digits=10, decimal_places=3,
+                                            null=True, blank=True)
+    ts_referenceoverflow = models.CharField(
+        max_length=128, null=True, blank=True)
     surface = models.DecimalField(max_digits=10, decimal_places=1,
                                   null=True, blank=True)
     kwelwegz_is_ts = models.BooleanField()
     kwelwegz = models.DecimalField(max_digits=10, decimal_places=3,
                                    null=True, blank=True)
-    ts_kwelwegz = models.ForeignKey(TimeSeriesCache,
-                                    null=True, blank=True,
-                                    related_name='ts_kwelwegz_bucket')
+    ts_kwelwegz = models.CharField(max_length=128, null=True, blank=True)
     porosity = models.DecimalField(max_digits=10, decimal_places=3,
                                    null=True, blank=True)
     crop_evaporation_factor = models.DecimalField(max_digits=10,
