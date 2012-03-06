@@ -236,6 +236,7 @@ class AreaConfiguration(models.Model):
     incr_concentr_so4_seepage = models.DecimalField(
         max_digits=10, decimal_places=3,
         null=True, blank=True)
+    fews_meta_info = models.CharField(max_length=128, null=True, blank=True)
     supports_object_permissions = True
     data_set = models.ForeignKey(DataSet,
                                  null=True,
@@ -297,6 +298,7 @@ class Structure(models.Model):
         max_digits=10, decimal_places=3,
         null=True, blank=True)
     deleted = models.BooleanField(default=False)
+    fews_meta_info = models.CharField(max_length=128, null=True, blank=True)
     supports_object_permissions = True
     data_set = models.ForeignKey(DataSet,
                                  null=True,
@@ -473,6 +475,7 @@ class Bucket(models.Model):
                                                   decimal_places=3,
                                                   null=True, blank=True)
     deleted = models.BooleanField(default=False)
+    fews_meta_info = models.CharField(max_length=128, null=True, blank=True)
     supports_object_permissions = True
     data_set = models.ForeignKey(DataSet,
                                  null=True,
