@@ -248,9 +248,9 @@ class AreaConfiguration(models.Model):
 
 
 class StructureInOut(models.Model):
-    code = models.CharField(max_length=3,
-                            choices=STRUCTURE_IN_OUT)
+    code = models.CharField(max_length=3, choices=STRUCTURE_IN_OUT)
     index = models.IntegerField(max_length=1)
+    description = models.CharField(max_length=128, blank=True, null=True)
 
     def __unicode__(self):
         return "%s" % self.code

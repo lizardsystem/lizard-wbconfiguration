@@ -379,7 +379,7 @@ class WaterBalanceAreaObjectConfiguration(View):
 
     def exists_default_structure(self, area_configuration, in_out):
         """ Check and activate default structures. """
-        structures = Structure.objects.filter(in_out__code=in_out,
+        structures = Structure.objects.filter(in_out=in_out,
                                               area__id=area_configuration.id,
                                               is_computed=True)
         for structure in structures:
@@ -396,12 +396,10 @@ class WaterBalanceAreaObjectConfiguration(View):
 
         Arguments:
         area_configuration -- the object instance of AreaConfiguratin
-        in_out -- the string choices see above STUCTURE_IN_OUT
+        in_out -- instance of StructureInOut object
         """
-        names = {'in': "Peilhandhaving In defaul",
-                 'uit': "Peilhandhaving Uit default"}
         try:
-            structure = Structure(name=names[in_out.code],
+            structure = Structure(name=in_out.description,
                                   in_out=in_out,
                                   area=area_configuration,
                                   is_computed=True,
@@ -420,17 +418,13 @@ class WaterBalanceAreaObjectConfiguration(View):
         Create 2 defualt structures.
         """
         area_config = AreaConfiguration.objects.get(ident=object_id)
-        in_out = ('in', 'uit')
+        in_outs = StructureInOut.objects.all()
 
-        for item in in_out:
+        for item in in_outs:
             if self.check_amount_structures(area_config) == False:
                 break
             if not self.exists_default_structure(area_config, item):
-                try:
-                    inout_obj = StructureInOut.objects.get(code=item)
-                    self.create_default_structure(area_config, inout_obj)
-                except Exception as ex:
-                    logger.debug(','.join(map(str, ex.args)))
+                self.create_default_structure(area_config, item)
 
     def last_areaobject_codenumber(self, area_configuration, areaobject_class):
         """ Return code number of the last structure. """

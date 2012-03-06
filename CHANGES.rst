@@ -9,7 +9,10 @@ Changelog of lizard-wbconfiguration
 
 - Created timeseries fields as CharField.
 
-- Added 'fews_meta_info' field into AreaConfiguration, Structure, Bucket.
+- Added 'fews_meta_info' field into AreaConfiguration, Structure,
+  Bucket.
+
+- Added task to import areaconfigurations from dbf.
 
 
 0.1.8 (2012-02-13)
