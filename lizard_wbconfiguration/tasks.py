@@ -22,18 +22,17 @@ def import_dbf(fews_meta_info=None,
     """
     dbfimporter = DBFImporter()
     dbfimporter.fews_meta_info = fews_meta_info
-    dbfimporter.areas_filepath=areas_filepath,
-    dbfimporter.buckets_filepath=buckets_filepath,
-    dbfimporter.structures_filepath=structures_filepath
+    dbfimporter.areas_filepath = areas_filepath,
+    dbfimporter.buckets_filepath = buckets_filepath,
+    dbfimporter.structures_filepath = structures_filepath
     dbfimporter.import_dbf()
     return "<<import dbf>>"
 
 
 def run_importdbf_task():
     from celery.execute import send_task
-    kwargs = {fews_meta_info="INFO",
-              areas_filepath=None,
-              buckets_filepath=None,
-              structures_filepath=None}
+    kwargs = {"fews_meta_info": "INFO",
+              "areas_filepath": None,
+              "buckets_filepath": None,
+              "structures_filepath": None}
     send_task("lizard_wbconfiguration.tasks.import_dbf", kwargs=kwargs)
-
