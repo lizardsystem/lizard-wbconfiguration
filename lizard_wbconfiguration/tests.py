@@ -29,8 +29,8 @@ class StructureTest(TestCase):
 
     def create_structure_in_out(self):
         """Add in/out objects into StructureInOut."""
-        StructureInOut(code='in', index=1, decsription="In default").save()
-        StructureInOut(code='uit', index=0, decsription="Uit default").save()
+        StructureInOut(code='in', index=1, description="In default").save()
+        StructureInOut(code='uit', index=0, description="Uit default").save()
 
     def create_areaconfiguration(self, area):
         try:
