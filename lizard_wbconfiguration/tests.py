@@ -29,9 +29,8 @@ class StructureTest(TestCase):
 
     def create_structure_in_out(self):
         """Add in/out objects into StructureInOut."""
-        in_out = ('in', 'uit')
-        for item in in_out:
-            StructureInOut(code=item, index=in_out.index(item)).save()
+        StructureInOut(code='in', index=1, decsription="In default").save()
+        StructureInOut(code='uit', index=0, decsription="Uit default").save()
 
     def create_areaconfiguration(self, area):
         try:
@@ -45,12 +44,11 @@ class StructureTest(TestCase):
             return False
 
     def test_create_structures(self):
-        in_out = ['in', 'uit']
         self.create_area()
         self.create_areaconfiguration(self.area)
         area_object_config = WaterBalanceAreaObjectConfiguration()
         self.create_structure_in_out()
-        inout_obj = StructureInOut.objects.get(code=in_out[0])
+        inout_obj = StructureInOut.objects.get(code='uit')
         area_object_config.create_default_structure(
             self.area_configuration, inout_obj)
         is_created = area_object_config.exists_default_structure(
