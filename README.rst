@@ -55,7 +55,7 @@ for example: wb_2100__4
 Configuration
 ---------------------------------
 To configure table 'Gebied eigenschappen' and 'Openwater' use form
-'Area grid configuration'.
+'Area grid configuration' of admin interface.
 
 To configure dbf export use admin form 'Dbf configuration'.
 
@@ -64,7 +64,7 @@ form 'Wb configuration dbf mappings'.
 
 Export wbconfigurations to dbf  as periodic task
 -----------------------------------
-Enable 'create_wb_dbfs' periodic task in admin by Djcelery.
+Schedule 'lizard_wbconfiguration.tasks.export_to_dbf' periodic task in admin by Djcelery.
 
 OR use management command
 

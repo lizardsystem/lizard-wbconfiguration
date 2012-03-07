@@ -6,7 +6,9 @@ from lizard_wbconfiguration.models import AreaField
 from lizard_wbconfiguration.models import AreaGridFieldConfiguration
 from lizard_wbconfiguration.models import WBConfigurationDBFMapping
 from lizard_wbconfiguration.models import DBFConfiguration
+from lizard_wbconfiguration.models import AreaConfiguration
 from lizard_wbconfiguration.models import Structure
+from lizard_wbconfiguration.models import Bucket
 from lizard_wbconfiguration.models import StructureInOut
 
 from lizard_security.admin import SecurityFilteredAdmin
@@ -54,7 +56,9 @@ class WBConfigurationDBFMappingAdmin(admin.ModelAdmin):
 admin.site.register(DBFConfiguration)
 admin.site.register(WBConfigurationDBFMapping, WBConfigurationDBFMappingAdmin)
 admin.site.register(BucketsType)
-admin.site.register(AreaField)
+#admin.site.register(AreaField)
 admin.site.register(AreaGridConfiguration, AreaGridConfigurationAdmin)
 admin.site.register(Structure, SecurityFilteredAdmin)
+admin.site.register(Bucket, SecurityFilteredAdmin)
+admin.site.register(AreaConfiguration, SecurityFilteredAdmin)
 admin.site.register(StructureInOut)

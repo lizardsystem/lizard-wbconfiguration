@@ -35,12 +35,6 @@ class DBFImporter(View):
         self.read_only_fields = ('id', 'ident', 'data_set', 'area',
                                  'x', 'y', 'name', 'code')
 
-    def test_filepathes(self):
-        """Set local filepath to test."""
-        self.areas_filepath = "/home/alexandr/Desktop/vss/DeltaresExample/AanAfvoer_WaterbalansDeltares.dbf"
-        self.buckets_filepath = "/home/alexandr/Desktop/vss/DeltaresExample/GrondwatergebiedenDeltares.dbf"
-        self.structures_filepath = "/home/alexandr/Desktop/vss/DeltaresExample/PumpingstationsDeltares.dbf"
-
     def import_dbf(self):
         """
         Run imports for 'aanafvoergebieden',

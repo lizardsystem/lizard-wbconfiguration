@@ -14,6 +14,8 @@ Changelog of lizard-wbconfiguration
 
 - Added task to import areaconfigurations from dbf.
 
+- Created fixture lizard_wbconfiguration.json (local).
+
 
 0.1.8 (2012-02-13)
 ------------------
