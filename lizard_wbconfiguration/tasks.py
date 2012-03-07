@@ -67,14 +67,12 @@ def add():
 
 def run_export_task():
     """Run export_to_dbf task for HHNK."""
-    from celery.execute import send_task
     kwargs = {"data_set": "HHNK"}
     export_to_dbf.delay(**kwargs)
 
 
 def run_importdbf_task():
     """Run import_dbf task."""
-    from celery.execute import send_task
     kwargs = {"fews_meta_info": "INFO2",
               "areas_filepath": "/tmp/aanafvoer_waterbalans.dbf",
               "buckets_filepath": "/tmp/grondwatergebieden.dbf",
