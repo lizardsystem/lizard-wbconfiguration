@@ -43,7 +43,7 @@ def import_dbf(fews_meta_info=None,
 
 
 @task()
-def validate_all(self):
+def validate_all():
     """Import all currently available configurations.
 
     This method is a spike to see whether the import of water balance
@@ -59,7 +59,7 @@ def validate_all(self):
     """
     retriever = create_configurations_retriever()
     for configuration in retriever.retrieve_configurations():
-        zip_file = ZipFile(configuration.zip_file_name)
+        zip_file = ZipFile(configuration.zip_file_path)
         zip_file.extract('aanafvoer_waterbalans.dbf', '/tmp')
         zip_file.extract('grondwatergebieden.dbf', '/tmp')
         zip_file.extract('pumpingstations.dbf', '/tmp')

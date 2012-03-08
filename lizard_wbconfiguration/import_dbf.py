@@ -21,7 +21,7 @@ from lizard_wbconfiguration.models import WBConfigurationDBFMapping
 from lizard_area.models import Area
 
 
-class DBFImporter(View):
+class DBFImporter(object):
     """
     Import wb areaconfigurations from dbf files.
     """
