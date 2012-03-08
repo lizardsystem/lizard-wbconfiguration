@@ -20,6 +20,7 @@ install_requires = [
     'lizard-geo',
     'lizard-fewsnorm',
     'lizard-esf',
+    'lizard-portal',
     'lizard-ui >= 3.0',
     'pkginfo',
     'dbfpy',
