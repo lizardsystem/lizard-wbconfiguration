@@ -1,12 +1,21 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# pylint: disable=C0111
+
+# Copyright (c) 2012 Nelen & Schuurmans.  GPL licensed, see LICENSE.rst.
+
+import logging
+from zipfile import ZipFile
+
 from celery.task import task
 from django.core import management
+
+from lizard_portal.configurations_retriever import create_configurations_retriever
 
 from lizard_wbconfiguration.import_dbf import DBFImporter
 from lizard_wbconfiguration.api.views import  WaterBalanceDBF
 from lizard_wbconfiguration.models import DBFConfiguration
-
-import logging
-
 
 @task()
 def export_wbconfigurations_to_dbf():
@@ -31,6 +40,35 @@ def import_dbf(fews_meta_info=None,
     dbfimporter.structures_filepath = structures_filepath
     dbfimporter.import_dbf()
     return "<<import dbf>>"
+
+
+@task()
+def validate_all(self):
+    """Import all currently available configurations.
+
+    This method is a spike to see whether the import of water balance
+    configurations actually works. As such, it is clearly a work in progress:
+
+      - there are no unit tests;
+      - it only supports water balance configurations;
+      - dbf files are extracted to a hard-coded directory;
+      - dbf files are not removed after the import;
+      - zip files are not removed after the import;
+      - there is no error handling.
+
+    """
+    retriever = create_configurations_retriever()
+    for configuration in retriever.retrieve_configurations():
+        zip_file = ZipFile(configuration.zip_file_name)
+        zip_file.extract('aanafvoer_waterbalans.dbf', '/tmp')
+        zip_file.extract('grondwatergebieden.dbf', '/tmp')
+        zip_file.extract('pumpingstations.dbf', '/tmp')
+        dbfimporter = DBFImporter()
+        dbfimporter.fews_meta_info = configuration.meta_info
+        dbfimporter.areas_filepath = '/tmp/aanafvoer_waterbalans.dbf'
+        dbfimporter.buckets_filepath = '/tmp/grondwatergebieden.dbf'
+        dbfimporter.structures_filepath = '/tmp/pumpingstations.dbf'
+        dbfimporter.import_dbf()
 
 
 @task()
