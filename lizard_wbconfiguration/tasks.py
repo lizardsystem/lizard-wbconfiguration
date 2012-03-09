@@ -105,7 +105,7 @@ def add():
 
 def run_export_task():
     """Run export_to_dbf task for HHNK."""
-    kwargs = {"data_set": "HHNK"}
+    kwargs = {"data_set": "Waternet"}
     export_to_dbf.delay(**kwargs)
 
 

@@ -67,7 +67,6 @@ class DBFImporter(object):
             value = rec[mapping.dbffield_name]
             model_field = model_object._meta.get_field_by_name(
                 mapping.wbfield_name)[0]
-
             if isinstance(value, float) and isinstance(
                 model_field, DecimalField):
                 return Decimal(str(value))
@@ -87,6 +86,7 @@ class DBFImporter(object):
                                 value))
                         return
                     return structure_inout[0]
+            return value
         except FieldDoesNotExist as ex:
             self.logger.error(','.join(map(str, ex.args)))
         except ValueError as ex:
