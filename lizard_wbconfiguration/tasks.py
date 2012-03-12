@@ -101,11 +101,11 @@ def export_to_dbf(data_set=None):
 @task()
 def export_aanafvoergebieden(data_set=None):
     """
-    Export water balance configurations into dbf.
+    Export geo info of 'aanafvoergebieden' into dbf.
     """
     logger = logging.getLogger(__name__)
     dbfexporter = WaterBalanceDBF()
-    dbf_configurations = DBFConfiguration.objects.filter('Area')
+    dbf_configurations = DBFConfiguration.objects.filter(dbf_type='Area')
     if data_set is not None:
         dbf_configurations = dbf_configurations.filter(data_set__name=data_set)
     logger.info("%s water balance configurations to export." % len(
@@ -115,7 +115,7 @@ def export_aanafvoergebieden(data_set=None):
         save_to = dbf_configuration.save_to
         filename = dbf_configuration.filename
         if dbf_configuration.dbf_type == 'Area':
-            dbfexporter.export_areaconfiguration(owner, save_to, filename)
+            dbfexporter.export_aanafvoergebieden(owner, save_to, filename)
         else:
             logger.warning(
                 "Export id='%s' of 'aanafvoergebieden' is not properly configured." % (

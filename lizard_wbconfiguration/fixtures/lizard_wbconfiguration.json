@@ -1404,19 +1404,6 @@
     }
   },
   {
-    "pk": 159,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 1,
-      "dbffield_type": "N",
-      "wbfield_name": "id",
-      "dbffield_length": 9,
-      "dbffield_name": "gaf_id",
-      "model_name": "Area",
-      "dbffield_decimals": null
-    }
-  },
-  {
     "pk": 160,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
@@ -1447,7 +1434,7 @@
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
       "index": 4,
-      "dbffield_type": "C",
+      "dbffield_type": "N",
       "wbfield_name": "surface",
       "dbffield_length": 9,
       "dbffield_name": "gafoppvl",
@@ -1595,6 +1582,19 @@
       "dbffield_length": 128,
       "dbffield_name": "l_chlor",
       "model_name": "AreaConfiguration",
+      "dbffield_decimals": null
+    }
+  },
+  {
+    "pk": 175,
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
+    "fields": {
+      "index": 0,
+      "dbffield_type": "C",
+      "wbfield_name": "code",
+      "dbffield_length": 64,
+      "dbffield_name": "id",
+      "model_name": "Bucket",
       "dbffield_decimals": null
     }
   },

@@ -10,6 +10,7 @@ from django.utils import simplejson as json
 from django.db.models.fields import DateTimeField
 from django.db.models.fields import BooleanField
 from django.contrib.gis.geos import MultiPolygon
+from django.contrib.gis.geos import Polygon
 from django.contrib.gis.geos.point import Point
 
 from djangorestframework.views import View
@@ -263,6 +264,8 @@ class WaterBalanceDBF(View):
         elif isinstance(value, StructureInOut):
             value = value.index
         elif isinstance(value, MultiPolygon):
+            value = self.get_centrpoint(value)
+        elif isinstance(value, Polygon):
             value = self.get_centrpoint(value)
         elif isinstance(value, DataSet):
             value = str(value.name)
