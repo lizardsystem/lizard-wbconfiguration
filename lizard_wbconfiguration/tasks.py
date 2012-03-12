@@ -78,7 +78,7 @@ def export_to_dbf(data_set=None):
     """
     logger = logging.getLogger(__name__)
     dbfexporter = WaterBalanceDBF()
-    dbf_configurations = DBFConfiguration.objects.all()
+    dbf_configurations = DBFConfiguration.objects.exclude(dbf_type='Area')
     if data_set is not None:
         dbf_configurations = dbf_configurations.filter(data_set__name=data_set)
     logger.info("%s water balance configurations to export." % len(
@@ -95,6 +95,31 @@ def export_to_dbf(data_set=None):
             dbfexporter.export_structureconfiguration(owner, save_to, filename)
         else:
             logger.debug("UNKNOWN source %s" % dbf_configuration.dbf_type)
+    logger.info("Export water balance configurations is finished.")
+
+
+@task()
+def export_aanafvoergebieden(data_set=None):
+    """
+    Export water balance configurations into dbf.
+    """
+    logger = logging.getLogger(__name__)
+    dbfexporter = WaterBalanceDBF()
+    dbf_configurations = DBFConfiguration.objects.filter('Area')
+    if data_set is not None:
+        dbf_configurations = dbf_configurations.filter(data_set__name=data_set)
+    logger.info("%s water balance configurations to export." % len(
+            dbf_configurations))
+    for dbf_configuration in dbf_configurations:
+        owner = dbf_configuration.data_set
+        save_to = dbf_configuration.save_to
+        filename = dbf_configuration.filename
+        if dbf_configuration.dbf_type == 'Area':
+            dbfexporter.export_areaconfiguration(owner, save_to, filename)
+        else:
+            logger.warning(
+                "Export id='%s' of 'aanafvoergebieden' is not properly configured." % (
+                    dbf_configuration.id))
     logger.info("Export water balance configurations is finished.")
 
 
