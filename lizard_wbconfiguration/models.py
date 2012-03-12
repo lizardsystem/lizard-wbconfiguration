@@ -134,107 +134,108 @@ class AreaConfiguration(models.Model):
                                     verbose_name="Start date")
     ts_precipitation = models.CharField(max_length=128, null=True, blank=True)
     ts_evaporation = models.CharField(max_length=128, null=True, blank=True)
-    max_intake = models.DecimalField(max_digits=10, decimal_places=3,
+    max_intake = models.DecimalField(max_digits=10, decimal_places=2,
                                      null=True, blank=True)
-    max_outtake = models.DecimalField(max_digits=10, decimal_places=3,
+    max_outtake = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=True, blank=True)
     ts_concentr_chloride_1 = models.CharField(
-        max_length=128, null=True, blank=True)
+        max_length=10, null=True, blank=True)
     ts_concentr_chloride_2 = models.CharField(
-        max_length=128, null=True, blank=True)
-    surface = models.DecimalField(max_digits=10, decimal_places=1,
+        max_length=10, null=True, blank=True)
+    surface = models.DecimalField(max_digits=10, decimal_places=0,
                                   null=True, blank=True)
-    bottom_height = models.DecimalField(max_digits=10, decimal_places=3,
+    bottom_height = models.DecimalField(max_digits=10, decimal_places=2,
                                         null=True, blank=True)
     ts_water_level = models.CharField(max_length=128, null=True, blank=True)
     kwel_is_ts = models.BooleanField()
-    kwel = models.DecimalField(max_digits=10, decimal_places=3,
+    kwel = models.DecimalField(max_digits=10, decimal_places=2,
                                null=True, blank=True)
-    ts_kwel = models.CharField(max_length=128, null=True, blank=True)
+    ts_kwel = models.CharField(max_length=10, null=True, blank=True)
     wegz_is_ts = models.BooleanField()
-    wegz = models.DecimalField(max_digits=10, decimal_places=3,
+    wegz = models.DecimalField(max_digits=10, decimal_places=2,
                                null=True, blank=True)
-    ts_wegz = models.CharField(max_length=128, null=True, blank=True)
+    ts_wegz = models.CharField(max_length=10, null=True, blank=True)
     peilh_issp = models.BooleanField()
     sp_is_ts = models.BooleanField()
-    ts_sp = models.CharField(max_length=128, null=True, blank=True)
-    winterp = models.DecimalField(max_digits=10, decimal_places=3,
+    ts_sp = models.CharField(max_length=10, null=True, blank=True)
+    winterp = models.DecimalField(max_digits=6, decimal_places=2,
                                   null=True, blank=True)
-    lentep = models.DecimalField(max_digits=10, decimal_places=3,
+    lentep = models.DecimalField(max_digits=6, decimal_places=2,
                                  null=True, blank=True)
-    zomerp = models.DecimalField(max_digits=10, decimal_places=3,
+    zomerp = models.DecimalField(max_digits=6, decimal_places=2,
                                  null=True, blank=True)
-    herfstp = models.DecimalField(max_digits=10, decimal_places=3,
+    herfstp = models.DecimalField(max_digits=6, decimal_places=2,
                                   null=True, blank=True)
     start_wp = models.DateTimeField(null=True, blank=True)
     start_lp = models.DateTimeField(null=True, blank=True)
     start_zp = models.DateTimeField(null=True, blank=True)
     start_hp = models.DateTimeField(null=True, blank=True)
-    marge_ond = models.DecimalField(max_digits=10, decimal_places=3,
+    marge_ond = models.DecimalField(max_digits=10, decimal_places=2,
                                     null=True, blank=True)
-    marge_bov = models.DecimalField(max_digits=10, decimal_places=3,
+    marge_bov = models.DecimalField(max_digits=10, decimal_places=2,
                                     null=True, blank=True)
-    nutc_min_1 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_min_1 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    nutc_inc_1 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_inc_1 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    nutc_min_2 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_min_2 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    nutc_inc_2 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_inc_2 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    nutc_min_3 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_min_3 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    nutc_inc_3 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_inc_3 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    nutc_min_4 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_min_4 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    nutc_inc_4 = models.DecimalField(max_digits=10, decimal_places=3,
+    nutc_inc_4 = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    ini_con_cl = models.DecimalField(max_digits=10, decimal_places=3,
+    ini_con_cl = models.DecimalField(max_digits=8, decimal_places=2,
                                      null=True, blank=True)
-    init_water_level = models.DecimalField(max_digits=10, decimal_places=3,
+    ts_cl = models.CharField(max_length=10, null=True, blank=True)
+    init_water_level = models.DecimalField(max_digits=8, decimal_places=2,
                                            null=True, blank=True)
     concentr_chloride_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     concentr_chloride_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     min_concentr_phosphate_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     min_concentr_phopshate_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     incr_concentr_phosphate_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     incr_concentr_phosphate_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     min_concentr_nitrogyn_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     min_concentr_nitrogyn_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     incr_concentr_nitrogyn_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     incr_concentr_nitrogyn_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     min_concentr_so4_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     min_concentr_so4_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     incr_concentr_so4_precipitation = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     incr_concentr_so4_seepage = models.DecimalField(
-        max_digits=10, decimal_places=3,
+        max_digits=8, decimal_places=2,
         null=True, blank=True)
     fews_meta_info = models.CharField(max_length=128, null=True, blank=True)
     supports_object_permissions = True

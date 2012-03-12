@@ -16,6 +16,8 @@ Changelog of lizard-wbconfiguration
 
 - Created fixture lizard_wbconfiguration.json (local).
 
+- Changes on AreaConfiguration models for fews.
+
 
 0.1.8 (2012-02-13)
 ------------------

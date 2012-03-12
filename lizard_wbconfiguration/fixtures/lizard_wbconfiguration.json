@@ -3,7 +3,7 @@
     "pk": 3,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 2,
+      "index": 0,
       "dbffield_type": "C",
       "wbfield_name": "ident",
       "dbffield_length": 64,
@@ -16,7 +16,7 @@
     "pk": 4,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 3,
+      "index": 1,
       "dbffield_type": "C",
       "wbfield_name": "name",
       "dbffield_length": 128,
@@ -26,118 +26,66 @@
     }
   },
   {
-    "pk": 6,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": null,
-      "dbffield_type": "C",
-      "wbfield_name": "ts_precipitation",
-      "dbffield_length": 10,
-      "dbffield_name": "ts_neersla",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
-    "pk": 7,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": null,
-      "dbffield_type": "C",
-      "wbfield_name": "ts_evaporation",
-      "dbffield_length": 10,
-      "dbffield_name": "ts_evap",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
     "pk": 8,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 4,
+      "index": 6,
       "dbffield_type": "N",
       "wbfield_name": "max_intake",
-      "dbffield_length": 9,
+      "dbffield_length": 10,
       "dbffield_name": "max_inl",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 9,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 5,
+      "index": 7,
       "dbffield_type": "N",
       "wbfield_name": "max_outtake",
-      "dbffield_length": 9,
+      "dbffield_length": 10,
       "dbffield_name": "max_uitl",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
-    }
-  },
-  {
-    "pk": 10,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": null,
-      "dbffield_type": "C",
-      "wbfield_name": "ts_concentr_chloride_1",
-      "dbffield_length": 10,
-      "dbffield_name": "ts_refcl1",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
-    "pk": 11,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": null,
-      "dbffield_type": "C",
-      "wbfield_name": "ts_concentr_chloride_2",
-      "dbffield_length": 10,
-      "dbffield_name": "ts_refcl2",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 12,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 6,
+      "index": 8,
       "dbffield_type": "N",
       "wbfield_name": "surface",
       "dbffield_length": 10,
       "dbffield_name": "oppervl",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 0
     }
   },
   {
     "pk": 13,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 7,
+      "index": 9,
       "dbffield_type": "N",
       "wbfield_name": "bottom_height",
       "dbffield_length": 10,
       "dbffield_name": "bodemh",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 14,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": null,
+      "index": 2,
       "dbffield_type": "C",
       "wbfield_name": "ts_water_level",
       "dbffield_length": 10,
-      "dbffield_name": "ts_refwp",
+      "dbffield_name": "l_wathte",
       "model_name": "AreaConfiguration",
       "dbffield_decimals": null
     }
@@ -146,37 +94,37 @@
     "pk": 15,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 8,
+      "index": 10,
       "dbffield_type": "N",
       "wbfield_name": "kwel_is_ts",
       "dbffield_length": 1,
       "dbffield_name": "kwel_ts",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
+      "dbffield_decimals": 0
     }
   },
   {
     "pk": 16,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 9,
+      "index": 11,
       "dbffield_type": "N",
       "wbfield_name": "kwel",
-      "dbffield_length": 5,
+      "dbffield_length": 10,
       "dbffield_name": "kwel",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 17,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": null,
+      "index": 4,
       "dbffield_type": "C",
       "wbfield_name": "ts_kwel",
       "dbffield_length": 10,
-      "dbffield_name": "ts_kwel",
+      "dbffield_name": "l_kwel",
       "model_name": "AreaConfiguration",
       "dbffield_decimals": null
     }
@@ -185,37 +133,37 @@
     "pk": 18,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 10,
+      "index": 12,
       "dbffield_type": "N",
       "wbfield_name": "wegz_is_ts",
       "dbffield_length": 1,
       "dbffield_name": "wegz_ts",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
+      "dbffield_decimals": 0
     }
   },
   {
     "pk": 19,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 11,
+      "index": 13,
       "dbffield_type": "N",
       "wbfield_name": "wegz",
-      "dbffield_length": 5,
+      "dbffield_length": 10,
       "dbffield_name": "wegz",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 20,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": null,
+      "index": 3,
       "dbffield_type": "C",
       "wbfield_name": "ts_wegz",
       "dbffield_length": 10,
-      "dbffield_name": "ts_wegz",
+      "dbffield_name": "l_wegz",
       "model_name": "AreaConfiguration",
       "dbffield_decimals": null
     }
@@ -224,429 +172,338 @@
     "pk": 21,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 12,
+      "index": 14,
       "dbffield_type": "N",
       "wbfield_name": "peilh_issp",
       "dbffield_length": 1,
       "dbffield_name": "peilissp",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
-    "pk": 22,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 38,
-      "dbffield_type": "N",
-      "wbfield_name": "sp_is_ts",
-      "dbffield_length": 1,
-      "dbffield_name": "sp_is_ts",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
-    "pk": 23,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 39,
-      "dbffield_type": "C",
-      "wbfield_name": "ts_sp",
-      "dbffield_length": 100,
-      "dbffield_name": "ts_sp",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
+      "dbffield_decimals": 0
     }
   },
   {
     "pk": 24,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 13,
+      "index": 15,
       "dbffield_type": "N",
       "wbfield_name": "winterp",
-      "dbffield_length": 5,
+      "dbffield_length": 6,
       "dbffield_name": "winterp",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 25,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 14,
+      "index": 16,
       "dbffield_type": "N",
       "wbfield_name": "lentep",
-      "dbffield_length": 5,
+      "dbffield_length": 6,
       "dbffield_name": "lentep",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 26,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 15,
+      "index": 17,
       "dbffield_type": "N",
       "wbfield_name": "zomerp",
-      "dbffield_length": 5,
+      "dbffield_length": 6,
       "dbffield_name": "zomerp",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 27,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 16,
+      "index": 18,
       "dbffield_type": "N",
       "wbfield_name": "herfstp",
-      "dbffield_length": 5,
+      "dbffield_length": 6,
       "dbffield_name": "herfstp",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
-    }
-  },
-  {
-    "pk": 28,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 40,
-      "dbffield_type": "D",
-      "wbfield_name": "start_wp",
-      "dbffield_length": null,
-      "dbffield_name": "start_wp",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
-    "pk": 29,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 41,
-      "dbffield_type": "D",
-      "wbfield_name": "start_lp",
-      "dbffield_length": null,
-      "dbffield_name": "start_lp",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
-    "pk": 30,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 42,
-      "dbffield_type": "D",
-      "wbfield_name": "start_zp",
-      "dbffield_length": null,
-      "dbffield_name": "start_zp",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
-    }
-  },
-  {
-    "pk": 31,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 43,
-      "dbffield_type": "D",
-      "wbfield_name": "start_hp",
-      "dbffield_length": null,
-      "dbffield_name": "start_hp",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": null
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 32,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 17,
+      "index": 19,
       "dbffield_type": "N",
       "wbfield_name": "marge_ond",
-      "dbffield_length": 5,
+      "dbffield_length": 10,
       "dbffield_name": "marge_on",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 33,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 18,
+      "index": 20,
       "dbffield_type": "N",
       "wbfield_name": "marge_bov",
-      "dbffield_length": 5,
+      "dbffield_length": 10,
       "dbffield_name": "marge_bo",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 34,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 19,
+      "index": 21,
       "dbffield_type": "N",
       "wbfield_name": "nutc_min_1",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcmin1",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 35,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 20,
+      "index": 22,
       "dbffield_type": "N",
       "wbfield_name": "nutc_inc_1",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcinc1",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 36,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 21,
+      "index": 23,
       "dbffield_type": "N",
       "wbfield_name": "nutc_min_2",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcmin2",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 37,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 22,
+      "index": 24,
       "dbffield_type": "N",
       "wbfield_name": "nutc_inc_2",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcinc2",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 38,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 23,
+      "index": 25,
       "dbffield_type": "N",
       "wbfield_name": "nutc_min_3",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcmin3",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 39,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 24,
+      "index": 26,
       "dbffield_type": "N",
       "wbfield_name": "nutc_inc_3",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcinc3",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 40,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 25,
+      "index": 27,
       "dbffield_type": "N",
       "wbfield_name": "nutc_min_4",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcmin4",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 41,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 26,
+      "index": 28,
       "dbffield_type": "N",
       "wbfield_name": "nutc_inc_4",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nutcinc4",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 42,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 27,
+      "index": 29,
       "dbffield_type": "N",
       "wbfield_name": "ini_con_cl",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "cl_conc",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
-    }
-  },
-  {
-    "pk": 43,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": null,
-      "dbffield_type": "N",
-      "wbfield_name": "init_water_level",
-      "dbffield_length": 5,
-      "dbffield_name": "ini_wp",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 44,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 28,
+      "index": 30,
       "dbffield_type": "N",
       "wbfield_name": "concentr_chloride_precipitation",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nsconcl",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 45,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 29,
+      "index": 31,
       "dbffield_type": "N",
       "wbfield_name": "concentr_chloride_seepage",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "kwconcl",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 46,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 30,
+      "index": 32,
       "dbffield_type": "N",
       "wbfield_name": "min_concentr_phosphate_precipitation",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nsconpm",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 47,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 31,
+      "index": 33,
       "dbffield_type": "N",
       "wbfield_name": "min_concentr_phopshate_seepage",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "kwconpm",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 48,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 32,
+      "index": 34,
       "dbffield_type": "N",
       "wbfield_name": "incr_concentr_phosphate_precipitation",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nsconpi",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 49,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 33,
+      "index": 35,
       "dbffield_type": "N",
       "wbfield_name": "incr_concentr_phosphate_seepage",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "kwconpi",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 50,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 34,
+      "index": 36,
       "dbffield_type": "N",
       "wbfield_name": "min_concentr_nitrogyn_precipitation",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nsconnm",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 51,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 35,
+      "index": 37,
       "dbffield_type": "N",
       "wbfield_name": "min_concentr_nitrogyn_seepage",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "kwconnm",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 52,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 36,
+      "index": 38,
       "dbffield_type": "N",
       "wbfield_name": "incr_concentr_nitrogyn_precipitation",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "nsconni",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 53,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 37,
+      "index": 39,
       "dbffield_type": "N",
       "wbfield_name": "incr_concentr_nitrogyn_seepage",
-      "dbffield_length": 5,
+      "dbffield_length": 8,
       "dbffield_name": "kwconni",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
@@ -1469,32 +1326,6 @@
     }
   },
   {
-    "pk": 144,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 45,
-      "dbffield_type": "N",
-      "wbfield_name": "x",
-      "dbffield_length": 10,
-      "dbffield_name": "x",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": 9
-    }
-  },
-  {
-    "pk": 145,
-    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
-    "fields": {
-      "index": 46,
-      "dbffield_type": "N",
-      "wbfield_name": "y",
-      "dbffield_length": 10,
-      "dbffield_name": "y",
-      "model_name": "AreaConfiguration",
-      "dbffield_decimals": 9
-    }
-  },
-  {
     "pk": 146,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
@@ -1524,52 +1355,52 @@
     "pk": 149,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 47,
+      "index": 40,
       "dbffield_type": "N",
       "wbfield_name": "min_concentr_so4_precipitation",
-      "dbffield_length": 5,
-      "dbffield_name": "nsconso4m",
+      "dbffield_length": 8,
+      "dbffield_name": "nsconsm",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 150,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 48,
+      "index": 41,
       "dbffield_type": "N",
       "wbfield_name": "min_concentr_so4_seepage",
-      "dbffield_length": 5,
-      "dbffield_name": "kwconso4m",
+      "dbffield_length": 8,
+      "dbffield_name": "kwconsm",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 151,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 49,
+      "index": 42,
       "dbffield_type": "N",
       "wbfield_name": "incr_concentr_so4_precipitation",
-      "dbffield_length": 5,
-      "dbffield_name": "nsconso4i",
+      "dbffield_length": 8,
+      "dbffield_name": "nsconsi",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
     "pk": 152,
     "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
     "fields": {
-      "index": 50,
+      "index": 43,
       "dbffield_type": "N",
       "wbfield_name": "incr_concentr_so4_seepage",
-      "dbffield_length": 5,
-      "dbffield_name": "kwconso4i",
+      "dbffield_length": 8,
+      "dbffield_name": "kwconsi",
       "model_name": "AreaConfiguration",
-      "dbffield_decimals": 3
+      "dbffield_decimals": 2
     }
   },
   {
@@ -1830,6 +1661,19 @@
       "dbffield_name": "stovq",
       "model_name": "Bucket",
       "dbffield_decimals": 3
+    }
+  },
+  {
+    "pk": 174,
+    "model": "lizard_wbconfiguration.wbconfigurationdbfmapping",
+    "fields": {
+      "index": 5,
+      "dbffield_type": "C",
+      "wbfield_name": "ts_cl",
+      "dbffield_length": 10,
+      "dbffield_name": "l_chlor",
+      "model_name": "AreaConfiguration",
+      "dbffield_decimals": null
     }
   },
   {
@@ -2496,31 +2340,26 @@
     }
   },
   {
-    "pk": 40,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
+    "pk": "lizard_wbconfiguration.areaconfiguration.ts_cl",
+    "model": "lizard_wbconfiguration.areafield",
     "fields": {
-      "field_type": "text",
-      "display_name": "Begin winterpeil",
-      "ts_parameter": null,
-      "sequence": 27,
-      "editable": true,
-      "visible": true,
-      "grid": 1,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.start_wp"
+      "field_name": "ts_cl",
+      "app_name": "lizard_wbconfiguration",
+      "model_name": "areaconfiguration"
     }
   },
   {
-    "pk": 41,
+    "pk": 70,
     "model": "lizard_wbconfiguration.areagridfieldconfiguration",
     "fields": {
       "field_type": "text",
-      "display_name": "Begin lentepeil",
-      "ts_parameter": null,
-      "sequence": 28,
+      "display_name": "Tijdserie Cl concentratie ",
+      "ts_parameter": "",
+      "sequence": 42,
       "editable": true,
       "visible": true,
       "grid": 1,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.start_lp"
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_cl"
     }
   },
   {
@@ -2549,34 +2388,6 @@
       "visible": true,
       "grid": 1,
       "field_name": "lizard_wbconfiguration.areaconfiguration.kwel_is_ts"
-    }
-  },
-  {
-    "pk": 42,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
-    "fields": {
-      "field_type": "text",
-      "display_name": "Begin zomerpeil",
-      "ts_parameter": null,
-      "sequence": 29,
-      "editable": true,
-      "visible": true,
-      "grid": 1,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.start_zp"
-    }
-  },
-  {
-    "pk": 43,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
-    "fields": {
-      "field_type": "text",
-      "display_name": "Begin herfstpeil",
-      "ts_parameter": null,
-      "sequence": 30,
-      "editable": true,
-      "visible": true,
-      "grid": 1,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.start_hp"
     }
   },
   {
@@ -2678,6 +2489,20 @@
     }
   },
   {
+    "pk": 54,
+    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
+    "fields": {
+      "field_type": "float",
+      "display_name": "Initiele Cl concentratie [g/m3]",
+      "ts_parameter": "",
+      "sequence": 41,
+      "editable": true,
+      "visible": true,
+      "grid": 1,
+      "field_name": "lizard_wbconfiguration.areaconfiguration.ini_con_cl"
+    }
+  },
+  {
     "pk": 10,
     "model": "lizard_wbconfiguration.areagridfieldconfiguration",
     "fields": {
@@ -2703,62 +2528,6 @@
       "visible": true,
       "grid": 2,
       "field_name": "lizard_wbconfiguration.areaconfiguration.name"
-    }
-  },
-  {
-    "pk": 13,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
-    "fields": {
-      "field_type": "text",
-      "display_name": "Neerslag",
-      "ts_parameter": "NEERSG",
-      "sequence": 4,
-      "editable": true,
-      "visible": true,
-      "grid": 2,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_precipitation"
-    }
-  },
-  {
-    "pk": 14,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
-    "fields": {
-      "field_type": "text",
-      "display_name": "Verdamping",
-      "ts_parameter": "VERDPG",
-      "sequence": 5,
-      "editable": true,
-      "visible": true,
-      "grid": 2,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_evaporation"
-    }
-  },
-  {
-    "pk": 21,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
-    "fields": {
-      "field_type": "text",
-      "display_name": "Tijdserie chloride meetreeks 1",
-      "ts_parameter": "CL",
-      "sequence": 8,
-      "editable": true,
-      "visible": true,
-      "grid": 2,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_concentr_chloride_1"
-    }
-  },
-  {
-    "pk": 22,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
-    "fields": {
-      "field_type": "text",
-      "display_name": "Tijdserie chloride meetreeks 2",
-      "ts_parameter": "CL",
-      "sequence": 9,
-      "editable": true,
-      "visible": true,
-      "grid": 2,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.ts_concentr_chloride_2"
     }
   },
   {
@@ -2843,20 +2612,6 @@
       "visible": true,
       "grid": 2,
       "field_name": "lizard_wbconfiguration.areaconfiguration.nutc_inc_4"
-    }
-  },
-  {
-    "pk": 54,
-    "model": "lizard_wbconfiguration.areagridfieldconfiguration",
-    "fields": {
-      "field_type": "float",
-      "display_name": "Initiele Cl concentratie [g/m3]",
-      "ts_parameter": "",
-      "sequence": 41,
-      "editable": true,
-      "visible": true,
-      "grid": 2,
-      "field_name": "lizard_wbconfiguration.areaconfiguration.ini_con_cl"
     }
   },
   {
@@ -3238,6 +2993,73 @@
     }
   },
   {
+    "pk": 46,
+    "model": "lizard_wbconfiguration.areaconfiguration",
+    "fields": {
+      "nutc_inc_2": "0.00",
+      "nutc_inc_3": "0.00",
+      "start_wp": "2012-03-09 00:00:00",
+      "nutc_inc_1": "0.00",
+      "min_concentr_phopshate_seepage": "0.00",
+      "nutc_inc_4": "0.00",
+      "ini_con_cl": "120.00",
+      "max_outtake": "0.00",
+      "surface": "1552397",
+      "ts_concentr_chloride_2": "",
+      "ts_concentr_chloride_1": "",
+      "fews_meta_info": "INFO2",
+      "kwel_is_ts": false,
+      "start_lp": "2012-03-09 00:00:00",
+      "marge_bov": "0.01",
+      "start_hp": "2012-03-09 00:00:00",
+      "min_concentr_nitrogyn_seepage": "0.00",
+      "ts_kwel": "",
+      "area": 354,
+      "min_concentr_so4_seepage": "0.00",
+      "incr_concentr_phosphate_precipitation": "0.00",
+      "ts_evaporation": "",
+      "winterp": "-1.37",
+      "init_water_level": "0.00",
+      "kwel": "0.00",
+      "min_concentr_nitrogyn_precipitation": "0.00",
+      "nutc_min_2": "0.00",
+      "nutc_min_3": "0.00",
+      "ts_wegz": "",
+      "zomerp": "-1.37",
+      "nutc_min_4": "0.00",
+      "wegz": "-4.30",
+      "incr_concentr_phosphate_seepage": "0.20",
+      "y": null,
+      "incr_concentr_so4_precipitation": "0.00",
+      "ts_cl": null,
+      "incr_concentr_so4_seepage": "0.00",
+      "concentr_chloride_seepage": "30.00",
+      "min_concentr_so4_precipitation": "0.00",
+      "peilh_issp": false,
+      "bottom_height": "-2.80",
+      "start_zp": "2012-03-09 00:00:00",
+      "lentep": "-1.37",
+      "ident": "3201",
+      "sp_is_ts": false,
+      "name": "Stichtsch Ankeveensche Polder",
+      "ts_water_level": "",
+      "incr_concentr_nitrogyn_seepage": "0.00",
+      "data_set": 2,
+      "incr_concentr_nitrogyn_precipitation": "0.00",
+      "max_intake": "0.00",
+      "concentr_chloride_precipitation": "6.00",
+      "ts_precipitation": "",
+      "min_concentr_phosphate_precipitation": "0.00",
+      "herfstp": "-1.37",
+      "marge_ond": "0.01",
+      "nutc_min_1": "0.00",
+      "wegz_is_ts": false,
+      "x": null,
+      "ts_sp": "",
+      "start_dt": null
+    }
+  },
+  {
     "pk": 49,
     "model": "lizard_wbconfiguration.areaconfiguration",
     "fields": {
@@ -3276,9 +3098,10 @@
       "incr_concentr_phosphate_seepage": null,
       "y": null,
       "incr_concentr_so4_precipitation": null,
-      "min_concentr_so4_precipitation": null,
+      "ts_cl": null,
       "incr_concentr_so4_seepage": null,
       "concentr_chloride_seepage": null,
+      "min_concentr_so4_precipitation": null,
       "peilh_issp": false,
       "bottom_height": null,
       "start_zp": null,
@@ -3307,128 +3130,63 @@
     "pk": 48,
     "model": "lizard_wbconfiguration.areaconfiguration",
     "fields": {
-      "nutc_inc_2": "0.000",
-      "nutc_inc_3": "0.000",
+      "nutc_inc_2": "0.00",
+      "nutc_inc_3": "0.00",
       "start_wp": "2012-03-09 00:00:00",
-      "nutc_inc_1": "0.000",
-      "min_concentr_phopshate_seepage": "0.400",
-      "nutc_inc_4": "0.000",
-      "ini_con_cl": "90.000",
-      "max_outtake": "144000.000",
-      "surface": "1269589.0",
+      "nutc_inc_1": "0.00",
+      "min_concentr_phopshate_seepage": "0.40",
+      "nutc_inc_4": "0.00",
+      "ini_con_cl": "90.00",
+      "max_outtake": "144000.00",
+      "surface": "1269589",
       "ts_concentr_chloride_2": "",
       "ts_concentr_chloride_1": "",
       "fews_meta_info": "INFO2",
       "kwel_is_ts": false,
       "start_lp": "2012-03-09 00:00:00",
-      "marge_bov": "0.010",
+      "marge_bov": "0.01",
       "start_hp": "2012-03-09 00:00:00",
-      "min_concentr_nitrogyn_seepage": "0.000",
+      "min_concentr_nitrogyn_seepage": "0.00",
       "ts_kwel": "",
       "area": 418,
-      "min_concentr_so4_seepage": "0.000",
-      "incr_concentr_phosphate_precipitation": "0.000",
+      "min_concentr_so4_seepage": "0.00",
+      "incr_concentr_phosphate_precipitation": "0.00",
       "ts_evaporation": "",
-      "winterp": "-6.710",
-      "init_water_level": "0.000",
-      "kwel": "0.000",
-      "min_concentr_nitrogyn_precipitation": "0.000",
-      "nutc_min_2": "3.000",
-      "nutc_min_3": "4.000",
+      "winterp": "-6.71",
+      "init_water_level": "0.00",
+      "kwel": "0.00",
+      "min_concentr_nitrogyn_precipitation": "0.00",
+      "nutc_min_2": "3.00",
+      "nutc_min_3": "4.00",
       "ts_wegz": "",
-      "zomerp": "-6.710",
-      "nutc_min_4": "-1.000",
-      "wegz": "0.000",
-      "incr_concentr_phosphate_seepage": "2.000",
+      "zomerp": "-6.71",
+      "nutc_min_4": "-1.00",
+      "wegz": "0.00",
+      "incr_concentr_phosphate_seepage": "2.00",
       "y": null,
-      "incr_concentr_so4_precipitation": "0.000",
-      "min_concentr_so4_precipitation": "0.000",
-      "incr_concentr_so4_seepage": "0.000",
-      "concentr_chloride_seepage": "400.000",
+      "incr_concentr_so4_precipitation": "0.00",
+      "ts_cl": null,
+      "incr_concentr_so4_seepage": "0.00",
+      "concentr_chloride_seepage": "400.00",
+      "min_concentr_so4_precipitation": "0.00",
       "peilh_issp": false,
-      "bottom_height": "-7.000",
+      "bottom_height": "-7.00",
       "start_zp": "2012-03-09 00:00:00",
-      "lentep": "-6.710",
+      "lentep": "-6.71",
       "ident": "2540",
       "sp_is_ts": false,
       "name": "Polder Groot Mijdrecht  en Polder de Eerste Bedijking (oost)",
       "ts_water_level": "",
-      "incr_concentr_nitrogyn_seepage": "0.000",
+      "incr_concentr_nitrogyn_seepage": "0.00",
       "data_set": 2,
-      "incr_concentr_nitrogyn_precipitation": "0.000",
-      "max_intake": "144000.000",
-      "concentr_chloride_precipitation": "6.000",
+      "incr_concentr_nitrogyn_precipitation": "0.00",
+      "max_intake": "144000.00",
+      "concentr_chloride_precipitation": "6.00",
       "ts_precipitation": "",
-      "min_concentr_phosphate_precipitation": "0.000",
-      "herfstp": "-6.710",
-      "marge_ond": "0.010",
-      "nutc_min_1": "2.000",
-      "wegz_is_ts": false,
-      "x": null,
-      "ts_sp": "",
-      "start_dt": null
-    }
-  },
-  {
-    "pk": 46,
-    "model": "lizard_wbconfiguration.areaconfiguration",
-    "fields": {
-      "nutc_inc_2": "0.000",
-      "nutc_inc_3": "0.000",
-      "start_wp": "2012-03-09 00:00:00",
-      "nutc_inc_1": "0.000",
-      "min_concentr_phopshate_seepage": "0.000",
-      "nutc_inc_4": "0.000",
-      "ini_con_cl": "120.000",
-      "max_outtake": "0.000",
-      "surface": "1552397.0",
-      "ts_concentr_chloride_2": "",
-      "ts_concentr_chloride_1": "",
-      "fews_meta_info": "INFO2",
-      "kwel_is_ts": false,
-      "start_lp": "2012-03-09 00:00:00",
-      "marge_bov": "0.010",
-      "start_hp": "2012-03-09 00:00:00",
-      "min_concentr_nitrogyn_seepage": "0.000",
-      "ts_kwel": "",
-      "area": 354,
-      "min_concentr_so4_seepage": "0.000",
-      "incr_concentr_phosphate_precipitation": "0.000",
-      "ts_evaporation": "",
-      "winterp": "-1.370",
-      "init_water_level": "0.000",
-      "kwel": "0.000",
-      "min_concentr_nitrogyn_precipitation": "0.000",
-      "nutc_min_2": "0.000",
-      "nutc_min_3": "0.000",
-      "ts_wegz": "",
-      "zomerp": "-1.370",
-      "nutc_min_4": "0.000",
-      "wegz": "-4.300",
-      "incr_concentr_phosphate_seepage": "0.200",
-      "y": null,
-      "incr_concentr_so4_precipitation": "0.000",
-      "min_concentr_so4_precipitation": "0.000",
-      "incr_concentr_so4_seepage": "0.000",
-      "concentr_chloride_seepage": "30.000",
-      "peilh_issp": false,
-      "bottom_height": "-2.800",
-      "start_zp": "2012-03-09 00:00:00",
-      "lentep": "-1.370",
-      "ident": "3201",
-      "sp_is_ts": false,
-      "name": "Stichtsch Ankeveensche Polder",
-      "ts_water_level": "",
-      "incr_concentr_nitrogyn_seepage": "0.000",
-      "data_set": 2,
-      "incr_concentr_nitrogyn_precipitation": "0.000",
-      "max_intake": "0.000",
-      "concentr_chloride_precipitation": "6.000",
-      "ts_precipitation": "",
-      "min_concentr_phosphate_precipitation": "0.000",
-      "herfstp": "-1.370",
-      "marge_ond": "0.010",
-      "nutc_min_1": "0.000",
+      "min_concentr_phosphate_precipitation": "0.00",
+      "herfstp": "-6.71",
+      "marge_ond": "0.01",
+      "nutc_min_1": "2.00",
       "wegz_is_ts": false,
       "x": null,
       "ts_sp": "",

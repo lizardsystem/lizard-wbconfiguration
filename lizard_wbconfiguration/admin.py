@@ -53,7 +53,22 @@ class WBConfigurationDBFMappingAdmin(admin.ModelAdmin):
     list_filter = ('model_name',)
 
 
-admin.site.register(DBFConfiguration)
+class DbfConfigurationAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'dbf_type',
+        'data_set',
+        'save_to',
+        'filename')
+    list_editable = (
+        'dbf_type',
+        'data_set',
+        'save_to',
+        'filename')
+    list_filter = ('data_set',)
+
+
+admin.site.register(DBFConfiguration, DbfConfigurationAdmin)
 admin.site.register(WBConfigurationDBFMapping, WBConfigurationDBFMappingAdmin)
 admin.site.register(BucketsType)
 #admin.site.register(AreaField)
@@ -62,3 +77,4 @@ admin.site.register(Structure, SecurityFilteredAdmin)
 admin.site.register(Bucket, SecurityFilteredAdmin)
 admin.site.register(AreaConfiguration, SecurityFilteredAdmin)
 admin.site.register(StructureInOut)
+#admin.site.register(AreaGridFieldConfiguration)
