@@ -273,5 +273,5 @@ class DBFImporter(object):
         try:
             return AreaConfiguration.objects.get(ident=ident)
         except:
-            self.logger.debug("AreaConfiguration ident='%s' does NOT exist. Create one" % ident)
+            self.logger.debug("AreaConfiguration ident='%s' does NOT exist. Try to create one." % ident)
             return WaterBalanceAreaConfiguration.create(ident)
