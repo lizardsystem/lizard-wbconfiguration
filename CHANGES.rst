@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.1.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Renamed task 'export_to_dbf' to 'export_wbconfigurations'.
+
+- Fixed type of levelno parameter in 'export_aanafvoergebieden' task.
 
 
 0.1.9 (2012-03-26)

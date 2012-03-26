@@ -71,7 +71,7 @@ def validate_all():
 
 
 @task()
-def export_to_dbf(data_set=None,
+def export_wbconfigurations(data_set=None,
                   levelno=20,
                   username=None,
                   taskname="wb_export_to_dbf_all"):
@@ -121,7 +121,7 @@ def export_aanafvoergebieden(data_set=None,
     handler = get_handler(taskname, username)
     logger = logging.getLogger(taskname)
     logger.addHandler(handler)
-    logger.setLevel(levelno)
+    logger.setLevel(int(levelno))
     dbfexporter = DBFExporter(logger)
     dbf_configurations = DBFConfiguration.objects.filter(dbf_type='Area')
     if data_set is not None:
@@ -146,7 +146,7 @@ def add():
 def run_export_task():
     """Run export_to_dbf task for HHNK."""
     kwargs = {"data_set": "Waternet"}
-    export_to_dbf.delay(**kwargs)
+    export_wbconfigurations.delay(**kwargs)
 
 
 def run_importdbf_task():
