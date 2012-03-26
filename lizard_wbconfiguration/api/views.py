@@ -617,14 +617,14 @@ class WaterBalanceAreaConfiguration(View):
     Area configuration.
     """
     def get(self, request):
-        object_id = request.GET.get('object_id', None)
-        grid_name = request.GET.get('grid_name', None)
-        areaconfig_objects = AreaConfiguration.objects.filter(ident=object_id)
-        if areaconfig_objects.exists():
-            return self.area_configuration(areaconfig_objects[0], grid_name)
+        ident = request.GET.get('object_id', None)
+        area_configs = AreaConfiguration.objects.filter(ident=ident)
+        if area_configs.exists():
+            area_config = area_configs[0]
         else:
-            return self.initial_area_configuration(object_id,
-                                                   grid_name)
+            area_config = WaterBalanceAreaConfiguration.create(ident)
+        grid_name = request.GET.get('grid_name', None)
+        return self.area_configuration(area_config, grid_name)
 
     def area_configuration(self, area, grid_name):
         """
@@ -677,18 +677,16 @@ class WaterBalanceAreaConfiguration(View):
                 value = value.strftime(self.startseason_format())
         return value
 
-    def initial_area_configuration(self, object_id, grid_name):
-        """
-        Creates initial configuration.
-        """
-        area_object = Area.objects.get(ident=object_id)
-        areaconfig_object = AreaConfiguration(
-            ident=area_object.ident,
-            name=area_object.name,
-            area=area_object,
-            data_set=area_object.data_set)
-        areaconfig_object.save()
-        area_config = self.area_configuration(areaconfig_object, grid_name)
+    @classmethod
+    def create(self, ident):
+        """Create a AreaConfiguration for the Area with the given ident."""
+        try:
+            area = Area.objects.get(ident=ident)
+        except Area.DoesNotExist:
+            logger.warning("We cannot create a WaterBalanceAreaConfiguration for the non-existing Area with ident '%s'" % ident)
+            return None
+        area_config = AreaConfiguration(ident=area.ident, name=area.name, area=area, data_set=area.data_set)
+        area_config.save()
         return area_config
 
     def allowed_data_set_id(self, request):

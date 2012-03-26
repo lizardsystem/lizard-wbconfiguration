@@ -10,15 +10,14 @@ from dbfpy.dbf import Dbf
 from django.db.models import FieldDoesNotExist
 from django.db.models.fields import DecimalField
 
-from djangorestframework.views import View
+from lizard_area.models import Area
+from lizard_wbconfiguration.api.views import WaterBalanceAreaConfiguration
 from lizard_wbconfiguration.models import AreaConfiguration
 from lizard_wbconfiguration.models import BucketsType
 from lizard_wbconfiguration.models import Bucket
 from lizard_wbconfiguration.models import Structure
 from lizard_wbconfiguration.models import StructureInOut
 from lizard_wbconfiguration.models import WBConfigurationDBFMapping
-
-from lizard_area.models import Area
 
 
 class DBFImporter(object):
@@ -179,6 +178,7 @@ class DBFImporter(object):
         db = Dbf(self.areas_filepath)
 
         for rec in db:
+
             areaconfiguration = self._get_areaconfiguration(rec['GAFIDENT'])
             if areaconfiguration is None:
                 continue
@@ -212,7 +212,7 @@ class DBFImporter(object):
         """
         try:
             return Structure.objects.get(code=code)
-        except Structure.DoesNotExists:
+        except Structure.DoesNotExist:
             self.logger.warning(
                 "Structure code '%s' does NOT exist." % code)
 
@@ -264,17 +264,18 @@ class DBFImporter(object):
         return bucket
 
     def _get_areaconfiguration(self, ident):
-        """ Return instance of AreaConfiguration object or None by ident.
+        """ Return the AreaConfiguration with the given ident.
 
         Arguments:
-        ident -- ident of Area object like '2103'
+          *ident*
+            ident of Area object like '2103'
+
         """
         try:
             return AreaConfiguration.objects.get(ident=ident)
         except:
-            self.logger.warning(
-                "AreaConfiguration ident='%s' does NOT exist." %
-                                (ident))
+            self.logger.debug("AreaConfiguration ident='%s' does NOT exist. Create one" % ident)
+            return WaterBalanceAreaConfiguration.create(ident)
 
     def _get_create_areaconfiguration(self, ident):
         area = None
