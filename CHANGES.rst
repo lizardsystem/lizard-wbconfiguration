@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed error in task.
 
 
 0.1.10 (2012-03-26)
