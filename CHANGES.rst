@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.1.10 (unreleased)
 -------------------
 
-- Renamed task 'export_to_dbf' to 'export_wbconfigurations'.
+- Renamed celery tasks.
 
 - Fixed type of levelno parameter in 'export_aanafvoergebieden' task.
 
