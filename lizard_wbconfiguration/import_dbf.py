@@ -275,22 +275,3 @@ class DBFImporter(object):
         except:
             self.logger.debug("AreaConfiguration ident='%s' does NOT exist. Create one" % ident)
             return WaterBalanceAreaConfiguration.create(ident)
-
-    def _get_create_areaconfiguration(self, ident):
-        area = None
-        areaconfiguration = None
-        try:
-            area = Area.objects.get(ident=ident)
-            areaconfiguration = AreaConfiguration.objects.get(ident=ident)
-        except:
-            if area is not None:
-                areaconfiguration = AreaConfiguration(
-                    ident=ident,
-                    name=area.name,
-                    area=area,
-                    start_dt=datetime.datetime.today(),
-                    data_set=area.data_set)
-                areaconfiguration.save()
-            else:
-                self.logger.warning("Area ident='%s' does NOT exist." % ident)
-        return areaconfiguration
