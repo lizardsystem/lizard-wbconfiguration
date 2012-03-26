@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.10 (unreleased)
+0.1.10 (2012-03-26)
 -------------------
 
 - Renamed celery tasks.
