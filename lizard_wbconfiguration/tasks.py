@@ -71,10 +71,11 @@ def validate_all():
 
 
 @task()
-def export_wbconfigurations(data_set=None,
-                  levelno=20,
-                  username=None,
-                  taskname="wb_export_to_dbf_all"):
+def export_wbconfigurations_to_dbf(
+    data_set=None,
+    levelno=20,
+    username=None,
+    taskname="wb_export_to_dbf_all"):
     """
     Export water balance configurations into dbf.
     Use logging handler of lizard_task app. to write message into database.
@@ -111,10 +112,11 @@ def export_wbconfigurations(data_set=None,
 
 
 @task()
-def export_aanafvoergebieden(data_set=None,
-                             taskname='aanafvoegebieden_export_to_dbf_all',
-                             levelno=20,
-                             username=None):
+def export_aanafvoergebieden_to_dbf(
+    data_set=None,
+    taskname='aanafvoegebieden_export_to_dbf_all',
+    levelno=20,
+    username=None):
     """
     Export geo info of 'aanafvoergebieden' into dbf.
     """
