@@ -2,26 +2,17 @@
 API views not coupled to models.
 """
 import os
-import datetime
 
-from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response
-from django.utils import simplejson as json
-from django.db.models.fields import DateTimeField
-from django.db.models.fields import BooleanField
 from django.contrib.gis.geos import MultiPolygon
 from django.contrib.gis.geos import Polygon
 from django.contrib.gis.geos.point import Point
 
-from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
-from lizard_wbconfiguration.models import AreaGridFieldConfiguration
 from lizard_wbconfiguration.models import BucketsType
 from lizard_wbconfiguration.models import Bucket
 from lizard_wbconfiguration.models import Structure
 from lizard_wbconfiguration.models import StructureInOut
 from lizard_wbconfiguration.models import WBConfigurationDBFMapping
-from lizard_wbconfiguration import models
 
 from lizard_area.models import Area
 
@@ -115,7 +106,6 @@ class DBFExporter(object):
             self.logger.debug("Export structure.")
             filename = self.create_filename('structure')
             is_created_3 = self.create_dbf('structure', structures, filename)
-            
             if is_created_1 and is_created_2 and is_created_3:
                 return True
             else:
@@ -158,7 +148,8 @@ class DBFExporter(object):
             return filename
         else:
             self.logger.debug('Location to write .dbf files is not defined.')
-            self.logger.debug('Used default file name "%s".' % default_filename)
+            self.logger.debug(
+                'Used default file name "%s".' % default_filename)
             return default_filename
 
     def create_dbf(self, model_name, area_objects, filename):
@@ -190,7 +181,6 @@ class DBFExporter(object):
         Adds fields into dbf file.
         """
         for item in mapping:
-            print (item.dbffield_name)
             field_options = [str(item.dbffield_name),
                              str(item.dbffield_type)]
             if item.dbffield_length is not None:
@@ -206,10 +196,8 @@ class DBFExporter(object):
         for area_object in area_objects:
             rec = out.newRecord()
             for item in mapping:
-                
                 value = self.retrieve_value(area_object,
                                             item.wbfield_name.lower())
-                print (item.wbfield_name.lower(), value)
                 if value is not None:
                     dbffield_name = item.dbffield_name.lower()
                     if dbffield_name == 'x' and isinstance(value, Point):

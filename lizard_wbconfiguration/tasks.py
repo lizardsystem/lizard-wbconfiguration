@@ -9,7 +9,6 @@ import logging
 from zipfile import ZipFile
 
 from celery.task import task
-from django.core import management
 
 from lizard_portal.configurations_retriever import create_configurations_retriever
 
@@ -142,6 +141,7 @@ def export_aanafvoergebieden(data_set=None,
 @task()
 def add():
     return "<<ADD task>>"
+
 
 def run_export_task():
     """Run export_to_dbf task for HHNK."""

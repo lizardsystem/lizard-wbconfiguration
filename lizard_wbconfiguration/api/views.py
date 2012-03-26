@@ -1,7 +1,6 @@
 """
 API views not coupled to models.
 """
-import os
 import datetime
 
 from django.core.urlresolvers import reverse
@@ -9,9 +8,6 @@ from django.shortcuts import render_to_response
 from django.utils import simplejson as json
 from django.db.models.fields import DateTimeField
 from django.db.models.fields import BooleanField
-from django.contrib.gis.geos import MultiPolygon
-from django.contrib.gis.geos import Polygon
-from django.contrib.gis.geos.point import Point
 
 from djangorestframework.views import View
 from lizard_wbconfiguration.models import AreaConfiguration
@@ -20,16 +16,9 @@ from lizard_wbconfiguration.models import BucketsType
 from lizard_wbconfiguration.models import Bucket
 from lizard_wbconfiguration.models import Structure
 from lizard_wbconfiguration.models import StructureInOut
-from lizard_wbconfiguration.models import WBConfigurationDBFMapping
 from lizard_wbconfiguration import models
 
 from lizard_area.models import Area
-
-from lizard_security.models import DataSet
-
-from dbfpy.dbf import Dbf
-
-import pkg_resources
 
 import logging
 logger = logging.getLogger(__name__)

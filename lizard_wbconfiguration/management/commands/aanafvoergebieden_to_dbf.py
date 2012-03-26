@@ -2,7 +2,7 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt.
 
 from django.core.management.base import BaseCommand
-from lizard_wbconfiguration.api.views import WaterBalanceDBF
+from lizard_wbconfiguration.export_dbf import DBFExporter
 from lizard_wbconfiguration.models import DBFConfiguration
 
 import logging
@@ -20,7 +20,7 @@ class Command(BaseCommand):
         self.export_configured_areaobjects()
 
     def export_configured_areaobjects(self):
-        wb_dbf = WaterBalanceDBF()
+        wb_dbf = DBFExporter()
         dbf_configurations = DBFConfiguration.objects.filter(dbf_type="Area")
         logger.info("%s area's configurations to export." % len(
                 dbf_configurations))
