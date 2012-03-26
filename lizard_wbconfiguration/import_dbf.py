@@ -178,7 +178,6 @@ class DBFImporter(object):
         db = Dbf(self.areas_filepath)
 
         for rec in db:
-
             areaconfiguration = self._get_areaconfiguration(rec['GAFIDENT'])
             if areaconfiguration is None:
                 continue
