@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'lizard_geo',  # Must come before lizard_area
     'lizard_area',
     'lizard_fewsnorm',
+    'lizard_task',
     'staticfiles',
     'compressor',
     #'south',

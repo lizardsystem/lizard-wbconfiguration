@@ -22,6 +22,7 @@ DBF_FIELD_TYPES = (
     ('C', 'Text'),
     ('N', 'Number'),
     ('D', 'Date'),
+    ('L', 'Logical'),
 )
 
 EXTJS_DATA_TYPES = (

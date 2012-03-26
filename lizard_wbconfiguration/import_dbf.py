@@ -34,6 +34,16 @@ class DBFImporter(object):
         self.logger = logging.getLogger(__name__)
         self.read_only_fields = ('id', 'ident', 'data_set', 'area',
                                  'x', 'y', 'name', 'code')
+        self.buckets_validated = 0
+        self.srtuctures_validated = 0
+        self.buckets_failed = 0
+        self.structures_failed
+        self.configurations_validated = 0
+        self.configurations_failed = 0
+
+
+    def set_logging_handler(self, handler):
+        logger.addHandler(handler)
 
     def import_dbf(self):
         """
@@ -54,6 +64,10 @@ class DBFImporter(object):
         self._import_areaconfigurations('AreaConfiguration')
         self._import_buckets('Bucket')
         self._import_structures('Structure')
+        self.logger.debug("DEBUG LOGGING END EXPORT")
+        self.logger.info("info LOGGING END EXPORT")
+        self.logger.error("error LOGGING END EXPORT")
+        self.logger.critical("critical LOGGING END EXPORT")
 
     def _retrieve_importvalue(self, rec, mapping, model_object):
         """Retrieve a value from dbf record.
@@ -177,7 +191,8 @@ class DBFImporter(object):
             model_name=model_name)
 
         db = Dbf(self.areas_filepath)
-
+        self.logger.debug("Import areaconfiguration %s" % self.areas_filepath)
+        
         for rec in db:
             areaconfiguration = self._get_areaconfiguration(rec['GAFIDENT'])
             if areaconfiguration is None:
