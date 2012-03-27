@@ -683,7 +683,7 @@ class WaterBalanceAreaConfiguration(View):
         try:
             area = Area.objects.get(ident=ident)
         except Area.DoesNotExist:
-            logger.warning("We cannot create a WaterBalanceAreaConfiguration for the non-existing Area with ident '%s'" % ident)
+            logger.warning("We cannot create a WaterBalanceAreaConfiguration for the non-existing Area with ident '%s'." % ident)
             return None
         area_config = AreaConfiguration(ident=area.ident, name=area.name, area=area, data_set=area.data_set)
         area_config.save()

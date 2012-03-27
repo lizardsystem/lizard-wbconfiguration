@@ -105,7 +105,7 @@ class DBFImporter(object):
 
         db = Dbf(self.buckets_filepath)
         for rec in db:
-            bucket = self._get_bucket(rec['ID'])
+            bucket = self._get_bucket(rec['GEBIED'], rec['ID'])
             if bucket is None:
                 continue
             for item in mapping:
@@ -141,7 +141,7 @@ class DBFImporter(object):
 
         db = Dbf(self.structures_filepath)
         for rec in db:
-            structure = self._get_structure(rec['ID'])
+            structure = self._get_structure(rec['GEBIED'], rec['ID'])
             if structure is None:
                 continue
             for item in mapping:
@@ -203,63 +203,64 @@ class DBFImporter(object):
             areaconfiguration.save()
         db.close()
 
-    def _get_structure(self, code):
-        """ Return instance of Structure object or None by code.
+    def _get_structure(self, ident, code):
+        """Return the Structure with the given code.
+
+        If no Structure exists with the given code and no AreaConfiguration
+        exists with the given ident, this method returns None.
 
         Arguments:
-        code -- code of structure object like '2103_PS1'
+          *ident*
+            ident of the AreaConfiguration to which the Structure belongs
+          *code*
+            code of the Structure
+
         """
         try:
-            return Structure.objects.get(code=code)
-        except Structure.DoesNotExist:
-            self.logger.warning(
-                "Structure code '%s' does NOT exist." % code)
-
-    def _get_create_structure(self, ident, code):
-        areaconfiguration = None
-        structure = None
-        try:
-            areaconfiguration = AreaConfiguration.objects.get(ident=ident)
             structure = Structure.objects.get(code=code)
-        except:
-            if areaconfiguration is not None:
-                structure = Structure(
-                    name="",
-                    code=code,
-                    area=areaconfiguration,
-                    data_set=areaconfiguration.data_set)
-                structure.save()
-            else:
-                self.logger.warning("Area does NOT exist %s." % ident)
+        except Structure.DoesNotExist:
+            self.logger.debug(
+                "Structure with '%s' does NOT exist. Try to create one." % code)
+            try:
+                area_config = AreaConfiguration.objects.get(ident=ident)
+            except AreaConfiguration.DoesNotExist:
+                self.logger.warning("We cannot create a Structure for the "
+                                    "non-existing AreaConfiguration with ident "
+                                    "'%s'." % ident)
+                return None
+            structure = Structure(name='', code=code, area=area_config,
+                data_set=area_config.data_set)
+            structure.save()
         return structure
 
-    def _get_bucket(self, code):
-        """ Return instance of Bucket object or None by code.
+    def _get_bucket(self, ident, code):
+        """Return the Bucket with the given code.
+
+        If no Bucket exists with the given code and no AreaConfiguration exists
+        with the given ident, this method returns None.
 
         Arguments:
-        code -- code of bucket object like '2103_gw1'
+          *ident*
+            ident of the AreaConfiguration to which the bucket belongs
+          *code*
+            code of the Bucket
+
         """
         try:
-            return Bucket.objects.get(code=code)
-        except:
-            self.logger.warning("Bucket code '%s' does NOT exist." % code)
-
-    def _get_create_bucket(self, ident, code):
-        areaconfiguration = None
-        bucket = None
-        try:
-            areaconfiguration = AreaConfiguration.objects.get(ident=ident)
             bucket = Bucket.objects.get(code=code)
-        except:
-            if areaconfiguration is not None:
-                bucket = Bucket(
-                    name="",
-                    code=code,
-                    area=areaconfiguration,
-                    data_set=areaconfiguration.data_set)
-                bucket.save()
-            else:
-                self.logger.warning("Area does NOT exist %s." % ident)
+        except Bucket.DoesNotExist:
+            self.logger.debug(
+                "Bucket with '%s' does NOT exist. Try to create one." % code)
+            try:
+                area_config = AreaConfiguration.objects.get(ident=ident)
+            except AreaConfiguration.DoesNotExist:
+                self.logger.warning("We cannot create a Bucket for the "
+                                    "non-existing AreaConfiguration with ident "
+                                    "'%s'." % ident)
+                return None
+            bucket = Bucket(name='', code=code, area=area_config,
+                data_set=area_config.data_set)
+            bucket.save()
         return bucket
 
     def _get_areaconfiguration(self, ident):
