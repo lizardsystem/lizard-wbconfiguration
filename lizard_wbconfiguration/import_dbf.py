@@ -10,8 +10,10 @@ from dbfpy.dbf import Dbf
 from django.db.models import FieldDoesNotExist
 from django.db.models.fields import DecimalField
 
+
 from lizard_area.models import Area
 from lizard_wbconfiguration.api.views import WaterBalanceAreaConfiguration
+
 from lizard_wbconfiguration.models import AreaConfiguration
 from lizard_wbconfiguration.models import BucketsType
 from lizard_wbconfiguration.models import Bucket
@@ -25,7 +27,7 @@ class DBFImporter(object):
     Import wb areaconfigurations from dbf files.
     """
 
-    def __init__(self):
+    def __init__(self, logger=None):
         self.areas_filepath = None
         self.buckets_filepath = None
         self.structures_filepath = None
@@ -33,6 +35,16 @@ class DBFImporter(object):
         self.logger = logging.getLogger(__name__)
         self.read_only_fields = ('id', 'ident', 'data_set', 'area',
                                  'x', 'y', 'name', 'code')
+        self.buckets_validated = 0
+        self.srtuctures_validated = 0
+        self.buckets_failed = 0
+        self.structures_failed
+        self.configurations_validated = 0
+        self.configurations_failed = 0
+        if logger is not None:
+            self.logger = logger
+        else:
+            self.logger = logging.getLogger(__name__)
 
     def import_dbf(self):
         """
@@ -53,6 +65,10 @@ class DBFImporter(object):
         self._import_areaconfigurations('AreaConfiguration')
         self._import_buckets('Bucket')
         self._import_structures('Structure')
+        self.logger.debug("DEBUG LOGGING END EXPORT")
+        self.logger.info("info LOGGING END EXPORT")
+        self.logger.error("error LOGGING END EXPORT")
+        self.logger.critical("critical LOGGING END EXPORT")
 
     def _retrieve_importvalue(self, rec, mapping, model_object):
         """Retrieve a value from dbf record.
@@ -60,7 +76,8 @@ class DBFImporter(object):
         Arguments:
         rec -- instance of DbfRecord object
         mapping -- instance of mapping object contening a field to import
-        model_object -- instance of AreaConfigueration, Bucket or Structure object.
+        model_object -- instance of AreaConfigueration,
+        Bucket or Structure object.
         """
         try:
             value = rec[mapping.dbffield_name]
@@ -176,7 +193,7 @@ class DBFImporter(object):
             model_name=model_name)
 
         db = Dbf(self.areas_filepath)
-
+        self.logger.debug("Import areaconfiguration %s" % self.areas_filepath)
         for rec in db:
             areaconfiguration = self._get_areaconfiguration(rec['GAFIDENT'])
             if areaconfiguration is None:

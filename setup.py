@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '0.1.9dev'
+version = '0.1.12dev'
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -11,7 +11,7 @@ long_description = '\n\n'.join([
 
 install_requires = [
     'Django',
-    'lizard_security',
+    'lizard-security',
     'django-celery',
     'django-extensions',
     'django-nose',
@@ -21,6 +21,7 @@ install_requires = [
     'lizard-fewsnorm',
     'lizard-esf',
     'lizard-portal',
+    'lizard-task',
     'lizard-ui >= 3.0',
     'pkginfo',
     'dbfpy',

@@ -2,7 +2,27 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.9 (unreleased)
+0.1.12 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
+0.1.11 (2012-03-26)
+-------------------
+
+- Fixed error in task.
+
+
+0.1.10 (2012-03-26)
+-------------------
+
+- Renamed celery tasks.
+
+- Fixed type of levelno parameter in 'export_aanafvoergebieden' task.
+
+
+0.1.9 (2012-03-26)
 ------------------
 
 - Deleted ForeignKey-fields referenced to TimeSeriesCache.
