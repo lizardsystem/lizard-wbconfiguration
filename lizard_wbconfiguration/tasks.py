@@ -11,6 +11,7 @@ from zipfile import ZipFile
 from celery.task import task
 
 from lizard_portal.configurations_retriever import create_configurations_retriever
+from lizard_portal.models import ConfigurationToValidate
 
 from lizard_wbconfiguration.import_dbf import DBFImporter
 from lizard_wbconfiguration.export_dbf import DBFExporter
@@ -34,6 +35,46 @@ def import_dbf(fews_meta_info=None,
     dbfimporter.structures_filepath = structures_filepath
     dbfimporter.import_dbf()
     return "<<import dbf>>"
+
+
+@task()
+def validate_wbconfigurations(taskname="",
+                              username=None,
+                              levelno=20,
+                              data_set=None,
+                              esftype=None):
+    """
+    Import wb areaconfigurations from dbf.
+    """
+    action = 1
+    v_configs = ConfigurationToValidate.objects.filter(
+        data_set__name=data_set,
+        config_type=esftype,
+        action=action)
+    v_configs = v_configs.exclude(file_path=None)
+    for v_config in v_configs:
+        dbfimporter = DBFImporter()
+        dbfimporter.fews_meta_info = v_configs.fews_meta_info
+        dbfimporter.areas_filepath = v_configs.get_area_dbf()
+        dbfimporter.buckets_filepath = v_configs.get_grondwatergebieden_dbf
+        dbfimporter.structures_filepath = v_configs.get_punpingstations_dbf
+
+        status = dbfimporter.import_areaconfigurations('AreaConfiguration')
+        if isinstance(status, tuple) and status[0]:
+            status = dbfimporter.import_buckets('Bucket')
+        if isinstance(status, tuple) and status[0]:
+            status = dbfimporter.import_structures('Structure')
+        if isinstance(status, tuple) and status[0]:
+            ConfigurationToValidate.objects.get(id=v_config.id).delete()
+        else:
+            v_config.action = 0
+            if isinstance(status, tuple) and len(status) > 1:
+                v_config.action_log = status[1][256]
+            else:
+                v_config.action_log = "Error ...."
+            v_config.save()
+
+    return "<<validate_wbconfigurations>>"
 
 
 @task()

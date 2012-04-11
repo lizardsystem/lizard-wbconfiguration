@@ -1,17 +1,13 @@
 """
 Import WB configurations.
 """
-import datetime
 import logging
 
 from decimal import Decimal
 from dbfpy.dbf import Dbf
 
-from django.db.models import FieldDoesNotExist
 from django.db.models.fields import DecimalField
 
-
-from lizard_area.models import Area
 from lizard_wbconfiguration.api.views import WaterBalanceAreaConfiguration
 
 from lizard_wbconfiguration.models import AreaConfiguration
@@ -62,13 +58,9 @@ class DBFImporter(object):
             self.logger.error("Filepath for 'pumpingstations' does NOT set.")
             return
 
-        self._import_areaconfigurations('AreaConfiguration')
-        self._import_buckets('Bucket')
-        self._import_structures('Structure')
-        self.logger.debug("DEBUG LOGGING END EXPORT")
-        self.logger.info("info LOGGING END EXPORT")
-        self.logger.error("error LOGGING END EXPORT")
-        self.logger.critical("critical LOGGING END EXPORT")
+        self.import_areaconfigurations('AreaConfiguration')
+        self.import_buckets('Bucket')
+        self.import_structures('Structure')
 
     def _retrieve_importvalue(self, rec, mapping, model_object):
         """Retrieve a value from dbf record.
@@ -103,25 +95,24 @@ class DBFImporter(object):
                         return
                     return structure_inout[0]
             return value
-        except FieldDoesNotExist as ex:
-            self.logger.error(','.join(map(str, ex.args)))
-        except ValueError as ex:
-            self.logger.error(','.join(map(str, ex.args)))
         except Exception as ex:
             self.logger.error(','.join(map(str, ex.args)))
 
-    def _import_buckets(self, model_name):
+    def import_buckets(self, model_name, v_config=None):
         """Import buckets from dbf.
         Omit not existing objects.
 
         Arguments:
         model_name -- name of model as string 'Bucket'
         """
+        status_tuple = (True, "")
         mapping = WBConfigurationDBFMapping.objects.filter(
             model_name=model_name)
 
         db = Dbf(self.buckets_filepath)
         for rec in db:
+            if v_config is not None and rec['GEBIED'] != v_config.area.ident:
+                continue
             bucket = self._get_bucket(rec['GEBIED'], rec['ID'])
             if bucket is None:
                 continue
@@ -138,26 +129,33 @@ class DBFImporter(object):
                             value, item.dbffield_name, item.wbfield_name))
                     if value is not None:
                         setattr(bucket, item.wbfield_name, value)
-                except ValueError as ex:
-                    self.logger.error(','.join(map(str, ex.args)))
                 except Exception as ex:
-                    self.logger.error(','.join(map(str, ex.args)))
+                    msg = "Error: '%s', ident: '%s', item: '%s'." % (
+                        ','.join(map(str, ex.args)),
+                        rec['GEBIED'],
+                        item.wbfield_name)
+                    status_tuple = (False, msg)
+                    self.logger.error(msg)
             bucket.fews_meta_info = self.fews_meta_info
             bucket.save()
         db.close()
+        return status_tuple
 
-    def _import_structures(self, model_name):
+    def import_structures(self, model_name, v_config=None):
         """Import structures from dbf.
         Omit not existing objects.
 
         Arguments:
         model_name -- name of model as string, 'Structure'
         """
+        status_tuple = (True, "")
         mapping = WBConfigurationDBFMapping.objects.filter(
             model_name=model_name)
 
         db = Dbf(self.structures_filepath)
         for rec in db:
+            if v_config is not None and rec['GEBIED'] != v_config.area.ident:
+                continue
             structure = self._get_structure(rec['GEBIED'], rec['ID'])
             if structure is None:
                 continue
@@ -170,31 +168,38 @@ class DBFImporter(object):
                 try:
                     value = self._retrieve_importvalue(rec, item, structure)
                     self.logger.debug(
-                        "Set value='%s' of dbffield='%s' into modelfield='%s'." % (
+                        "Set value='%s' of dbffield='%s' into field='%s'." % (
                             value, item.dbffield_name, item.wbfield_name))
                     if value is not None:
                         setattr(structure, item.wbfield_name, value)
-                except ValueError as ex:
-                    self.logger.error(','.join(map(str, ex.args)))
                 except Exception as ex:
-                    self.logger.error(','.join(map(str, ex.args)))
+                    msg = "Error: '%s', ident: '%s', item: '%s'." % (
+                        ','.join(map(str, ex.args)),
+                        rec['GEBIED'],
+                        item.wbfield_name)
+                    status_tuple = (False, msg)
+                    self.logger.error(msg)
             structure.fews_meta_info = self.fews_meta_info
             structure.save()
         db.close()
+        return status_tuple
 
-    def _import_areaconfigurations(self, model_name):
+    def import_areaconfigurations(self, model_name, v_config=None):
         """Import areaconfigurations from dbf.
         Omit not existing objects.
 
         Arguments:
         model_name -- name of model as string, 'AreaConfiguration'
         """
+        status_tuple = (True, "")
         mapping = WBConfigurationDBFMapping.objects.filter(
             model_name=model_name)
 
         db = Dbf(self.areas_filepath)
         self.logger.debug("Import areaconfiguration %s" % self.areas_filepath)
         for rec in db:
+            if v_config is not None and rec['GAFIDENT'] != v_config.area.ident:
+                continue
             areaconfiguration = self._get_areaconfiguration(rec['GAFIDENT'])
             if areaconfiguration is None:
                 continue
@@ -208,17 +213,21 @@ class DBFImporter(object):
                     value = self._retrieve_importvalue(
                         rec, item, areaconfiguration)
                     self.logger.debug(
-                        "Set value='%s' of dbffield='%s' in modelfield='%s'." % (
+                        "Set value='%s' of dbffield='%s' in field='%s'." % (
                             value, item.dbffield_name, item.wbfield_name))
                     if value is not None:
                         setattr(areaconfiguration, item.wbfield_name, value)
-                except ValueError as ex:
-                    self.logger.error(','.join(map(str, ex.args)))
                 except Exception as ex:
-                    self.logger.error(','.join(map(str, ex.args)))
+                    msg = "Error: '%s', ident: '%s', item: '%s'." % (
+                        ','.join(map(str, ex.args)),
+                        rec['GAFIDENT'],
+                        item.wbfield_name)
+                    status_tuple = (False, msg)
+                    self.logger.error(msg)
             areaconfiguration.fews_meta_info = self.fews_meta_info
             areaconfiguration.save()
         db.close()
+        return status_tuple
 
     def _get_structure(self, ident, code):
         """Return the Structure with the given code.
@@ -291,5 +300,6 @@ class DBFImporter(object):
         try:
             return AreaConfiguration.objects.get(ident=ident)
         except:
-            self.logger.debug("AreaConfiguration ident='%s' does NOT exist. Try to create one." % ident)
+            self.logger.debug(
+                "AreaConfiguration ident='%s' does NOT exist. Try to create one." % ident)
             return WaterBalanceAreaConfiguration.create(ident)

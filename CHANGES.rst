@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.1.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added functionality to validate wbconfigurations for separate areas.
 
 
 0.1.11 (2012-03-26)
