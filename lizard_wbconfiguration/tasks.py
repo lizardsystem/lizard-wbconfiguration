@@ -63,9 +63,9 @@ def validate_wbconfigurations(taskname="",
     for v_config in v_configs:
         dbfimporter = DBFImporter(logger)
         dbfimporter.fews_meta_info = v_config.fews_meta_info
-        dbfimporter.areas_filepath = v_config.get_area_dbf()
-        dbfimporter.buckets_filepath = v_config.get_grondwatergebieden_dbf
-        dbfimporter.structures_filepath = v_config.get_punpingstations_dbf
+        dbfimporter.areas_filepath = v_config.area_dbf
+        dbfimporter.buckets_filepath = v_config.grondwatergebieden_dbf
+        dbfimporter.structures_filepath = v_config.pumpingstations_dbf
         logger.debug(
             "Start validation of 'aanafvoergebied' ident '%s'." % v_config.area.ident)
         status = dbfimporter.import_areaconfigurations('AreaConfiguration', v_config)
