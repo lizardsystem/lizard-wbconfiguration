@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.13 (unreleased)
+0.1.13 (2012-04-12)
 -------------------
 
 - Renamed properties in the task 'validate_wbconfiguration'.
