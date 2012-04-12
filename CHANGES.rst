@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.12 (unreleased)
+0.1.12 (2012-04-12)
 -------------------
 
 - Added functionality to import wbconfigurations using validation configuration.
