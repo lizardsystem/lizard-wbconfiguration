@@ -34,7 +34,7 @@ class DBFImporter(object):
         self.buckets_validated = 0
         self.srtuctures_validated = 0
         self.buckets_failed = 0
-        self.structures_failed
+        self.structures_failed = 0
         self.configurations_validated = 0
         self.configurations_failed = 0
         if logger is not None:
@@ -116,6 +116,7 @@ class DBFImporter(object):
             bucket = self._get_bucket(rec['GEBIED'], rec['ID'])
             if bucket is None:
                 continue
+            bucket.fews_meta_info = self.fews_meta_info
             for item in mapping:
                 if item.wbfield_name.lower() in self.read_only_fields:
                     self.logger.debug(
@@ -129,15 +130,18 @@ class DBFImporter(object):
                             value, item.dbffield_name, item.wbfield_name))
                     if value is not None:
                         setattr(bucket, item.wbfield_name, value)
+                        if self.logger.getEffectiveLevel() == 10:
+                            bucket.save()
                 except Exception as ex:
-                    msg = "Error: '%s', ident: '%s', item: '%s'." % (
+                    msg = "Error: '%s', bucket: '%s', item: '%s', value: '%s'." % (
                         ','.join(map(str, ex.args)),
-                        rec['GEBIED'],
-                        item.wbfield_name)
-                    status_tuple = (False, msg)
+                        rec['ID'],
+                        item.wbfield_name,
+                        value)
                     self.logger.error(msg)
-            bucket.fews_meta_info = self.fews_meta_info
-            bucket.save()
+                    return (False, msg)
+            if self.logger.getEffectiveLevel() > 10:
+                bucket.save()
         db.close()
         return status_tuple
 
@@ -172,15 +176,19 @@ class DBFImporter(object):
                             value, item.dbffield_name, item.wbfield_name))
                     if value is not None:
                         setattr(structure, item.wbfield_name, value)
+                        if self.logger.getEffectiveLevel() == 10:
+                            structure.save()
                 except Exception as ex:
-                    msg = "Error: '%s', ident: '%s', item: '%s'." % (
+                    msg = "Error: '%s', bucket: '%s', item: '%s', value: '%s'." % (
                         ','.join(map(str, ex.args)),
-                        rec['GEBIED'],
-                        item.wbfield_name)
-                    status_tuple = (False, msg)
+                        rec['ID'],
+                        item.wbfield_name,
+                        value)
                     self.logger.error(msg)
-            structure.fews_meta_info = self.fews_meta_info
-            structure.save()
+                    return (False, msg)
+            if self.logger.getEffectiveLevel() > 10:
+                structure.fews_meta_info = self.fews_meta_info
+                structure.save()
         db.close()
         return status_tuple
 
@@ -218,12 +226,13 @@ class DBFImporter(object):
                     if value is not None:
                         setattr(areaconfiguration, item.wbfield_name, value)
                 except Exception as ex:
-                    msg = "Error: '%s', ident: '%s', item: '%s'." % (
+                    msg = "Error: '%s', ident: '%s', item: '%s', value: '%s'." % (
                         ','.join(map(str, ex.args)),
                         rec['GAFIDENT'],
-                        item.wbfield_name)
-                    status_tuple = (False, msg)
+                        item.wbfield_name,
+                        value)
                     self.logger.error(msg)
+                    return (False, msg)
             areaconfiguration.fews_meta_info = self.fews_meta_info
             areaconfiguration.save()
         db.close()

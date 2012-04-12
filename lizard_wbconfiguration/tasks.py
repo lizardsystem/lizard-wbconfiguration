@@ -42,38 +42,55 @@ def validate_wbconfigurations(taskname="",
                               username=None,
                               levelno=20,
                               data_set=None,
-                              esftype=None):
+                              configtype=None):
     """
-    Import wb areaconfigurations from dbf.
+    Import wb areaconfigurations from dbf using
+    validation configurations.
     """
     action = 1
     v_configs = ConfigurationToValidate.objects.filter(
         data_set__name=data_set,
-        config_type=esftype,
+        config_type=configtype,
         action=action)
     v_configs = v_configs.exclude(file_path=None)
+    handler = get_handler(taskname, username)
+    logger = logging.getLogger(taskname)
+    logger.addHandler(handler)
+    logger.setLevel(int(levelno))
+    validated = 0
+    failed = 0
+    logger.info("Start validation of wbconfigurations for '%s'." % data_set)
     for v_config in v_configs:
-        dbfimporter = DBFImporter()
-        dbfimporter.fews_meta_info = v_configs.fews_meta_info
-        dbfimporter.areas_filepath = v_configs.get_area_dbf()
-        dbfimporter.buckets_filepath = v_configs.get_grondwatergebieden_dbf
-        dbfimporter.structures_filepath = v_configs.get_punpingstations_dbf
-
-        status = dbfimporter.import_areaconfigurations('AreaConfiguration')
+        dbfimporter = DBFImporter(logger)
+        dbfimporter.fews_meta_info = v_config.fews_meta_info
+        dbfimporter.areas_filepath = v_config.get_area_dbf()
+        dbfimporter.buckets_filepath = v_config.get_grondwatergebieden_dbf
+        dbfimporter.structures_filepath = v_config.get_punpingstations_dbf
+        logger.debug(
+            "Start validation of 'aanafvoergebied' ident '%s'." % v_config.area.ident)
+        status = dbfimporter.import_areaconfigurations('AreaConfiguration', v_config)
         if isinstance(status, tuple) and status[0]:
-            status = dbfimporter.import_buckets('Bucket')
+            logger.debug("Start validation of 'grondwatergebieden'.")
+            status = dbfimporter.import_buckets('Bucket', v_config)
         if isinstance(status, tuple) and status[0]:
-            status = dbfimporter.import_structures('Structure')
+            logger.debug("Start validation of 'kunstwerken'.")
+            status = dbfimporter.import_structures('Structure', v_config)
         if isinstance(status, tuple) and status[0]:
             ConfigurationToValidate.objects.get(id=v_config.id).delete()
+            validated = validated + 1
+            logger.debug("Validated with SUCCESS.")
         else:
             v_config.action = 0
             if isinstance(status, tuple) and len(status) > 1:
-                v_config.action_log = status[1][256]
+                v_config.action_log = status[1][:256]
             else:
                 v_config.action_log = "Error ...."
             v_config.save()
-
+            failed = failed + 1
+            logger.debug("Validated with ERRORS.")
+    logger.info("Succeed=%s, Failed=%s." % (validated, failed))
+    logger.info("End validation.")
+    logger.removeHandler(handler)
     return "<<validate_wbconfigurations>>"
 
 
