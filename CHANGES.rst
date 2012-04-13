@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.14 (unreleased)
+0.1.14 (2012-04-13)
 -------------------
 
 - Added code_delimeter to Structure and Bucket models as global class variable.
