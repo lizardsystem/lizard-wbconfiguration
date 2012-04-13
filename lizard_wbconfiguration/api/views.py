@@ -166,7 +166,8 @@ class WaterBalanceAreaObjectConfiguration(View):
     def last_areaobject_codenumber(self, area_configuration, areaobject_class):
         """ Return code number of the last structure. """
         area_objects = areaobject_class.objects.filter(
-            area__id=area_configuration.id)
+            area__id=area_configuration.id,
+            code__contains=areaobject_class.CODE_DELIMETER)
         number = None
         if area_objects.exists():
             last_areaobject = area_objects.order_by('-id')[0]
@@ -419,7 +420,10 @@ class WaterBalanceAreaConfiguration(View):
         except Area.DoesNotExist:
             logger.warning("We cannot create a WaterBalanceAreaConfiguration for the non-existing Area with ident '%s'." % ident)
             return None
-        area_config = AreaConfiguration(ident=area.ident, name=area.name, area=area, data_set=area.data_set)
+        area_config = AreaConfiguration(ident=area.ident,
+                                        name=area.name,
+                                        area=area,
+                                        data_set=area.data_set)
         area_config.save()
         return area_config
 

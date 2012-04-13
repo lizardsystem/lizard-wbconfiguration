@@ -262,6 +262,9 @@ class Structure(models.Model):
     """
     Structure.
     """
+
+    CODE_DELIMETER = "_PS"
+
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
     area = models.ForeignKey(AreaConfiguration)
@@ -310,9 +313,8 @@ class Structure(models.Model):
     def code_number(self):
         """Retrieve number of last structure from code."""
         number = 0
-        delimeter = '_PS'
-        if (self.code is not None) and (self.code.find(delimeter) > 0):
-            code_array = self.code.split(delimeter)
+        if (self.code is not None) and (self.code.find(self.CODE_DELIMETER) > 0):
+            code_array = self.code.split(self.CODE_DELIMETER)
             number = int(code_array[len(code_array) - 1])
         return number
 
@@ -325,7 +327,7 @@ class Structure(models.Model):
         01 - structure number
         """
 
-        return "%s_PS%d" % (self.area.ident, number)
+        return "%s%s%d" % (self.area.ident, self.CODE_DELIMETER, number)
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
@@ -349,6 +351,9 @@ class Bucket(models.Model):
     """
     Bucket.
     """
+
+    CODE_DELIMETER = "_GW"
+
     name = models.CharField(max_length=128)
     code = models.CharField(max_length=128)
     bucket_type = models.ForeignKey(BucketsType, null=True, blank=True)
@@ -487,22 +492,21 @@ class Bucket(models.Model):
     def code_number(self):
         """Retrieve number of last bucket from code per area."""
         number = 0
-        delimeter = '_gw'
-        if (self.code is not None) and (self.code.find(delimeter) > 0):
-            code_array = self.code.split(delimeter)
+        if (self.code is not None) and (self.code.find(self.CODE_DELIMETER) > 0):
+            code_array = self.code.split(self.CODE_DELIMETER)
             number = int(code_array[len(code_array) - 1])
         return number
 
     def create_code(self, number):
         """Create bucket code.
 
-        The format is '2100_gw1' where:
+        The format is '2100_GW1' where:
         2100 - ident of area configuration
-        gw - grond water
+        GW - grond water
         1 - bucket number
         """
 
-        return "%s_gw%d" % (self.area.ident, number)
+        return "%s%s%d" % (self.area.ident, self.CODE_DELIMETER, number)
 
     class Meta:
         ordering = ['id']

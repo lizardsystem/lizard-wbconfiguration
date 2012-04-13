@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.1.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Added code_delimeter to Structure and Bucket models as global class variable.
+
+- Updated function 'last_areaobject_codenumber' to prevent of creation dublicate code for structures and buckets.
 
 
 0.1.13 (2012-04-12)
