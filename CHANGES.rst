@@ -5,7 +5,8 @@ Changelog of lizard-wbconfiguration
 0.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Updates the task to validate the water balance configuration to use a
+  case-insensitive search for the water manager.
 
 
 0.1.14 (2012-04-13)
