@@ -49,7 +49,7 @@ def validate_wbconfigurations(taskname="",
     """
     action = 1
     v_configs = ConfigurationToValidate.objects.filter(
-        data_set__name=data_set,
+        data_set__name__iexact=data_set,
         config_type=configtype,
         action=action)
     v_configs = v_configs.exclude(file_path=None)
