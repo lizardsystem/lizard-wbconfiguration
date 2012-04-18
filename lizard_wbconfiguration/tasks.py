@@ -19,14 +19,17 @@ from lizard_wbconfiguration.models import DBFConfiguration
 
 from lizard_task.handler import get_handler
 
-
 @task()
 def import_dbf(fews_meta_info=None,
                areas_filepath=None,
                buckets_filepath=None,
                structures_filepath=None):
-    """
-    Import wb areaconfigurations from dbf.
+    """Import a waterbalance configuration from dbf.
+
+    This function is provided for convenience only. It allows us to test the
+    waterbalance configuration import without the need of a
+    ConfigurationToValidate.
+
     """
     dbfimporter = DBFImporter()
     dbfimporter.fews_meta_info = fews_meta_info
@@ -36,6 +39,17 @@ def import_dbf(fews_meta_info=None,
     dbfimporter.import_dbf()
     return "<<import dbf>>"
 
+def run_importdbf_task():
+    """Run task import_dbf.
+
+    This function is provided for convenience only.
+
+    """
+    kwargs = {"fews_meta_info": "MARK",
+              "areas_filepath": "/tmp/aanafvoer_waterbalans.dbf",
+              "buckets_filepath": "/tmp/grondwatergebieden.dbf",
+              "structures_filepath": "/tmp/pumpingstations.dbf"}
+    import_dbf.delay(**kwargs)
 
 @task()
 def validate_wbconfigurations(taskname="",
@@ -207,12 +221,3 @@ def run_export_task():
     """Run export_to_dbf task for HHNK."""
     kwargs = {"data_set": "Waternet"}
     export_wbconfigurations_to_dbf.delay(**kwargs)
-
-
-def run_importdbf_task():
-    """Run import_dbf task."""
-    kwargs = {"fews_meta_info": "MARK",
-              "areas_filepath": "/tmp/aanafvoer_waterbalans.dbf",
-              "buckets_filepath": "/tmp/grondwatergebieden.dbf",
-              "structures_filepath": "/tmp/pumpingstations.dbf"}
-    import_dbf.delay(**kwargs)
