@@ -8,6 +8,9 @@ Changelog of lizard-wbconfiguration
 - Updates the task to validate the water balance configuration to use a
   case-insensitive search for the water manager.
 
+- Renamed the dbf-fields of buckets in import_dbf.py due a conflict of
+  global variables in FEWS, #104.
+
 
 0.1.14 (2012-04-13)
 -------------------
