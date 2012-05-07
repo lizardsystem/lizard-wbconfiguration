@@ -7,9 +7,11 @@ Changelog of lizard-wbconfiguration
 
 - Updates the task to validate the water balance configuration to use a
   case-insensitive search for the water manager.
-
 - Renamed the dbf-fields of buckets in import_dbf.py due a conflict of
   global variables in FEWS, #104.
+- Adds functionality to export a water balance configuration to a list instead
+  of a DBF file (required to compute a diff of a new and an existing water
+  balance configuration).
 
 
 0.1.14 (2012-04-13)
