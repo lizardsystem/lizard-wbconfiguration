@@ -183,7 +183,6 @@ class DBFExporter(object):
         for item in mapping:
             field_options = [str(item.dbffield_name),
                              str(item.dbffield_type)]
-            print field_options
             if item.dbffield_length is not None:
                 field_options.append(item.dbffield_length)
             if item.dbffield_decimals is not None:
