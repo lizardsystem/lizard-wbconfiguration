@@ -163,20 +163,20 @@ class DBFExporter(object):
 
         try:
             self.logger.info("Create en open dbf file='%s'." % filename)
-            out = Dbf(filename, new=True)
+            self.create_out(filename)
             self.logger.info("Add fields.")
-            self.fields_to_dbf(mapping, out)
+            self.fields_to_dbf(mapping)
             self.logger.info("Store '%s' '%s'." % (
                     len(area_objects), model_name))
-            self.store_data(area_objects, mapping, out)
+            self.store_data(area_objects, mapping)
             self.logger.info("Close file.")
-            out.close()
+            self.close_out()
             success = True
         except Exception as ex:
             self.logger.error(','.join(map(str, ex.args)))
         return success
 
-    def fields_to_dbf(self, mapping, out):
+    def fields_to_dbf(self, mapping):
         """
         Adds fields into dbf file.
         """
@@ -187,14 +187,14 @@ class DBFExporter(object):
                 field_options.append(item.dbffield_length)
             if item.dbffield_decimals is not None:
                 field_options.append(item.dbffield_decimals)
-            out.addField(tuple(field_options))
+            self.add_field_out(field_options)
 
-    def store_data(self, area_objects, mapping, out):
+    def store_data(self, area_objects, mapping):
         """
         Store data into dbf file.
         """
         for area_object in area_objects:
-            rec = out.newRecord()
+            rec = self.new_record()
             for item in mapping:
                 value = self.retrieve_value(area_object,
                                             item.wbfield_name.lower())
@@ -207,7 +207,7 @@ class DBFExporter(object):
 
                     rec[dbffield_name] = value
 
-            rec.store()
+            self.store_record(rec)
 
     def retrieve_value(self, area_object, field_name):
         """Return the value
@@ -254,3 +254,43 @@ class DBFExporter(object):
         if geometry.srid != srid:
             geometry_clone = geometry.transform(srid, clone=True)
             return geometry_clone.centroid
+
+    def create_out(self, file_path):
+        self.out = Dbf(file_path, new=True)
+
+    def add_field_out(self, field_options):
+        self.out.addField(tuple(field_options))
+
+    def close_out(self):
+        self.out.close()
+
+    def new_record(self):
+        return self.out.newRecord()
+
+    def store_record(self, rec):
+        rec.store()
+
+
+class WbExporterToDict(DBFExporter):
+    """Implements the export of a DBF to a dictionary."""
+
+    def __init__(self, *args, **kwargs):
+        DBFExporter.__init__(self, *args, **kwargs)
+
+    def file_path(self, save_to, filename):
+        return "don't care"
+
+    def create_out(self, file_path):
+        self.out = []
+
+    def add_field_out(self, field_options):
+        pass
+
+    def close_out(self):
+        pass
+
+    def new_record(self):
+        return {}
+
+    def store_record(self, rec):
+        self.out.append(rec)
