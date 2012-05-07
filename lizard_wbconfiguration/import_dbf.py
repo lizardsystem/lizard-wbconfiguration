@@ -111,9 +111,9 @@ class DBFImporter(object):
 
         db = Dbf(self.buckets_filepath)
         for rec in db:
-            if v_config is not None and rec['GEBIED'] != v_config.area.ident:
+            if v_config is not None and rec['GEBIED_GW'] != v_config.area.ident:
                 continue
-            bucket = self._get_bucket(rec['GEBIED'], rec['ID'])
+            bucket = self._get_bucket(rec['GEBIED_GW'], rec['ID_GW'])
             if bucket is None:
                 continue
             bucket.fews_meta_info = self.fews_meta_info
@@ -135,7 +135,7 @@ class DBFImporter(object):
                 except Exception as ex:
                     msg = "Error: '%s', bucket: '%s', item: '%s', value: '%s'." % (
                         ','.join(map(str, ex.args)),
-                        rec['ID'],
+                        rec['ID_GW'],
                         item.wbfield_name,
                         value)
                     self.logger.error(msg)
