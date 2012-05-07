@@ -183,6 +183,7 @@ class DBFExporter(object):
         for item in mapping:
             field_options = [str(item.dbffield_name),
                              str(item.dbffield_type)]
+            print field_options
             if item.dbffield_length is not None:
                 field_options.append(item.dbffield_length)
             if item.dbffield_decimals is not None:
@@ -293,4 +294,7 @@ class WbExporterToDict(DBFExporter):
         return {}
 
     def store_record(self, rec):
-        self.out.append(rec)
+        # rec is a dictionary whose keys specify the field names of DBF
+        # files. As the keys will be compared to the field names, we upper case
+        # the keys explicitly.
+        self.out.append(dict((k.upper(), v) for k, v in rec.items()))
