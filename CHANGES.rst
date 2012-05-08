@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.15 (unreleased)
+0.1.15 (2012-05-08)
 -------------------
 
 - Updates the task to validate the water balance configuration to use a
