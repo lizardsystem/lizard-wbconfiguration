@@ -231,6 +231,8 @@ class DBFExporter(object):
                 value = value.ident
             else:
                 value = value.id
+        elif isinstance(value, AreaConfiguration):
+            value = value.area.ident
         elif isinstance(value, BucketsType):
             value = value.code
         elif isinstance(value, StructureInOut):
@@ -293,4 +295,7 @@ class WbExporterToDict(DBFExporter):
         return {}
 
     def store_record(self, rec):
-        self.out.append(rec)
+        # rec is a dictionary whose keys specify the field names of DBF
+        # files. As the keys will be compared to the field names, we upper case
+        # the keys explicitly.
+        self.out.append(dict((k.upper(), v) for k, v in rec.items()))
