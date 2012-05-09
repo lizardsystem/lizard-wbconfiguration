@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.1.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Updated tasks to work with lizard-task 0.5.
 
 
 0.1.16 (2012-05-09)
@@ -13,13 +13,12 @@ Changelog of lizard-wbconfiguration
 
 - Fixes the import of the name of a bucket and a structure (note that this
   change also allows the import and change of an area name).
+
 - Fixes the export of a bucket and a structure to DBF.
 
 
 0.1.15 (2012-05-08)
 -------------------
-
-- Updated tasks to work with lizard-task 0.5.
 
 - Updates the task to validate the water balance configuration to use a
   case-insensitive search for the water manager.
