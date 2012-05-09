@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.1.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixes the import of the name of a bucket and a structure (note that this
+  change also allows the import and change of an area name).
+- Fixes the export of a bucket and a structure to DBF.
 
 
 0.1.15 (2012-05-08)
