@@ -2,8 +2,8 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.17 (unreleased)
--------------------
+0.2 (2012-05-09)
+----------------
 
 - Updated tasks to work with lizard-task 0.5.
 
