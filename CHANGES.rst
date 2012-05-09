@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.16 (unreleased)
+0.1.16 (2012-05-09)
 -------------------
 
 - Fixes the import of the name of a bucket and a structure (note that this
