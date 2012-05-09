@@ -30,7 +30,7 @@ class DBFImporter(object):
         self.fews_meta_info = None
         self.logger = logging.getLogger(__name__)
         self.read_only_fields = ('id', 'ident', 'data_set', 'area',
-                                 'x', 'y', 'name', 'code')
+                                 'x', 'y', 'code')
         self.buckets_validated = 0
         self.srtuctures_validated = 0
         self.buckets_failed = 0
