@@ -231,6 +231,8 @@ class DBFExporter(object):
                 value = value.ident
             else:
                 value = value.id
+        elif isinstance(value, AreaConfiguration):
+            value = value.area.ident
         elif isinstance(value, BucketsType):
             value = value.code
         elif isinstance(value, StructureInOut):
