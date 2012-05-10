@@ -11,6 +11,10 @@ Changelog of lizard-wbconfiguration
 0.2 (2012-05-09)
 ----------------
 
+- Increases the precision of most of the float fields (so the export of a
+  waterbalance configuration to DBF can match the precision of the import,
+  which is supplied by Deltares).
+
 - Updated tasks to work with lizard-task 0.5.
 
 
