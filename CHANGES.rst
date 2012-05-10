@@ -2,10 +2,16 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.1.17 (unreleased)
--------------------
+0.3 (unreleased)
+----------------
 
 - Nothing changed yet.
+
+
+0.2 (2012-05-09)
+----------------
+
+- Updated tasks to work with lizard-task 0.5.
 
 
 0.1.16 (2012-05-09)
@@ -13,6 +19,7 @@ Changelog of lizard-wbconfiguration
 
 - Fixes the import of the name of a bucket and a structure (note that this
   change also allows the import and change of an area name).
+
 - Fixes the export of a bucket and a structure to DBF.
 
 
