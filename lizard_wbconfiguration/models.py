@@ -135,108 +135,108 @@ class AreaConfiguration(models.Model):
                                     verbose_name="Start date")
     ts_precipitation = models.CharField(max_length=128, null=True, blank=True)
     ts_evaporation = models.CharField(max_length=128, null=True, blank=True)
-    max_intake = models.DecimalField(max_digits=10, decimal_places=2,
+    max_intake = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    max_outtake = models.DecimalField(max_digits=10, decimal_places=2,
+    max_outtake = models.DecimalField(max_digits=20, decimal_places=5,
                                       null=True, blank=True)
     ts_concentr_chloride_1 = models.CharField(
         max_length=128, null=True, blank=True)
     ts_concentr_chloride_2 = models.CharField(
         max_length=128, null=True, blank=True)
-    surface = models.DecimalField(max_digits=10, decimal_places=0,
+    surface = models.DecimalField(max_digits=20, decimal_places=5,
                                   null=True, blank=True)
-    bottom_height = models.DecimalField(max_digits=10, decimal_places=2,
+    bottom_height = models.DecimalField(max_digits=20, decimal_places=5,
                                         null=True, blank=True)
     ts_water_level = models.CharField(max_length=128, null=True, blank=True)
     kwel_is_ts = models.BooleanField()
-    kwel = models.DecimalField(max_digits=10, decimal_places=2,
+    kwel = models.DecimalField(max_digits=20, decimal_places=5,
                                null=True, blank=True)
     ts_kwel = models.CharField(max_length=128, null=True, blank=True)
     wegz_is_ts = models.BooleanField()
-    wegz = models.DecimalField(max_digits=10, decimal_places=2,
+    wegz = models.DecimalField(max_digits=20, decimal_places=5,
                                null=True, blank=True)
     ts_wegz = models.CharField(max_length=128, null=True, blank=True)
     peilh_issp = models.BooleanField()
     sp_is_ts = models.BooleanField()
     ts_sp = models.CharField(max_length=128, null=True, blank=True)
-    winterp = models.DecimalField(max_digits=6, decimal_places=2,
+    winterp = models.DecimalField(max_digits=20, decimal_places=5,
                                   null=True, blank=True)
-    lentep = models.DecimalField(max_digits=6, decimal_places=2,
+    lentep = models.DecimalField(max_digits=20, decimal_places=5,
                                  null=True, blank=True)
-    zomerp = models.DecimalField(max_digits=6, decimal_places=2,
+    zomerp = models.DecimalField(max_digits=20, decimal_places=5,
                                  null=True, blank=True)
-    herfstp = models.DecimalField(max_digits=6, decimal_places=2,
+    herfstp = models.DecimalField(max_digits=20, decimal_places=5,
                                   null=True, blank=True)
     start_wp = models.DateTimeField(null=True, blank=True)
     start_lp = models.DateTimeField(null=True, blank=True)
     start_zp = models.DateTimeField(null=True, blank=True)
     start_hp = models.DateTimeField(null=True, blank=True)
-    marge_ond = models.DecimalField(max_digits=10, decimal_places=2,
+    marge_ond = models.DecimalField(max_digits=20, decimal_places=5,
                                     null=True, blank=True)
-    marge_bov = models.DecimalField(max_digits=10, decimal_places=2,
+    marge_bov = models.DecimalField(max_digits=20, decimal_places=5,
                                     null=True, blank=True)
-    nutc_min_1 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_min_1 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    nutc_inc_1 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_inc_1 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    nutc_min_2 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_min_2 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    nutc_inc_2 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_inc_2 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    nutc_min_3 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_min_3 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    nutc_inc_3 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_inc_3 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    nutc_min_4 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_min_4 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    nutc_inc_4 = models.DecimalField(max_digits=8, decimal_places=2,
+    nutc_inc_4 = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
-    ini_con_cl = models.DecimalField(max_digits=8, decimal_places=2,
+    ini_con_cl = models.DecimalField(max_digits=20, decimal_places=5,
                                      null=True, blank=True)
     ts_cl = models.CharField(max_length=128, null=True, blank=True)
-    init_water_level = models.DecimalField(max_digits=8, decimal_places=2,
+    init_water_level = models.DecimalField(max_digits=20, decimal_places=5,
                                            null=True, blank=True)
     concentr_chloride_precipitation = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     concentr_chloride_seepage = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_phosphate_precipitation = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_phopshate_seepage = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_phosphate_precipitation = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_phosphate_seepage = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_nitrogyn_precipitation = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_nitrogyn_seepage = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_nitrogyn_precipitation = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_nitrogyn_seepage = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_so4_precipitation = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_so4_seepage = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_so4_precipitation = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_so4_seepage = models.DecimalField(
-        max_digits=8, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     fews_meta_info = models.CharField(max_length=128, null=True, blank=True)
     supports_object_permissions = True
@@ -278,29 +278,29 @@ class Structure(models.Model):
                                null=True, blank=True)
     deb_is_ts = models.BooleanField()
     ts_debiet = models.CharField(max_length=128, null=True, blank=True)
-    deb_zomer = models.DecimalField(max_digits=10, decimal_places=2,
+    deb_zomer = models.DecimalField(max_digits=20, decimal_places=5,
                                     null=True, blank=True)
-    deb_wint = models.DecimalField(max_digits=10, decimal_places=2,
+    deb_wint = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    concentr_chloride = models.DecimalField(max_digits=10, decimal_places=2,
+    concentr_chloride = models.DecimalField(max_digits=20, decimal_places=5,
                                             null=True, blank=True)
-    min_concentr_phosphate = models.DecimalField(max_digits=10,
-                                                 decimal_places=2,
+    min_concentr_phosphate = models.DecimalField(max_digits=20,
+                                                 decimal_places=5,
                                                  null=True, blank=True)
-    incr_concentr_phosphate = models.DecimalField(max_digits=10,
-                                                  decimal_places=2,
+    incr_concentr_phosphate = models.DecimalField(max_digits=20,
+                                                  decimal_places=5,
                                                   null=True, blank=True)
-    min_concentr_nitrogen = models.DecimalField(max_digits=10,
-                                                decimal_places=2,
+    min_concentr_nitrogen = models.DecimalField(max_digits=20,
+                                                decimal_places=5,
                                                 null=True, blank=True)
-    incr_concentr_nitrogen = models.DecimalField(max_digits=10,
-                                                 decimal_places=2,
+    incr_concentr_nitrogen = models.DecimalField(max_digits=20,
+                                                 decimal_places=5,
                                                  null=True, blank=True)
     min_concentr_so4 = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_so4 = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     deleted = models.BooleanField(default=False)
     fews_meta_info = models.CharField(max_length=128, null=True, blank=True)
@@ -366,120 +366,120 @@ class Bucket(models.Model):
     is_computed = models.BooleanField()
     ingebr = models.BooleanField(default=True)
     flowoff_is_ts = models.BooleanField()
-    flowoff = models.DecimalField(max_digits=10, decimal_places=2,
+    flowoff = models.DecimalField(max_digits=20, decimal_places=5,
                                   null=True, blank=True)
     ts_flowoff = models.CharField(max_length=128, null=True, blank=True)
     drainageindraft_is_ts = models.BooleanField()
-    drainageindraft = models.DecimalField(max_digits=10, decimal_places=2,
+    drainageindraft = models.DecimalField(max_digits=20, decimal_places=5,
                                           null=True, blank=True)
     ts_drainageindraft = models.CharField(
         max_length=128, null=True, blank=True)
     referenceoverflow_is_ts = models.BooleanField()
-    referenceoverflow = models.DecimalField(max_digits=10, decimal_places=2,
+    referenceoverflow = models.DecimalField(max_digits=20, decimal_places=5,
                                             null=True, blank=True)
     ts_referenceoverflow = models.CharField(
         max_length=128, null=True, blank=True)
-    surface = models.DecimalField(max_digits=10, decimal_places=0,
+    surface = models.DecimalField(max_digits=20, decimal_places=5,
                                   null=True, blank=True)
     kwelwegz_is_ts = models.BooleanField()
-    kwelwegz = models.DecimalField(max_digits=10, decimal_places=2,
+    kwelwegz = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
     ts_kwelwegz = models.CharField(max_length=128, null=True, blank=True)
-    porosity = models.DecimalField(max_digits=10, decimal_places=2,
+    porosity = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    crop_evaporation_factor = models.DecimalField(max_digits=10,
-                                                  decimal_places=2,
+    crop_evaporation_factor = models.DecimalField(max_digits=20,
+                                                  decimal_places=5,
                                                   null=True, blank=True)
-    min_crop_evaporation_factor = models.DecimalField(max_digits=10,
-                                                      decimal_places=2,
+    min_crop_evaporation_factor = models.DecimalField(max_digits=20,
+                                                      decimal_places=5,
                                                       null=True, blank=True)
-    drainage_fraction = models.DecimalField(max_digits=10, decimal_places=2,
+    drainage_fraction = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    indraft_fraction = models.DecimalField(max_digits=10, decimal_places=2,
+    indraft_fraction = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    man_water_level = models.DecimalField(max_digits=10, decimal_places=2,
+    man_water_level = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    min_water_level = models.DecimalField(max_digits=10, decimal_places=2,
+    min_water_level = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    equi_water_level = models.DecimalField(max_digits=10, decimal_places=2,
+    equi_water_level = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    bottom_porosity = models.DecimalField(max_digits=10, decimal_places=2,
+    bottom_porosity = models.DecimalField(max_digits=20, decimal_places=5,
                                    null=True, blank=True)
-    bottom_crop_evaporation_factor = models.DecimalField(max_digits=10,
-                                                         decimal_places=2,
+    bottom_crop_evaporation_factor = models.DecimalField(max_digits=20,
+                                                         decimal_places=5,
                                                          null=True, blank=True)
-    bottom_min_crop_evaporation_factor = models.DecimalField(max_digits=10,
-                                                         decimal_places=2,
+    bottom_min_crop_evaporation_factor = models.DecimalField(max_digits=20,
+                                                         decimal_places=5,
                                                          null=True, blank=True)
-    bottom_drainage_fraction = models.DecimalField(max_digits=10,
-                                                   decimal_places=2,
+    bottom_drainage_fraction = models.DecimalField(max_digits=20,
+                                                   decimal_places=5,
                                                    null=True, blank=True)
-    bottom_indraft_fraction = models.DecimalField(max_digits=10,
-                                                  decimal_places=2,
+    bottom_indraft_fraction = models.DecimalField(max_digits=20,
+                                                  decimal_places=5,
                                                   null=True, blank=True)
-    bottom_max_water_level = models.DecimalField(max_digits=10,
-                                                 decimal_places=2,
+    bottom_max_water_level = models.DecimalField(max_digits=20,
+                                                 decimal_places=5,
                                                  null=True, blank=True)
-    bottom_min_water_level = models.DecimalField(max_digits=10,
-                                                 decimal_places=2,
+    bottom_min_water_level = models.DecimalField(max_digits=20,
+                                                 decimal_places=5,
                                                  null=True, blank=True)
-    bottom_equi_water_level = models.DecimalField(max_digits=10,
-                                                 decimal_places=2,
+    bottom_equi_water_level = models.DecimalField(max_digits=20,
+                                                 decimal_places=5,
                                                  null=True, blank=True)
-    init_water_level = models.DecimalField(max_digits=10, decimal_places=2,
+    init_water_level = models.DecimalField(max_digits=20, decimal_places=5,
                                            null=True, blank=True)
-    bottom_init_water_level = models.DecimalField(max_digits=10,
-                                                  decimal_places=2,
+    bottom_init_water_level = models.DecimalField(max_digits=20,
+                                                  decimal_places=5,
                                                   null=True, blank=True)
-    concentr_chloride_flow_off = models.DecimalField(max_digits=10,
-                                                     decimal_places=2,
+    concentr_chloride_flow_off = models.DecimalField(max_digits=20,
+                                                     decimal_places=5,
                                                      null=True, blank=True)
     concentr_chloride_drainage_indraft = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_phosphate_flow_off = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_phosphate_drainage_indraft = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_phosphate_flow_off = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_phosphate_drainage_indraft = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_nitrogen_flow_off = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_nitrogen_drainage_indraft = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
+        max_digits=20,
+        decimal_places=5,
         null=True, blank=True)
     incr_concentr_nitrogen_flow_off = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_nitrogen_drainage_indraft = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
+        max_digits=20,
+        decimal_places=5,
         null=True, blank=True)
     min_concentr_so4_flow_off = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     min_concentr_so4_drainage_indraft = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_so4_flow_off = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
     incr_concentr_so4_drainage_indraft = models.DecimalField(
-        max_digits=10, decimal_places=2,
+        max_digits=20, decimal_places=5,
         null=True, blank=True)
-    label_flow_off = models.DecimalField(max_digits=10,
-                                         decimal_places=2,
+    label_flow_off = models.DecimalField(max_digits=20,
+                                         decimal_places=5,
                                          null=True, blank=True)
-    label_drainaige_indraft = models.DecimalField(max_digits=10,
-                                                  decimal_places=2,
+    label_drainaige_indraft = models.DecimalField(max_digits=20,
+                                                  decimal_places=5,
                                                   null=True, blank=True)
     deleted = models.BooleanField(default=False)
     fews_meta_info = models.CharField(max_length=128, null=True, blank=True)
