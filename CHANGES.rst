@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.3 (unreleased)
+0.3 (2012-05-14)
 ----------------
 
 - Increases the precision of most of the float fields (so the export of a
