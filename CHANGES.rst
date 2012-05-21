@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.4 (unreleased)
+0.4 (2012-05-21)
 ----------------
 
 - Changed code format of structures.
