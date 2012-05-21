@@ -33,18 +33,25 @@ with management command::
 
 AreaConfiguration
 ----------------------------------------
-Each area configuration could contains 10 structures. 2 of them are default and the other 8 ara free addetable.
+Each area configuration contains 10 structures and meny buckets.
 
 
 Structeres
 --------------------------------------------
-Defualt structures - the structure will be created automaticlly on openign the waterbalance
-configuration form with name 'Peilhandhaving In defaul' and
-'Peilhandhaving Uit defaul'. This 2 structures are not deletable.
+Defualt structures - 10 structure will be created automaticlly on openign the waterbalance
+configuration form with name. The user is not available to add or delete any structure.
 
-Structures get a code of the next format:
-kw_<area ident>__<number 1-10>
-for example: kw_2100__4
+The structure has next code format:
+- <area_ident>_uitlaatPB
+- <area_ident>_inlaatPB
+- <area_ident>_uitlaat1
+- <area_ident>_uitlaat2
+- <area_ident>_uitlaat3
+- <area_ident>_uitlaat4
+- <area_ident>_inlaat1
+- <area_ident>_inlaat2
+- <area_ident>_inlaat3
+- <area_ident>_inlaat4
 
 Buckets
 --------------------------------------------

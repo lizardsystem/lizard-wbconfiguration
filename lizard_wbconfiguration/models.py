@@ -245,6 +245,121 @@ class AreaConfiguration(models.Model):
                                  blank=True)
     objects = FilteredManager()
 
+    @property
+    def code_pbinlaat_structure(self):
+        return "%s_inlaatPB" % self.ident
+
+    @property
+    def code_pbuitlaat_structure(self):
+        return "%s_uitlaatPB" % self.ident
+
+    @property
+    def has_pbinlaat_structure(self):
+        """Return true if area has inlaatPB structure."""
+        structures = Structure.objects.filter(
+            area=self, code=self.code_pbinlaat_structure)
+        if structures.exists():
+            return True
+        return False
+
+    @property
+    def has_pbuitlaat_structure(self):
+        """Return true if area has 'uitlaatPB' structure."""
+        structures = Structure.objects.filter(
+            area=self, code=self.code_pbuitlaat_structure)
+        if structures.exists():
+            return True
+        return False
+
+    def code_inlaat_structure(self, number):
+        return "%s_inlaat%d" % (self.ident, number)
+
+    def code_uitlaat_structure(self, number):
+        return "%s_uitlaat%d" % (self.ident, number)
+
+    def has_inlaat_structure(self, number):
+        """Return true if area has 'inlaat' structure of the passed number."""
+        try:
+            Structure.objects.get(
+                code=self.code_inlaat_structure(number))
+        except:
+            return False
+        return True
+
+    def has_uitlaat_structure(self, number):
+        """Return true if area has 'uitlaat' structure of the passed number."""
+        try:
+            Structure.objects.get(
+                code=self.code_uitlaat_structure(number))
+        except:
+            return False
+        return True
+
+    def create_inlaat_structure(self, number, in_type):
+        """Create 'inlaat' structure."""
+        structure = Structure(
+            code=self.code_inlaat_structure(number),
+            area=self,
+            in_out=in_type,
+            data_set=self.data_set)
+        structure.save()
+
+    def create_uitlaat_structure(self, number, out_type):
+        """Create 'uitlaat' structure."""
+        structure = Structure(
+            code=self.code_uitlaat_structure(number),
+            area=self,
+            in_out=out_type,
+            data_set=self.data_set)
+        structure.save()
+
+    def create_pbinlaat_structure(self, in_type):
+        """Create 'inlaatPB' structure."""
+        structure = Structure(
+            code=self.code_pbinlaat_structure,
+            area=self,
+            in_out=in_type,
+            name=in_type.description,
+            is_computed=True,
+            data_set=self.data_set)
+        structure.save()
+
+    def create_pbuitlaat_structure(self, out_type):
+        """Create 'uitlaatPB' structure."""
+        structure = Structure(
+            code=self.code_pbuitlaat_structure,
+            area=self,
+            in_out=out_type,
+            name=out_type.description,
+            is_computed=True,
+            data_set=self.data_set)
+        structure.save()
+
+    def create_default_structures(self):
+        """Create 10 structures
+           - <area_ident>_uitlaatPB
+           - <area_ident>_inlaatPB
+           - <area_ident>_uitlaat1
+           - <area_ident>_uitlaat2
+           - <area_ident>_uitlaat3
+           - <area_ident>_uitlaat4
+           - <area_ident>_inlaat1
+           - <area_ident>_inlaat2
+           - <area_ident>_inlaat3
+           - <area_ident>_inlaat4"""
+        in_type = StructureInOut.objects.get(code='in')
+        out_type = StructureInOut.objects.get(code='uit')
+
+        if self.has_pbinlaat_structure == False:
+            self.create_pbinlaat_structure(in_type)
+        if self.has_pbuitlaat_structure == False:
+            self.create_pbuitlaat_structure(out_type)
+        for i in range(1, 5):
+            if self.has_inlaat_structure(i) == False:
+                self.create_inlaat_structure(i, in_type)
+            if self.has_uitlaat_structure(i) == False:
+                self.create_uitlaat_structure(i, out_type)
+
     def __unicode__(self):
         return "%s" % self.ident
 
@@ -262,8 +377,6 @@ class Structure(models.Model):
     """
     Structure.
     """
-
-    CODE_DELIMETER = "_PS"
 
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
@@ -309,25 +422,6 @@ class Structure(models.Model):
                                  null=True,
                                  blank=True)
     objects = FilteredManager()
-
-    def code_number(self):
-        """Retrieve number of last structure from code."""
-        number = 0
-        if (self.code is not None) and (self.code.find(self.CODE_DELIMETER) > 0):
-            code_array = self.code.split(self.CODE_DELIMETER)
-            number = int(code_array[len(code_array) - 1])
-        return number
-
-    def create_code(self, number):
-        """Create structure code.
-
-        The format is '2100_PS1' where:
-        2100 - ident of area configuration
-        PS - pumping stations
-        01 - structure number
-        """
-
-        return "%s%s%d" % (self.area.ident, self.CODE_DELIMETER, number)
 
     def __unicode__(self):
         return "%s %s" % (self.code, self.name)
@@ -492,7 +586,8 @@ class Bucket(models.Model):
     def code_number(self):
         """Retrieve number of last bucket from code per area."""
         number = 0
-        if (self.code is not None) and (self.code.find(self.CODE_DELIMETER) > 0):
+        if (self.code is not None) and (
+            self.code.find(self.CODE_DELIMETER) > 0):
             code_array = self.code.split(self.CODE_DELIMETER)
             number = int(code_array[len(code_array) - 1])
         return number

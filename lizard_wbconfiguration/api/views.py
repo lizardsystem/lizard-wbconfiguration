@@ -39,7 +39,6 @@ class WaterBalanceAreaObjectConfiguration(View):
     """
     View and save the area configuration objects.
     Buckets and Structures.
-    Area configuration contains 2 default structures(in, out).
     """
 
     def get(self, request):
@@ -90,78 +89,13 @@ class WaterBalanceAreaObjectConfiguration(View):
             area_object_config.append(area_object_as_dict)
         return area_object_config
 
-    def check_amount_structures(self, area_configuration):
-        """Check allowed amount structures per area."""
-        amount = 10
-        structures = Structure.objects.filter(
-            area__id=area_configuration.id,
-            deleted=False)
-        if len(structures) >= amount:
-            logger.debug("Amount of structures is %d allowed %d, area %s" % (
-                    len(structures), amount, area_configuration.ident))
-            return False
-        return True
-
-    def check_amount_buckets(self, area_configuration):
-        """Check allowed amount structures per area."""
-        amount = 10
-        buckets = Bucket.objects.filter(
-            area__id=area_configuration.id,
-            deleted=False)
-        if len(buckets) >= amount:
-            logger.debug("Amount of buckets is %d allowed %d, area %s" % (
-                    len(buckets), amount, area_configuration.ident))
-            return False
-        return True
-
-    def exists_default_structure(self, area_configuration, in_out):
-        """ Check and activate default structures. """
-        structures = Structure.objects.filter(in_out=in_out,
-                                              area__id=area_configuration.id,
-                                              is_computed=True)
-        for structure in structures:
-            if structure.deleted == True:
-                structure.deleted = False
-                structure.save()
-
-        if structures.exists():
-            return True
-        return False
-
-    def create_default_structure(self, area_configuration, in_out):
-        """Creates default structure.
-
-        Arguments:
-        area_configuration -- the object instance of AreaConfiguratin
-        in_out -- instance of StructureInOut object
-        """
-        try:
-            structure = Structure(name=in_out.description,
-                                  in_out=in_out,
-                                  area=area_configuration,
-                                  is_computed=True,
-                                  data_set=area_configuration.data_set)
-            last_codenumber = self.last_areaobject_codenumber(
-                area_configuration, Structure)
-            if last_codenumber is None:
-                last_codenumber = structure.code_number()
-            structure.code = structure.create_code(last_codenumber + 1)
-            structure.save()
-        except Exception as ex:
-            logger.debug(','.join(map(str, ex.args)))
-
     def create_default_structures(self, object_id):
         """
-        Create 2 defualt structures.
+        Create 10 structures.
         """
-        area_config = AreaConfiguration.objects.get(ident=object_id)
-        in_outs = StructureInOut.objects.all()
-
-        for item in in_outs:
-            if self.check_amount_structures(area_config) == False:
-                break
-            if not self.exists_default_structure(area_config, item):
-                self.create_default_structure(area_config, item)
+        area_configuration = AreaConfiguration.objects.get(
+            ident=object_id)
+        area_configuration.create_default_structures()
 
     def last_areaobject_codenumber(self, area_configuration, areaobject_class):
         """ Return code number of the last structure. """
@@ -210,43 +144,35 @@ class WaterBalanceAreaObjectConfiguration(View):
                 success = False
         return success
 
-    def create_areaobject(self, area, areaobject_class):
+    def create_bucket(self, area):
         """
-        Create a area object related to AreaConfiguration.
-        Set code into the object.
+        Create a bucket.
         """
-        area_object = areaobject_class(area=area,
-                                       data_set=area.data_set)
-        if isinstance(area_object, Structure):
-            if self.check_amount_structures(area) == False:
-                return None
-        if isinstance(area_object, Bucket):
-            if self.check_amount_buckets(area) == False:
-                return None
+        bucket = Bucket(area=area, data_set=area.data_set)
         last_codenumber = self.last_areaobject_codenumber(
-            area, areaobject_class)
+            area, Bucket)
         if last_codenumber is None:
-            last_codenumber = area_object.code_number()
+            last_codenumber = bucket.code_number()
 
-        area_object.code = area_object.create_code(last_codenumber + 1)
-        area_object.save()
-        return area_object
+        bucket.code = bucket.create_code(last_codenumber + 1)
+        bucket.save()
+        return bucket
 
-    def create_areaobjects(self, data, area, areaobject_class):
+    def create_buckets(self, data, area):
         """Create area object."""
         touched_objects = []
         success = True
         for record in data:
             if 'id' in record.keys():
                 del record['id']
-            area_object = self.create_areaobject(area, areaobject_class)
-            if area_object is None:
+            bucket = self.create_bucket(area)
+            if bucket is None:
                 success = False
                 continue
-            if not self.update_areaobject(record, area_object):
+            if not self.update_areaobject(record, bucket):
                 success = False
 
-            touched_objects.append(area_object)
+            touched_objects.append(bucket)
         return (success, touched_objects)
 
     def update_areaobjects(self, data, areaobject_class):
@@ -329,13 +255,12 @@ class WaterBalanceAreaObjectConfiguration(View):
         areaobject_class = self.areaobject_class(areaobject_type)
         touched_objects = []
 
-        if action == 'delete':
+        if action == 'delete' and areaobject_class == Bucket:
             success = self.delete_areaobjects(
                 data, areaobject_class)
-        elif action == 'create':
+        elif action == 'create' and areaobject_class == Bucket:
             area = AreaConfiguration.objects.get(ident=object_id)
-            success, touched_objects = self.create_areaobjects(
-                data, area, areaobject_class)
+            success, touched_objects = self.create_buckets(data, area)
         elif action == 'update':
             success, touched_objects = self.update_areaobjects(
                 data, areaobject_class)

@@ -4,7 +4,7 @@ from django.test import TestCase
 from lizard_area.models import Area
 from lizard_wbconfiguration.models import AreaConfiguration
 from lizard_wbconfiguration.models import StructureInOut
-from lizard_wbconfiguration.api.views import WaterBalanceAreaObjectConfiguration
+from lizard_wbconfiguration.models import Structure
 from django.contrib.auth.models import User
 from django.contrib.gis.geos import GEOSGeometry
 from django.contrib.gis.geos import Point
@@ -15,9 +15,12 @@ class StructureTest(TestCase):
     def setUp(self):
         self.area = None
         self.area_configuration = None
+        self.create_area()
+        self.create_areaconfiguration(self.area)
+        self.create_structure_in_out()
 
     def create_area(self):
-        user = User(username='admin', password='admin')
+        user = User(username='test', password='test')
         user.save()
         geo_object_group = self.get_or_create_geoobjectgroup(
             user.username)
@@ -44,16 +47,14 @@ class StructureTest(TestCase):
             return False
 
     def test_create_structures(self):
-        self.create_area()
-        self.create_areaconfiguration(self.area)
-        area_object_config = WaterBalanceAreaObjectConfiguration()
-        self.create_structure_in_out()
-        inout_obj = StructureInOut.objects.get(code='uit')
-        area_object_config.create_default_structure(
-            self.area_configuration, inout_obj)
-        is_created = area_object_config.exists_default_structure(
-            self.area_configuration, inout_obj)
-        self.assertEquals(is_created, True)
+        """Test creating of 10 structures."""
+        self.area_configuration.create_default_structures()
+        structures = Structure.objects.all()
+        self.assertEquals(len(structures), 10)
+
+        self.area_configuration.create_default_structures()
+        structures = Structure.objects.all()
+        self.assertEquals(len(structures), 10)
 
     def get_or_create_geoobjectgroup(self, user_name):
         from lizard_geo.models import GeoObjectGroup

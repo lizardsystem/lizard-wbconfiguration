@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Changed code format of structures.
+
+- Deleted functionality to add or delete structures.
 
 
 0.3 (2012-05-14)

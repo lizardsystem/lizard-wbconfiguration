@@ -41,11 +41,12 @@ DATABASES = {
 SITE_ID = 1
 INSTALLED_APPS = [
     'lizard_security',
-    'lizard_wbconfiguration',
     'lizard_geo',  # Must come before lizard_area
     'lizard_area',
-    'lizard_fewsnorm',
+    'djcelery',
     'lizard_task',
+    'lizard_fewsnorm',
+    'lizard_wbconfiguration',
     'staticfiles',
     'compressor',
     'south',
