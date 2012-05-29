@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Removed ydev tag from setup.py as well.
 
 
 0.5.1 (2012-05-29)
