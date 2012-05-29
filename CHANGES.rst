@@ -2,10 +2,10 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.5 (unreleased)
-----------------
+0.5. (2012-05-29)
+-----------------
 
-- Add urls and views to display archived versions of wb configurations.
+- Add urls and views to display archived versions of wb configurations.s
 
 
 0.4 (2012-05-21)
