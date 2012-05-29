@@ -11,7 +11,7 @@ Changelog of lizard-wbconfiguration
 0.5.1 (2012-05-29)
 ------------------
 
-- Nothing changed yet.
+- Removed dev y-tag by making new release.
 
 
 0.5 (2012-05-29)
