@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added functionality to remove rejected configuration on validation.
+
+- Impoved logging of celery tasks.
 
 
 0.4 (2012-05-21)
