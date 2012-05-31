@@ -2,12 +2,26 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.5 (unreleased)
-----------------
+0.5.2 (unreleased)
+------------------
+
+- Removed ydev tag from setup.py as well.
 
 - Added functionality to remove rejected configuration on validation.
 
 - Impoved logging of celery tasks.
+
+
+0.5.1 (2012-05-29)
+------------------
+
+- Removed dev y-tag by making new release.
+
+
+0.5 (2012-05-29)
+----------------
+
+- Add urls and views to display archived versions of wb configurations.s
 
 
 0.4 (2012-05-21)
