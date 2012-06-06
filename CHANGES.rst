@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.5.3 (unreleased)
+0.5.3 (2012-06-06)
 ------------------
 
 - fixes for history page in ie
