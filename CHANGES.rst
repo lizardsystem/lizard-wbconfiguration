@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.5.4 (unreleased)
+0.5.4 (2012-06-18)
 ------------------
 
 - Fix archive view of wbconfigurations.
