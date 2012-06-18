@@ -123,6 +123,8 @@ class AreaConfiguration(models.Model):
     Areaconfiguration for water balance.
     Contains 2 deafault structures (in/out).
     """
+    # View whose data to store via lizard_history.
+    HISTORY_DATA_VIEW = ('lizard_wbconfiguration.api.views.HistoryObjectView')
 
     ident = models.CharField(unique=True, max_length=64)
     name = models.CharField(max_length=128)
@@ -377,6 +379,8 @@ class Structure(models.Model):
     """
     Structure.
     """
+    # View whose data to store via lizard_history.
+    HISTORY_DATA_VIEW = ('lizard_wbconfiguration.api.views.HistoryObjectView')
 
     code = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
@@ -445,6 +449,8 @@ class Bucket(models.Model):
     """
     Bucket.
     """
+    # View whose data to store via lizard_history.
+    HISTORY_DATA_VIEW = ('lizard_wbconfiguration.api.views.HistoryObjectView')
 
     CODE_DELIMETER = "_GW"
 

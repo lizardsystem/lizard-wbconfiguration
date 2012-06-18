@@ -56,7 +56,7 @@ class WBConfigurationHistoryView(AppView):
 
 class WBConfigurationArchiveView(AppView):
     """
-    Readonly esf tree.
+    Readonly waterbalanceconfiguration.
     """
     def history(self):
         """
@@ -86,7 +86,7 @@ class WBConfigurationArchiveView(AppView):
         if request.user.is_authenticated():
             self.template_name = 'lizard_wbconfiguration/wbconfiguration_read_only.js'
             self.log_entry_id = kwargs.get('log_entry_id')
-            # For the special case of esf trees, the area_ident is
+            # For the special case of wbconfigurations, the area_ident is
             # stored in the object_repr field of the log_entry.
             self.area_ident = self.history()['object_repr']
         else:

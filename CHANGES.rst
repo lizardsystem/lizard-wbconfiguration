@@ -5,7 +5,9 @@ Changelog of lizard-wbconfiguration
 0.5.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix archive view of wbconfigurations.
+
+- Bring in code specific for this app from lizard_history
 
 
 0.5.3 (2012-06-06)

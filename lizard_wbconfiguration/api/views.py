@@ -3,6 +3,7 @@ API views not coupled to models.
 """
 import datetime
 
+from django.http import HttpRequest
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.utils import simplejson as json
@@ -468,3 +469,55 @@ class WBSummary(View):
                        'structures_out': structures_out}
 
         return render_to_response('wbconfiguration_summary.html', context)
+
+
+class HistoryObjectView(View):
+    """
+    View not actually to be viewed from the client, but to be called
+    by lizard-history to gather the current status of the waterbalance
+    configuration.
+
+    Note that whoever instantiates this view should add the user as attribute
+    on it, because get_object_for_api depends on that.
+    """
+
+    def get_object_for_api(self, obj, include_geom, flat):
+        """
+        Return data for all four views of the wbconfiguration object.
+
+        The parameters include_geom and flat are not actually used,
+        but are present because lizard_history works that way.
+        """
+        result = {}
+
+        # Our views expects a request, so let's make one.
+        view_request = HttpRequest()
+        view_request.user = self.user
+        view_request.GET = view_request.GET.copy()  # Make request mutable.
+        view_request.GET.update(
+            object_id=obj.area.area.ident,
+            grid_name='water',
+        )
+        result.update(
+            water=WaterBalanceAreaConfiguration().get(view_request)
+        )
+
+        view_request.GET.update(
+            grid_name='area',
+        )
+        result.update(
+            area=WaterBalanceAreaConfiguration().get(view_request)
+        )
+
+        del view_request.GET['grid_name']
+        view_request.GET.update(area_object_type='Bucket')
+        result.update(
+            bucket=WaterBalanceAreaObjectConfiguration().get(view_request)
+        )
+
+        view_request.GET.update(area_object_type='Structure')
+        result.update(
+            structure=WaterBalanceAreaObjectConfiguration().get(view_request)
+        )
+
+        return result
