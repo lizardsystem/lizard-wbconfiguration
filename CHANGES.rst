@@ -7,6 +7,10 @@ Changelog of lizard-wbconfiguration
 
 - Add summary column to history view for a wbconfiguration.
 
+- Add the fews_meta_info to objects before saving in import_dbf
+
+- Enable logging of import_dbf with lizard_history
+
 
 0.5.4 (2012-06-18)
 ------------------

@@ -131,6 +131,7 @@ class DBFImporter(object):
                     if value is not None:
                         setattr(bucket, item.wbfield_name, value)
                         if self.logger.getEffectiveLevel() == 10:
+                            bucket.lizard_history_summary = self.fews_meta_info
                             bucket.save()
                 except Exception as ex:
                     msg = "Error: '%s', bucket: '%s', item: '%s', value: '%s'." % (
@@ -141,6 +142,7 @@ class DBFImporter(object):
                     self.logger.error(msg)
                     return (False, msg)
             if self.logger.getEffectiveLevel() > 10:
+                bucket.lizard_history_summary = self.fews_meta_info
                 bucket.save()
         db.close()
         return status_tuple
@@ -177,6 +179,7 @@ class DBFImporter(object):
                     if value is not None:
                         setattr(structure, item.wbfield_name, value)
                         if self.logger.getEffectiveLevel() == 10:
+                            structure.lizard_history_summary = self.fews_meta_info
                             structure.save()
                 except Exception as ex:
                     msg = "Error: '%s', bucket: '%s', item: '%s', value: '%s'." % (
@@ -188,6 +191,7 @@ class DBFImporter(object):
                     return (False, msg)
             if self.logger.getEffectiveLevel() > 10:
                 structure.fews_meta_info = self.fews_meta_info
+                structure.lizard_history_summary = self.fews_meta_info
                 structure.save()
         db.close()
         return status_tuple
@@ -234,6 +238,7 @@ class DBFImporter(object):
                     self.logger.error(msg)
                     return (False, msg)
             areaconfiguration.fews_meta_info = self.fews_meta_info
+            areaconfiguration.lizard_history_summary = self.fews_meta_info
             areaconfiguration.save()
         db.close()
         return status_tuple
@@ -265,6 +270,7 @@ class DBFImporter(object):
                 return None
             structure = Structure(name='', code=code, area=area_config,
                 data_set=area_config.data_set)
+            structure.lizard_history_summary = self.fews_meta_info
             structure.save()
         return structure
 
@@ -295,6 +301,7 @@ class DBFImporter(object):
                 return None
             bucket = Bucket(name='', code=code, area=area_config,
                 data_set=area_config.data_set)
+            bucket.lizard_history_summary = self.fews_meta_info
             bucket.save()
         return bucket
 

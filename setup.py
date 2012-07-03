@@ -23,6 +23,7 @@ install_requires = [
     'lizard-portal',
     'lizard-task',
     'lizard-ui >= 3.0',
+    'lizard-history >= 0.4.1',
     'pkginfo',
     'dbfpy',
     ],

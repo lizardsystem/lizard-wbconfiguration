@@ -20,6 +20,9 @@ from lizard_wbconfiguration.models import DBFConfiguration
 from lizard_task.handler import get_handler
 from lizard_task.task import task_logging
 
+from django.contrib.auth.models import User
+from lizard_history import utils
+
 
 @task()
 def import_dbf(fews_meta_info=None,
@@ -46,7 +49,19 @@ def import_dbf(fews_meta_info=None,
     dbfimporter.areas_filepath = areas_filepath
     dbfimporter.buckets_filepath = buckets_filepath
     dbfimporter.structures_filepath = structures_filepath
-    dbfimporter.import_dbf()
+
+    # Enable lizard_history logging by starting a fake request
+    try:
+        user = User.objects.get(username=username)
+    except (User.DoesNotExist, User.MultipleObjectsReturned):
+        user = None
+    utils.start_fake_request(user=user)
+
+    try:
+        dbfimporter.import_dbf()
+    finally:
+        # End the fake request, so that lizard_history will log the changes
+        utils.end_fake_request()
 
     logger.removeHandler(handler)
     return "<<import dbf>>"
