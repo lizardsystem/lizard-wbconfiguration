@@ -2,6 +2,12 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
+0.5.6 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
 0.5.5 (2012-07-03)
 ------------------
 
