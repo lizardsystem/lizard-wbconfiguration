@@ -2,7 +2,7 @@ Changelog of lizard-wbconfiguration
 ===================================================
 
 
-0.5.5 (unreleased)
+0.5.5 (2012-07-03)
 ------------------
 
 - Add summary column to history view for a wbconfiguration.
