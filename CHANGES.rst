@@ -5,7 +5,7 @@ Changelog of lizard-wbconfiguration
 0.5.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix summary overview of 'waterbalans-configuratie' issue 408.
 
 
 0.5.5 (2012-07-03)

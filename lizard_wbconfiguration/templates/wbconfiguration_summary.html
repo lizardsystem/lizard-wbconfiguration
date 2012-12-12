@@ -1,25 +1,25 @@
-<div class=lizard style="width:300">
-<h2>Samenvatting configuratie</h2>
+<div class="wbsummary">
+<h3>Samenvatting configuratie</h3>
 
-<table border=0>
+<table>
   {% if areaconfiguration %}
      <tr>
-       <td><b>Naam:</b></td>
+       <th>Naam:</th>
        <td>{{ areaconfiguration.name }}</td>
      </tr>
      <tr>
-       <td><b>Ident:</b></td>
+       <th>Ident:</th>
        <td>{{ areaconfiguration.ident }}</td>
      </tr>
      <tr>
-       <td><b>Oppervlakte(m2):</b></td>
+       <th>Oppervlakte(m2):</th>
        <td>{{ areaconfiguration.surface }}</td>
      </tr>
   {% endif %}
 </table>
 <p>
-<h2><u>Bakjes</u></h2>
-<table border=1>
+<h3>Bakjes</h3>
+<table>
   <th>Naam</th>
   <th>Oppervlakte(m2)</th>
   <th>Type</th>
@@ -36,9 +36,9 @@
   {% endfor %}
 </table>
 <p>
-<h2><u>Kunstwerken</u></h2>
-<h3>Instroom</h3>
-<table border=1>
+<h3>Kunstwerken</h3>
+<h4>Instroom</h4>
+<table>
   <th>Naam</th>
   {% for structure in structures_in %}
      <tr>
@@ -46,8 +46,9 @@
      </tr>
   {% endfor %}
 </table>
-<h3>Uitstroom</h3>
-<table border=1>
+<p>
+<h4>Uitstroom</h4>
+<table>
   <th>Naam</th>
   {% for structure in structures_out %}
      <tr>
